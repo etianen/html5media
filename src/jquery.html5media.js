@@ -42,28 +42,26 @@
         if (controls) {
             flowplayerControls = {
                 fullscreen: false,
-                autoHide: "always",
-                hideDelay: 1000
+                autoHide: "always"
             }
+        }
+        var playlist = [{
+            url: src,
+            autoPlay: autoplay,
+            autoBuffering: autobuffer,
+            onBeforeFinish: function() {
+                return !loop;
+            }
+        }];
+        if (poster) {
+            playlist.splice(0, 0, {url: poster});
         }
         container.flowplayer(flowplayerSwf, {
             onBeforeUnload: function() {
                 return false;
             },
             play: null,
-            playlist: [
-                {
-                    url: poster
-                },
-                {
-                    url: src,
-                    autoPlay: autoplay,
-                    autoBuffering: autobuffer,
-                    onBeforeFinish: function() {
-                        return !loop;
-                    }
-                }
-            ],
+            playlist: playlist,
             plugins: {
                 controls: flowplayerControls
             }
@@ -82,15 +80,8 @@
         // Replace all video tags with flowplayers on document load.
         $(function() {
             $("video").each(function() {
-                var video = $(this);
-                // Introspect the video for properties.
-                var src = video.attr("src");
-                var poster = video.attr("poster");
-                var controls = hasAttr(video, "controls");
-                var autoplay = hasAttr(video, "autoplay");
-                var autobuffer = hasAttr(video, "autobuffer");
-                var loop = hasAttr(video, "loop");
                 if (!videoSupported) {
+                    var video = $(this);
                     // Add in the replacement video div.
                     var replacement = $("<div/>", {
                         width: video.attr("width"),
@@ -100,7 +91,7 @@
                         title: video.attr("title")
                     });
                     video.replaceWith(replacement);
-                    createFlowplayer(replacement, src, poster, controls, autoplay, autobuffer, loop);
+                    createFlowplayer(replacement, video.attr("src"), video.attr("poster"), hasAttr(video, "controls"), hasAttr(video, "autoplay"), hasAttr(video, "autobuffer"), hasAttr(video, "loop"));
                 }
             });
         });
@@ -126,7 +117,7 @@
             // Parse the settings.
             var config = {
                 src: element.attr("href"),
-                poster: $("img", element).attr("src"),
+                poster: $("img", element).attr("src") || "",
                 controls: false,
                 autoplay: false,
                 autobuffer: false,
