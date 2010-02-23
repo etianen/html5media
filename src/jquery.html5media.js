@@ -31,7 +31,7 @@
     function createFlowplayer(container, src, poster, controls, autoplay, autobuffer, loop) {
         // Create a placeholder poster, if required.
         if (poster && $("img", container).length == 0) {
-            container.append($("<img>", {
+            container.html($("<img>", {
                 src: poster,
                 width: container.width(),
                 height: container.height()
@@ -130,7 +130,12 @@
             }
             if (videoSupported) {
                 // Use a HTML 5 video tag.
-                var video = $("<video/>").attr("id", id).attr("class", className).attr("src", config.src).attr("poster", config.poster).attr("width", config.width).attr("height", config.height);
+                var video = $("<video/>", {
+                    id: id,
+                    "class": className,
+                    src: config.src,
+                    poster: config.poster
+                }).attr("width", config.width).attr("height", config.height);
                 if (config.controls) {
                     video.attr("controls", "controls");
                 }
@@ -143,11 +148,9 @@
                 if (config.loop) {
                     video.attr("loop", "loop");
                 }
-                element.replaceWith(video);
+                element.html(video);
             } else {
-                var container = $("<div/>").attr("id", id).attr("class", className).width(config.width).height(config.height);
-                element.replaceWith(container);
-                createFlowplayer(container, config.src, config.poster, config.controls, config.autoplay, config.autobuffer, config.loop);
+                createFlowplayer(element, config.src, config.poster, config.controls, config.autoplay, config.autobuffer, config.loop);
             }
         });
     }
