@@ -60,7 +60,7 @@
                     autoPlay: autoplay,
                     autoBuffering: autobuffer,
                     onBeforeFinish: function() {
-                        return loop;
+                        return !loop;
                     }
                 }
             ],
