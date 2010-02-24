@@ -94,10 +94,6 @@
             title: video.attr("title")
         });
         video.replaceWith(replacement);
-        // Create a placeholder poster.
-        if (poster) {
-            replacement.html($("<img>").attr("src", poster).attr("width", width).attr("height", height));
-        }
         // Activate flowplayer.
         var flowplayerControls = null;
         if (hasAttr(video, "controls")) {
