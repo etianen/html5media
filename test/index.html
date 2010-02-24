@@ -5,9 +5,84 @@
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <meta charset="utf-8">
-        <script src="/Users/david/Workspace/cms/src/cms/media/js/jquery/jquery.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         <script src="http://html5media.googlecode.com/svn/trunk/src/jquery.html5media.min.js"></script>
         <title>HTML 5 media compatibility layer</title>
+        <style>
+            * {
+                font-size: 100%;
+                margin: 0px 0px 0px 0px;
+                padding: 0px 0px 0px 0px;
+            }
+            body,
+            input,
+            textarea,
+            select {
+                color: #333333;
+            }
+            body {
+                font-family: sans-serif;
+                font-size: 13px;
+                line-height: 24px;
+            }
+            header {
+                background: #eeeeee;
+                display: block;
+                border-bottom: 1px #b0b0b0 solid;
+            }
+            hgroup {
+                width: 960px;
+                margin: 0px auto 0px auto;
+                padding: 24px 10px 0px 24px;
+                display: block;
+                position: relative;
+            }
+            h1 {
+                font-size: 30px;
+                font-weight: normal;
+                line-height: 48px;
+            }
+            h2 {
+                font-size: 16px;
+                font-weight: normal;
+                font-style: italic;
+                margin-bottom: 24px;
+            }
+            p {
+                margin-bottom: 12px;
+            }
+            section {
+                margin: 0px auto 0px auto;
+                display: block;
+                position: relative;
+                width: 960px;
+                padding: 24px 10px 0px 10px;
+            }
+            section header {
+                background: transparent;
+                border-bottom: none;
+            }
+            section h1 {
+                font-size: 20px;
+                line-height: 48px;
+            }
+            .video {
+                margin-bottom: 24px;
+                border: 1px #b0b0b0 solid;
+                display: block;
+            }
+            footer {
+                display: block;
+                border-top: 1px #b0b0b0 solid;
+            }
+            footer p {
+                width: 960px;
+                margin: 0px auto 0px auto;
+                padding: 12px 10px 0px 24px;
+                display: block;
+                position: relative;
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -18,12 +93,16 @@
         </header>
         <section>
             <header>
-                <h1>Test media page</h1>
+                <h1>Video player demonstration</h1>
             </header>
-            <video src="http://html5media.googlecode.com/svn/trunk/test/cat.mp4" poster="http://html5media.googlecode.com/svn/trunk/test/cat.jpg" width="320" height="240" controls autobuffer></video>
+            <p>Depending on your web browser, the below video will be shown using
+            either a HTML5 video player, or a <a href="http://www.flowplayer.org">Flowplayer</a> fallback.</p>
+            <p>At the time of writing, the HTML5 player will be shown in the <em>Safari</em>, <em>Chrome</em>, <em>Android</em> and <em>iPhone</em> browsers.</p>
+            <video class="video" src="http://html5media.googlecode.com/svn/trunk/test/cat.mp4" poster="http://html5media.googlecode.com/svn/trunk/test/cat.jpg" width="320" height="240" controls autobuffer></video>
+            <p>Find out how to use HTML5 video tags in all major browsers at the <a title="html5media at Google Code" href="http://code.google.com/p/html5media/">html5media project homepage</a>.</p>
         </section>
         <footer>
-            <p>&copy; 2010 Dave Hall | <a href="http://www.etianen.com/" title="Developed by Etianen.com">http://www.etianen.com/</a></p>
+            <p>Developed by <a href="http://www.etianen.com/" title="Developed by Dave Hall">Dave Hall</a></p>
         </footer>
     </body>
 </html>
