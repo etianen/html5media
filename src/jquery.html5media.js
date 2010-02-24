@@ -114,9 +114,6 @@
             playlist.splice(0, 0, {url: poster});
         }
         replacement.flowplayer(flowplayerSwf, {
-            onBeforeUnload: function() {
-                return false;
-            },
             play: null,
             playlist: playlist,
             clip: {
@@ -127,7 +124,7 @@
             plugins: {
                 controls: flowplayerControls
             }
-        }).flowplayer(0).load();
+        });
     }
 
     // Automatically execute the html5media function on page load.
