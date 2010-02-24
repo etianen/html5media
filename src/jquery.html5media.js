@@ -27,36 +27,73 @@
     });
     var flowplayerSwf = scriptRoot + "flowplayer.swf";
     
-    // Creates a flowplayer in the container element.
-    function createFlowplayer(container, src, poster, controls, autoplay, autobuffer, loop) {
-        // Create a placeholder poster, if required.
-        if (poster && $("img", container).length == 0) {
-            container.html($("<img>", {
-                src: poster,
-                width: container.width(),
-                height: container.height()
-            }));
+    // Pull in flowplayer javascript, if required.
+    if (!videoSupported && !$.fn.flowplayer) {
+        document.write('<script src="' + scriptRoot + 'flowplayer.js"></script>');
+    }
+    
+    /**
+     * Replaces all video tags with flowplayer video player if the browser does
+     * not support either the video tag the h.264 codex.
+     * 
+     * This is run automatically on document ready, but can be run manually
+     * again after dynamically creating HTML5 video tags.
+     */
+    $.html5media = function() {
+        if (!videoSupported) {
+            $("video").each($.html5media.createFallback);
+        }
+    }
+    
+    /**
+     * Default callback for creating a fallback for html5 video tags.
+     * 
+     * This implementation creates flowplayer instances, but this can
+     * theoretically be used to support all different types of flash player.
+     */
+    $.html5media.createFallback = function() {
+        var video = $(this);
+        // Detects presence of HTML5 attributes.
+        function hasAttr(element, attr) {
+            var val = element.attr(attr);
+            return val == true || typeof val == "string";
+        }
+        // Add in the replacement video div.
+        var width = video.attr("width");
+        var height = video.attr("height");
+        var replacement = $("<div/>", {
+            width: width,
+            height: height,
+            "class": video.attr("class"),
+            id: video.attr("id"),
+            title: video.attr("title")
+        });
+        video.replaceWith(replacement);
+        // Create a placeholder poster.
+        var poster = video.attr("poster");
+        if (poster) {
+            replacement.html($("<img>").attr("src", poster).attr("width", width).attr("height", height));
         }
         // Activate flowplayer.
         var flowplayerControls = null;
-        if (controls) {
+        if (hasAttr(video, "controls")) {
             flowplayerControls = {
                 fullscreen: false,
                 autoHide: "always"
             }
         }
         var playlist = [{
-            url: src,
-            autoPlay: autoplay,
-            autoBuffering: autobuffer,
+            url: video.attr("src"),
+            autoPlay: hasAttr(video, "autoplay"),
+            autoBuffering: hasAttr(video, "autobuffer"),
             onBeforeFinish: function() {
-                return !loop;
+                return !hasAttr(video, "loop");
             }
         }];
         if (poster) {
             playlist.splice(0, 0, {url: poster});
         }
-        container.flowplayer(flowplayerSwf, {
+        replacement.flowplayer(flowplayerSwf, {
             onBeforeUnload: function() {
                 return false;
             },
@@ -67,95 +104,8 @@
             }
         }).flowplayer(0).load();
     }
-    
-    // Detects whether an attribute exists on the given element.
-    function hasAttr(element, attr) {
-        var val = element.attr(attr);
-        return val == true || typeof val == "string";
-    }
-    
-    // If no video support, use flowplayer instead.
-    if (!videoSupported) {
-        // Pull in flowplayer code, if required.
-        if (!$.fn.flowplayer) {
-            document.write('<script src="' + scriptRoot + 'flowplayer.js"></script>');
-        }
-        // Replace all video tags with flowplayers on document load.
-        $(function() {
-            $("video").each(function() {
-                if (!videoSupported) {
-                    var video = $(this);
-                    // Add in the replacement video div.
-                    var replacement = $("<div/>", {
-                        width: video.attr("width"),
-                        height: video.attr("height"),
-                        "class": video.attr("class"),
-                        id: video.attr("id"),
-                        title: video.attr("title")
-                    });
-                    video.replaceWith(replacement);
-                    createFlowplayer(replacement, video.attr("src"), video.attr("poster"), hasAttr(video, "controls"), hasAttr(video, "autoplay"), hasAttr(video, "autobuffer"), hasAttr(video, "loop"));
-                }
-            });
-        });
-    }
-    
-    /**
-     * A jQuery function for dynamically creating videos from links.
-     * 
-     * Call this on an <a> tag to create a <video> tag using it's href. If the
-     * tag contains an image, then the image will be used as the poster for the
-     * video.
-     * 
-     * You may also pass in 'src', 'poster', 'controls', 'autoplay',
-     * 'autobuffer',  'loop', 'width' and 'height' arguments to customize the
-     * video tag.
-     */
-    $.fn.video = function(settings) {
-        // Create the video players.
-        this.each(function() {
-            var element = $(this);
-            var className = element.attr("class");
-            var id = element.attr("id");
-            // Parse the settings.
-            var config = {
-                src: element.attr("href"),
-                poster: $("img", element).attr("src") || "",
-                controls: false,
-                autoplay: false,
-                autobuffer: false,
-                loop: false,
-                width: element.width(),
-                height: element.height()
-            };
-            if (settings) {
-                $.extend(config, settings);
-            }
-            if (videoSupported) {
-                // Use a HTML 5 video tag.
-                var video = $("<video/>", {
-                    id: id,
-                    "class": className,
-                    src: config.src,
-                    poster: config.poster
-                }).attr("width", config.width).attr("height", config.height);
-                if (config.controls) {
-                    video.attr("controls", "controls");
-                }
-                if (config.autoplay) {
-                    video.attr("autoplay", "autoplay")
-                }
-                if (config.autobuffer) {
-                    video.attr("autobuffer", "autobuffer");
-                }
-                if (config.loop) {
-                    video.attr("loop", "loop");
-                }
-                element.html(video);
-            } else {
-                createFlowplayer(element, config.src, config.poster, config.controls, config.autoplay, config.autobuffer, config.loop);
-            }
-        });
-    }
+
+    // Automatically execute the html5media function on page load.
+    $($.html5media);
     
 })(jQuery);
