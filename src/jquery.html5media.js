@@ -120,7 +120,9 @@
             play: null,
             playlist: playlist,
             clip: {
-                scaling: "fit"
+                scaling: "fit",
+                fadeInSpeed: 0,
+                fadeOutSpeed: 0
             },
             plugins: {
                 controls: flowplayerControls
