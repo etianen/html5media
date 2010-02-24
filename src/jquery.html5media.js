@@ -74,9 +74,12 @@
         return val == true || typeof val == "string";
     }
     
-    // If no video support, pull in flowplayer.
-    if (!videoSupported && !$.fn.flowplayer) {
-        document.write('<script src="' + scriptRoot + 'flowplayer.js"></script>');
+    // If no video support, use flowplayer instead.
+    if (!videoSupported) {
+        // Pull in flowplayer code, if required.
+        if (!$.fn.flowplayer) {
+            document.write('<script src="' + scriptRoot + 'flowplayer.js"></script>');
+        }
         // Replace all video tags with flowplayers on document load.
         $(function() {
             $("video").each(function() {
