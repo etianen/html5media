@@ -99,6 +99,9 @@
             },
             play: null,
             playlist: playlist,
+            clip: {
+                scaling: "fit"
+            },
             plugins: {
                 controls: flowplayerControls
             }
