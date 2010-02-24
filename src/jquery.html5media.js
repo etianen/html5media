@@ -58,6 +58,16 @@
             var val = element.attr(attr);
             return val == true || typeof val == "string";
         }
+        // Standardize the src and poster.
+        var baseUrl = window.location.protocol + "//" + window.location.host;
+        function addDomain(url) {
+            if (url.substr(0, 1) == "/") {
+                return baseUrl + url;
+            }
+            return url;
+        }
+        var poster = addDomain(video.attr("poster"));
+        var src = addDomain(video.attr("src"));
         // Add in the replacement video div.
         var width = video.attr("width");
         var height = video.attr("height");
@@ -70,7 +80,6 @@
         });
         video.replaceWith(replacement);
         // Create a placeholder poster.
-        var poster = video.attr("poster");
         if (poster) {
             replacement.html($("<img>").attr("src", poster).attr("width", width).attr("height", height));
         }
@@ -83,7 +92,7 @@
             }
         }
         var playlist = [{
-            url: video.attr("src"),
+            url: src,
             autoPlay: hasAttr(video, "autoplay"),
             autoBuffering: hasAttr(video, "autobuffer"),
             onBeforeFinish: function() {
