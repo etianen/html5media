@@ -116,7 +116,6 @@
             "ogg": $.html5media.THEORA_FORMAT,
             "ogv": $.html5media.THEORA_FORMAT
         }[src.split(".").slice(-1)[0]];
-        alert(type);
         return type || $.html5media.assumedFormat; 
     }
     
