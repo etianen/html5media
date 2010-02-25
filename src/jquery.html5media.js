@@ -47,13 +47,13 @@
             // Test if the video tag is supported.
             if (videoTag.canPlayType) {
                 // If the video has a src attribute, and can play it, then all is good.
-                if (video.attr("src") && videoTag.canPlayType(guessType(video.attr("src")))) {
+                if (video.attr("src") && videoTag.canPlayType(guessFormat(video.attr("src")))) {
                     requiresFallback = false;
                 } else {
                     // Check for source child attributes.
                     $("source", video).each(function() {
                         var source = $(this);
-                        if (videoTag.canPlayType(guessType(source.attr("src"), source.attr("type")))) {
+                        if (videoTag.canPlayType(guessFormat(source.attr("src"), source.attr("type")))) {
                             requiresFallback = false;
                         }
                     });
@@ -61,7 +61,7 @@
             }
             // If cannot play video, create the fallback.
             if (requiresFallback) {
-                video.each($.html5media.createFallback);
+                video.each($.html5media.createVideoFallback);
             }
         });
     }
@@ -96,7 +96,7 @@
     $.html5media.assumedFormat = $.html5media.H264_FORMAT;
     
     // Trys to determine the format of a given video file.
-    function guessType(src, type) {
+    function guessFormat(src, type) {
         // If a type is explicitly given, then use this.
         if (type) {
             return type;
@@ -132,7 +132,7 @@
      * This implementation creates flowplayer instances, but this can
      * theoretically be used to support all different types of flash player.
      */
-    $.html5media.createFallback = function() {
+    $.html5media.createVideoFallback = function() {
         var video = $(this);
         // Standardize the src and poster.
         var baseUrl = window.location.protocol + "//" + window.location.host;
@@ -148,7 +148,7 @@
             // Find a h.264 file.
             $("source", video).each(function() {
                 var source = $(this);
-                if (guessType(source.attr("src"), source.attr("type")) == $.html5media.H264_FORMAT) {
+                if (guessFormat(source.attr("src"), source.attr("type")) == $.html5media.H264_FORMAT) {
                     src = source.attr("src");
                 }
             });
