@@ -43,22 +43,26 @@
         $("video").each(function() {
             var videoTag = this;
             var video = $(this);
+            var requiresFallback = true;
             // Test if the video tag is supported.
             if (videoTag.canPlayType) {
                 // If the video has a src attribute, and can play it, then all is good.
                 if (video.attr("src") && videoTag.canPlayType(guessType(video.attr("src")))) {
-                    return;
+                    requiresFallback = false;
+                } else {
+                    // Check for source child attributes.
+                    $("source", video).each(function() {
+                        var source = $(this);
+                        if (videoTag.canPlayType(guessType(source.attr("src"), source.attr("type")))) {
+                            requiresFallback = false;
+                        }
+                    });
                 }
-                // Check for source child attributes.
-                $("source", video).each(function() {
-                    var source = $(this);
-                    if (videoTag.canPlayType(guessType(source.attr("src"), source.attr("type")))) {
-                        return;
-                    }
-                });
             }
-            // Cannot play video, create the fallback.
-            video.each($.html5media.createFallback);
+            // If cannot play video, create the fallback.
+            if (requiresFallback) {
+                video.each($.html5media.createFallback);
+            }
         });
     }
     
@@ -112,6 +116,7 @@
             "ogg": $.html5media.THEORA_FORMAT,
             "ogv": $.html5media.THEORA_FORMAT
         }[src.split(".").slice(-1)[0]];
+        alert(type);
         return type || $.html5media.assumedFormat; 
     }
     
@@ -138,7 +143,17 @@
             return url;
         }
         var poster = addDomain(video.attr("poster"));
-        var src = addDomain(video.attr("src"));
+        var src = video.attr("src");
+        if (!src) {
+            // Find a h.264 file.
+            $("source", video).each(function() {
+                var source = $(this);
+                if (guessType(source.attr("src"), source.attr("type")) == $.html5media.H264_FORMAT) {
+                    src = source.attr("src");
+                }
+            });
+        }
+        src = addDomain(src || "");
         // Add in the replacement video div.
         var width = video.attr("width");
         var height = video.attr("height");
