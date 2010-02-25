@@ -29,7 +29,7 @@
     
     // Enable all HTML5 elements in IE. For discussion and comments, see: http://remysharp.com/2009/01/07/html5-enabling-script/
     if ($.browser.msie) {
-        "abbr article aside audio canvas details figcaption figure footer header hgroup mark menu meter nav output progress section summary time".replace(/\w+/g,function(n){document.createElement(n)})
+        "abbr article aside audio canvas details figcaption figure footer header hgroup mark menu meter nav output progress section summary time video source".replace(/\w+/g,function(n){document.createElement(n)})
     }
     
     /**
