@@ -5,81 +5,9 @@
         <meta name="keywords" content="html5, html 5, video, html5video, html 5 video, flash, h.264, h264, mp4, web, internet">
         <meta name="description" content="The html5media project enables HTML5 video tags in all major browsers. All you need to do is include a single javascript file in your document.">
         <title>HTML5 video tags in all major browsers</title>
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         <script src="http://html5media.googlecode.com/svn/trunk/src/jquery.html5media.min.js"></script>
-        <style>
-            * {
-                font-size: 100%;
-                margin: 0px 0px 0px 0px;
-                padding: 0px 0px 0px 0px;
-            }
-            body {
-                font-family: sans-serif;
-                font-size: 13px;
-                line-height: 24px;
-                color: #333333;
-            }
-            header {
-                background: #eeeeee;
-                display: block;
-                border-bottom: 1px #b0b0b0 solid;
-            }
-            hgroup {
-                width: 940px;
-                margin: 0px auto 0px auto;
-                padding: 24px 10px 0px 10px;
-                display: block;
-                position: relative;
-            }
-            h1 {
-                font-size: 30px;
-                font-weight: normal;
-                line-height: 48px;
-            }
-            h2 {
-                font-size: 16px;
-                font-weight: normal;
-                font-style: italic;
-                margin-bottom: 24px;
-            }
-            p {
-                margin-bottom: 12px;
-            }
-            section {
-                margin: 0px auto 0px auto;
-                display: block;
-                position: relative;
-                width: 940px;
-                padding: 24px 10px 0px 10px;
-            }
-            section header {
-                background: transparent;
-                border-bottom: none;
-            }
-            section h1 {
-                font-size: 20px;
-                line-height: 48px;
-            }
-            .video {
-                margin-bottom: 24px;
-                border: 1px #b0b0b0 solid;
-                display: block;
-            }
-            footer {
-                display: block;
-                border-top: 1px #b0b0b0 solid;
-            }
-            footer p {
-                width: 940px;
-                margin: 0px auto 0px auto;
-                padding: 12px 10px 0px 10px;
-                display: block;
-                position: relative;
-            }
-        </style>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <header>
@@ -94,7 +22,7 @@
             </header>
             <p>Depending on your web browser, the below video will be shown using
             either a HTML5 video player, or a <a href="http://www.flowplayer.org">Flowplayer</a> fallback.</p>
-            <p>At the time of writing, the HTML5 player will be used in the <em>Safari</em>, <em>Chrome</em>, <em>Android</em> and <em>iPhone</em> browsers.</p>
+            <p>At the time of writing, the HTML5 player will be used in the <em>Firefox</em>, <em>Safari</em>, <em>Chrome</em>, <em>Android</em> and <em>iPhone</em> browsers.</p>
             <video class="video" src="cat.mp4" poster="cat.jpg" width="352" height="264" controls autobuffer></video>
             <p>The above video was embedded using a HTML5 &lt;video&gt; tag. This tag can be enabled in all major browsers by including a single javascript file in your document.</p>
             <p>Find out how to use HTML5 video tags in all major browsers at the <a title="html5media at Google Code" href="http://code.google.com/p/html5media/">html5media project homepage</a>.</p>
