@@ -141,7 +141,7 @@
             }
             return url;
         }
-        var poster = addDomain(video.attr("poster"));
+        var poster = addDomain(video.attr("poster") || "");
         var src = video.attr("src");
         if (!src) {
             // Find a h.264 file.
