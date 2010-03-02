@@ -154,14 +154,14 @@
         }
         src = addDomain(src || "");
         // Add in the replacement video div.
-        var width = video.attr("width");
-        var height = video.attr("height");
         var replacement = $("<div/>", {
-            width: width,
-            height: height,
             "class": video.attr("class"),
             id: video.attr("id"),
-            title: video.attr("title")
+            title: video.attr("title"),
+            css: {
+                width: video.attr("width") + "px",
+                height: video.attr("height") + "px"
+            }
         });
         video.replaceWith(replacement);
         // Activate flowplayer.
