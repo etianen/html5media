@@ -1,5 +1,6 @@
 /*
- * HTML 5 media compatibility layer jQuery plugin (backwards compatibility only)
+ * HTML 5 media compatibility layer.
+ * jQuery integration script provided for backwards compatibility only.
  * 
  * Copyright 2010 Dave Hall <dave@etianen.com>.
  * 
