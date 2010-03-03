@@ -7,8 +7,7 @@
         <title>HTML5 video tags in all major browsers</title>
         
         <!-- These two lines are all you need to enable HTML5 video tags in all major browsers! -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-        <script src="http://html5media.googlecode.com/svn/trunk/src/jquery.html5media.min.js"></script>
+        <script src="../src/html5media.min.js"></script>
         
         <link rel="stylesheet" href="styles.css"/>
     </head>
@@ -30,6 +29,17 @@
                 <source src="cat.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
                 <source src="cat.ogv" type='video/ogg; codecs="theora, vorbis"'></source>
             </video>
+            <p>FOo</p>
+            <video class="video" poster="cat.jpg" width="352" height="264" controls autobuffer>
+                <source src="cat.ogv" type='video/ogg; codecs="theora, vorbis"'></source>
+                <source src="cat.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
+            </video>
+            <p>FOo</p>
+            <video class="video" poster="cat.jpg" width="352" height="264" controls autobuffer>
+                <source src="cat.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
+            </video>
+            <p>FOo</p>
+            <video class="video" src="cat.mp4" poster="cat.jpg" width="352" height="264" controls autobuffer></video>
             <p>The above video was embedded using a HTML5 &lt;video&gt; tag. This tag can be enabled in all major browsers by including a single javascript file in your document.</p>
             <p>Find out how to use HTML5 video tags in all major browsers at the <a title="html5media at Google Code" href="http://code.google.com/p/html5media/">html5media project homepage</a>.</p>
         </section>
