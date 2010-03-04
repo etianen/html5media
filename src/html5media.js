@@ -154,7 +154,7 @@
         if (!src) {
             // Find a h.264 file.
             each(video.getElementsByTagName("source"), function(source) {
-                if (guessFormat(source.getAttribute("src"), source.getAttribute("type")) == html5media.H264_FORMAT) {
+                if (guessFormat(source.getAttribute("src"), source.getAttribute("type")).substr(0, 9) == "video/mp4") {
                     src = source.getAttribute("src");
                 }
             });
@@ -178,16 +178,19 @@
                 autoHide: "always"
             }
         }
-        var playlist = [{
-            url: src,
-            autoPlay: hasAttr(video, "autoplay"),
-            autoBuffering: hasAttr(video, "autobuffer"),
-            onBeforeFinish: function() {
-                return !hasAttr(video, "loop");
-            }
-        }];
+        var playlist = [];
         if (poster) {
-            playlist.splice(0, 0, {url: poster});
+            playlist.push({url: poster});
+        }
+        if (src) {
+            playlist.push({
+                url: src,
+                autoPlay: hasAttr(video, "autoplay"),
+                autoBuffering: hasAttr(video, "autobuffer"),
+                onBeforeFinish: function() {
+                    return !hasAttr(video, "loop");
+                }
+            });
         }
         flowplayer(replacement, html5media.flowplayerSwf, {
             play: null,
