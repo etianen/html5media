@@ -161,10 +161,11 @@
         }
         src = addDomain(src || "");
         // Create the replacement video div.
-        var replacement = document.createElement("div");
+        var replacement = document.createElement("span");
         replacement.id = video.id;
         replacement.className = video.className;
         replacement.title = video.title;
+        replacement.style.display = "block";
         replacement.style.width = video.getAttribute("width") + 'px';
         replacement.style.height = video.getAttribute("height") + 'px';
         // Replace the video with the div.
