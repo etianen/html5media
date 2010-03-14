@@ -170,6 +170,7 @@
         replacement.style.height = video.getAttribute("height") + 'px';
         // Replace the video with the div.
         video.parentNode.replaceChild(replacement, video);
+        var preload = (video.getAttribute("preload") || "").toLowerCase();
         // Activate flowplayer.
         var flowplayerControls = null;
         if (hasAttr(video, "controls")) {
@@ -187,7 +188,7 @@
             playlist.push({
                 url: src,
                 autoPlay: hasAttr(video, "autoplay"),
-                autoBuffering: hasAttr(video, "autobuffer"),
+                autoBuffering: hasAttr(video, "autobuffer") || (hasAttr(video, "preload") && (preload == "" || preload == "auto")),
                 onBeforeFinish: function() {
                     return !hasAttr(video, "loop");
                 }
