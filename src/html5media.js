@@ -38,16 +38,16 @@
         }
     }
     
+    // Tagnames for the different types of media tag.
+    var VIDEO_TAG = "video";
+    var AUDIO_TAG = "audio";
+    
     // If no video tag is supported, go ahead and enable all HTML5 elements.
-    if (!document.createElement("video").canPlayType) {
+    if (!document.createElement(VIDEO_TAG).canPlayType) {
         each(["abbr", "article", "aside", "audio", "canvas", "details", "figcaption", "figure", "footer", "header", "hgroup", "mark", "menu", "meter", "nav", "output", "progress", "section", "summary", "time", "video", "source"], function(name){
             document.createElement(name);
         });
     }
-    
-    // Tagnames for the different types of media tag.
-    var VIDEO_TAG = "video";
-    var AUDIO_TAG = "audio";
     
     /**
      * Replaces all video tags with flowplayer video player if the browser does
@@ -228,7 +228,7 @@
         replacement.style.display = "block";
         replacement.style.width = getDimension(element, "width", "300px");
         replacement.style.height = getDimension(element, "height", "24px");
-        if (tag == "audio" && !hasControls) {
+        if (tag == AUDIO_TAG && !hasControls) {
             replacement.style.display = "none";
         }
         // Replace the element with the div.
@@ -244,7 +244,7 @@
             playlist.push({
                 url: src,
                 autoPlay: hasAttr(element, "autoplay"),
-                autoBuffering: tag == "video" && (hasAttr(element, "autobuffer") || (hasAttr(element, "preload") && (preload == "" || preload == "auto"))),
+                autoBuffering: tag == VIDEO_TAG && (hasAttr(element, "autobuffer") || (hasAttr(element, "preload") && (preload == "" || preload == "auto"))),
                 onBeforeFinish: function() {
                     return !hasAttr(element, "loop");
                 }
@@ -262,7 +262,7 @@
                 controls: {
                     url: html5media.flowplayerControlsSwf,
                     fullscreen: false,
-                    autoHide: tag == "video" && "always" || "never",
+                    autoHide: tag == VIDEO_TAG && "always" || "never",
                     display: hasControls && "block" || "none"
                 },
                 audio: {
