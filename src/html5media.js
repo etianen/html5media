@@ -297,7 +297,13 @@
     }
 
     // Automatically execute the html5media function on page load.
-    DomReady.ready(html5media)
+    if (window.jQuery) {
+        // The jQuery build of html5media is smaller and uses the latest jQuery code.
+        jQuery(html5media);
+    } else {
+        // The standalone build of html5media uses the bundled DomReady library.
+        DomReady.ready(html5media);
+    }
     
     // Expose html5media to the global object.
     window.html5media = html5media;
