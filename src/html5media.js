@@ -143,12 +143,7 @@
     
     // Trys to determine the format of a given video file.
     function guessFormat(src, type) {
-        // If a type is explicitly given, then use this.
-        if (type) {
-            return type;
-        }
-        // Try to guess based on file extension.
-        return html5media.fileExtensions["video"][src.split(".").slice(-1)[0]] || html5media.assumedFormats["video"];
+        return type || html5media.fileExtensions["video"][src.split(".").slice(-1)[0]] || html5media.assumedFormats["video"];
     }
     
     // Detects presence of HTML5 attributes.
