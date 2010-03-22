@@ -53,26 +53,28 @@
      * again after dynamically creating HTML5 video tags.
      */
     function html5media() {
-        each(document.getElementsByTagName("video"), function(video) {
-            var requiresFallback = true;
-            // Test if the video tag is supported.
-            if (video.canPlayType) {
-                // If the video has a src attribute, and can play it, then all is good.
-                if (video.src && video.canPlayType(guessFormat(video.src))) {
-                    requiresFallback = false;
-                } else {
-                    // Check for source child attributes.
-                    each(video.getElementsByTagName("source"), function(source) {
-                        if (video.canPlayType(guessFormat(source.src, source.type))) {
-                            requiresFallback = false;
-                        }
-                    });
+        each(["video"], function(tag) {
+            each(document.getElementsByTagName(tag), function(media) {
+                var requiresFallback = true;
+                // Test if the media tag is supported.
+                if (media.canPlayType) {
+                    // If the media has a src attribute, and can play it, then all is good.
+                    if (media.src && media.canPlayType(guessFormat(tag, media.src))) {
+                        requiresFallback = false;
+                    } else {
+                        // Check for source child attributes.
+                        each(media.getElementsByTagName("source"), function(source) {
+                            if (media.canPlayType(guessFormat(tag, source.src, source.type))) {
+                                requiresFallback = false;
+                            }
+                        });
+                    }
                 }
-            }
-            // If cannot play video, create the fallback.
-            if (requiresFallback) {
-                html5media.createVideoFallback(video);
-            }
+                // If cannot play media, create the fallback.
+                if (requiresFallback) {
+                    html5media.createFallback(tag, media);
+                }
+            });
         });
     }
     
@@ -142,8 +144,8 @@
     }
     
     // Trys to determine the format of a given video file.
-    function guessFormat(src, type) {
-        return type || html5media.fileExtensions["video"][src.split(".").slice(-1)[0]] || html5media.assumedFormats["video"];
+    function guessFormat(tag, src, type) {
+        return type || html5media.fileExtensions[tag][src.split(".").slice(-1)[0]] || html5media.assumedFormats[tag];
     }
     
     // Detects presence of HTML5 attributes.
@@ -158,7 +160,7 @@
      * This implementation creates flowplayer instances, but this can
      * theoretically be used to support all different types of flash player.
      */
-    html5media.createVideoFallback = function(video) {
+    html5media.createFallback = function(tag, video) {
         // Standardize the src and poster.
         var baseUrl = window.location.protocol + "//" + window.location.host;
         function addDomain(url) {
@@ -172,7 +174,7 @@
         if (!src) {
             // Find a h.264 file.
             each(video.getElementsByTagName("source"), function(source) {
-                if (guessFormat(source.getAttribute("src"), source.getAttribute("type")).substr(0, 9) == "video/mp4") {
+                if (guessFormat(tag, source.getAttribute("src"), source.getAttribute("type")).substr(0, 9) == "video/mp4") {
                     src = source.getAttribute("src");
                 }
             });
