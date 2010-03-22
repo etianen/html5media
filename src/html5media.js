@@ -102,59 +102,59 @@
      * Known media formats. Used to change the assumed format to a different
      * format, such as Theora, if desired.
      */
-    html5media.THEORA_FORMAT = 'video/ogg; codecs="theora, vorbis"';
-    html5media.H264_FORMAT = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
-    html5media.VORBIS_FORMAT = 'audio/ogg; codecs="vorbis"';
-    html5media.M4A_FORMAT = 'audio/x-m4a;';
-    html5media.MP3_FORMAT = 'audio/mpeg3;';
-    html5media.WAV_FORMAT = 'audio/wav; codecs="1"';
+    var THEORA_FORMAT = html5media.THEORA_FORMAT = 'video/ogg; codecs="theora, vorbis"';
+    var H264_FORMAT = html5media.H264_FORMAT = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
+    var VORBIS_FORMAT = html5media.VORBIS_FORMAT = 'audio/ogg; codecs="vorbis"';
+    var M4A_FORMAT = html5media.M4A_FORMAT = 'audio/x-m4a;';
+    var MP3_FORMAT = html5media.MP3_FORMAT = 'audio/mpeg3;';
+    var WAV_FORMAT = html5media.WAV_FORMAT = 'audio/wav; codecs="1"';
     
     /**
      * The video format to assume if it cannot be determined what format a media
      * file is.
      */
-    html5media.assumedFormats = {
-        video: html5media.H264_FORMAT,
-        audio: html5media.MP3_FORMAT
+    var assumedFormats = html5media.assumedFormats = {
+        video: H264_FORMAT,
+        audio: MP3_FORMAT
     }
     
     /**
      * Formats that the fallback Flash player is able to understand.
      */
-    html5media.fallbackFormats = [html5media.H264_FORMAT, html5media.M4A_FORMAT, html5media.MP3_FORMAT];
+    var fallbackFormats = html5media.fallbackFormats = [html5media.H264_FORMAT, html5media.M4A_FORMAT, html5media.MP3_FORMAT];
     
     /**
      * Known file extensions that can be used to guess media formats in the
      * absence of other information.
      */
-    html5media.fileExtensions = {
+    var fileExtensions = html5media.fileExtensions = {
         video: {
-            "ogg": html5media.THEORA_FORMAT,
-            "ogv": html5media.THEORA_FORMAT,
-            "avi": html5media.H264_FORMAT,
-            "mp4": html5media.H264_FORMAT,
-            "mkv": html5media.H264_FORMAT,
-            "h264": html5media.H264_FORMAT,
-            "264": html5media.H264_FORMAT,
-            "avc": html5media.H264_FORMAT,
-            "m4v": html5media.H264_FORMAT,
-            "3gp": html5media.H264_FORMAT,
-            "3gpp": html5media.H264_FORMAT,
-            "3g2": html5media.H264_FORMAT
+            "ogg": THEORA_FORMAT,
+            "ogv": THEORA_FORMAT,
+            "avi": H264_FORMAT,
+            "mp4": H264_FORMAT,
+            "mkv": H264_FORMAT,
+            "h264": H264_FORMAT,
+            "264": H264_FORMAT,
+            "avc": H264_FORMAT,
+            "m4v": H264_FORMAT,
+            "3gp": H264_FORMAT,
+            "3gpp": H264_FORMAT,
+            "3g2": H264_FORMAT
         },
         audio: {
-            "ogg": html5media.VORBIS_FORMAT,
-            "oga": html5media.VORBIS_FORMAT,
-            "aac": html5media.M4A_FORMAT,
-            "m4a": html5media.M4A_FORMAT,
-            "mp3": html5media.MP3_FORMAT,
-            "wav": html5media.WAV_FORMAT
+            "ogg": VORBIS_FORMAT,
+            "oga": VORBIS_FORMAT,
+            "aac": M4A_FORMAT,
+            "m4a": M4A_FORMAT,
+            "mp3": MP3_FORMAT,
+            "wav": WAV_FORMAT
         }
     }
     
     // Trys to determine the format of a given video file.
     function guessFormat(tag, src, type) {
-        return type || html5media.fileExtensions[tag][src.split(".").slice(-1)[0]] || html5media.assumedFormats[tag];
+        return type || fileExtensions[tag][src.split(".").slice(-1)[0]] || assumedFormats[tag];
     }
     
     // Detects presence of HTML5 attributes.
@@ -221,7 +221,7 @@
             each(element.getElementsByTagName("source"), function(source) {
                 var srcValue = source.getAttribute("src");
                 if (srcValue && !src) {
-                    each(html5media.fallbackFormats, function(fallbackFormat) {
+                    each(fallbackFormats, function(fallbackFormat) {
                         format = guessFormat(tag, srcValue, source.getAttribute("type"));
                         if (formatMatches(format, fallbackFormat)) {
                             src = srcValue;
@@ -268,7 +268,7 @@
                 autoHide: tag == VIDEO_TAG && "always" || "never"
             } || null
         };
-        if (formatMatches(format, html5media.MP3_FORMAT)) {
+        if (formatMatches(format, MP3_FORMAT)) {
             // Load the audio plugin.
             plugins["audio"] = {
                     url: html5media.flowplayerAudioSwf
