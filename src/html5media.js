@@ -93,7 +93,7 @@
     html5media.flowplayerControlsSwf = scriptRoot + "flowplayer.controls.swf";
     
     /**
-     * Known video formats. Used to change the assumed format to a different
+     * Known media formats. Used to change the assumed format to a different
      * format, such as Theora, if desired.
      */
     html5media.THEORA_FORMAT = 'video/ogg; codecs="theora, vorbis"';
@@ -104,7 +104,7 @@
     html5media.WAV_FORMAT = 'audio/wav; codecs="1"';
     
     /**
-     * The video format to assume if it cannot be determined what format a video
+     * The video format to assume if it cannot be determined what format a media
      * file is.
      */
     html5media.assumedFormats = {
@@ -112,14 +112,14 @@
         "audio": html5media.MP3_FORMAT
     }
     
-    // Trys to determine the format of a given video file.
-    function guessFormat(src, type) {
-        // If a type is explicitly given, then use this.
-        if (type) {
-            return type;
-        }
-        // Try to guess based on file extension.
-        return {
+    /**
+     * Known file extensions that can be used to guess media formats in the
+     * absence of other information.
+     */
+    html5media.fileExtensions = {
+        "video": {
+            "ogg": html5media.THEORA_FORMAT,
+            "ogv": html5media.THEORA_FORMAT,
             "avi": html5media.H264_FORMAT,
             "mp4": html5media.H264_FORMAT,
             "mkv": html5media.H264_FORMAT,
@@ -129,10 +129,26 @@
             "m4v": html5media.H264_FORMAT,
             "3gp": html5media.H264_FORMAT,
             "3gpp": html5media.H264_FORMAT,
-            "3g2": html5media.H264_FORMAT,
-            "ogg": html5media.THEORA_FORMAT,
-            "ogv": html5media.THEORA_FORMAT
-        }[src.split(".").slice(-1)[0]] || html5media.assumedFormats["video"];
+            "3g2": html5media.H264_FORMAT
+        },
+        "audio": {
+            "ogg": html5media.VORBIS_FORMAT,
+            "oga": html5media.VORBIS_FORMAT,
+            "aac": html5media.M4A_FORMAT,
+            "m4a": html5media.M4A_FORMAT,
+            "mp3": html5media.MP3_FORMAT,
+            "wav": html5media.WAV_FORMAT
+        }
+    }
+    
+    // Trys to determine the format of a given video file.
+    function guessFormat(src, type) {
+        // If a type is explicitly given, then use this.
+        if (type) {
+            return type;
+        }
+        // Try to guess based on file extension.
+        return html5media.fileExtensions["video"][src.split(".").slice(-1)[0]] || html5media.assumedFormats["video"];
     }
     
     // Detects presence of HTML5 attributes.
