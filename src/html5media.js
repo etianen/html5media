@@ -82,6 +82,11 @@
         });
     }
     
+    // Removes the final filename from the given path.
+    function dirname(path) {
+        return path.split("/").slice(0, -1).join("/") + "/";
+    }
+    
     /**
      * The locations of the flowplayer and flowplayer controls SWF files.
      * 
@@ -90,8 +95,8 @@
     var scriptRoot = "";
     each(document.getElementsByTagName("script"), function(script) {
         var src = script.src;
-        if (src.match(/html5media(\.min|)\.js\s*$/g)) {
-            scriptRoot = src.split("/").slice(0, -1).join("/") + "/";
+        if (src.match(/html5media(\.min|)\.js\s*$/)) {
+            scriptRoot = dirname(src);
         }
     });
     html5media.flowplayerSwf = scriptRoot + "flowplayer.swf";
@@ -163,11 +168,22 @@
         return val == true || typeof val == "string";
     }
     
-    // Adds the domain name to the given URL. If this is not done, then
-    // Flowplayer gets very confused.
-    var baseUrl = window.location.protocol + "//" + window.location.host;
-    function addDomain(url) {
+    // Standardizes URLs to avoid confusing Flowplayer.
+    var hostUrl = window.location.protocol + "//" + window.location.host;
+    var baseUrl = String(window.location);
+    each(document.getElementsByTagName("base"), function(element) {
+        if (element.href) {
+            baseUrl = element.href;
+        }
+    });
+    baseUrl = dirname(baseUrl);
+    function fixPath(url) {
+        // Add the host to URLs that start with a forward slash.
         if (url.substr(0, 1) == "/") {
+            return hostUrl + url;
+        }
+        // Add the baseUrl to relative URLs.
+        if (url.substr(0, 1) == "." || !url.match(/^\s*\w+:\/\//)) {
             return baseUrl + url;
         }
         return url;
@@ -203,7 +219,7 @@
     function formatMatches(format1, format2) {
         return (getMimeType(format1) == getMimeType(format2));
     }
-    
+
     /**
      * Default callback for creating a fallback for html5 media tags.
      * 
@@ -213,8 +229,8 @@
     html5media.createFallback = function(tag, element) {
         var hasControls = hasAttr(element, "controls");
         // Standardize the src and poster.
-        var poster = addDomain(element.getAttribute("poster") || "");
-        var src = element.getAttribute("src");
+        var poster = element.getAttribute("poster") || "";
+        var src = element.getAttribute("src") || "";
         var format;
         if (!src) {
             // Find a compatible fallback file.
@@ -232,7 +248,6 @@
         } else {
             format = guessFormat(tag, src);
         }
-        src = addDomain(src || "");
         // Create the replacement element div.
         var replacement = document.createElement("span");
         replacement.id = element.id;
@@ -248,11 +263,11 @@
         var flowplayerControls = null;
         var playlist = [];
         if (poster) {
-            playlist.push({url: poster});
+            playlist.push({url: fixPath(poster)});
         }
         if (src) {
             playlist.push({
-                url: src,
+                url: fixPath(src),
                 autoPlay: hasAttr(element, "autoplay"),
                 autoBuffering: hasAttr(element, "autobuffer") || (hasAttr(element, "preload") && (preload == "" || preload == "auto")),
                 onBeforeFinish: function() {
@@ -263,28 +278,28 @@
         // Determine which plugins should be loaded.
         var plugins = {
             controls: hasControls && {
-                url: html5media.flowplayerControlsSwf,
+                url: fixPath(html5media.flowplayerControlsSwf),
                 fullscreen: false,
                 autoHide: tag == VIDEO_TAG && "always" || "never"
             } || null
-        };
+        }
         if (formatMatches(format, MP3_FORMAT)) {
             // Load the audio plugin.
             plugins["audio"] = {
-                    url: html5media.flowplayerAudioSwf
+                url: fixPath(html5media.flowplayerAudioSwf)
             }
             // HACK: The Flowplayer audio plugin requires that the controls plugin is present.
             if (!hasControls) {
                 plugins["controls"] = {
-                    url: html5media.flowplayerControlsSwf,
+                    url: fixPath(html5media.flowplayerControlsSwf),
                     display: "none"
                 }
             }
             // HACK: The Flowplayer audio plugin will autoplay clips and never stop if autobuffering is enabled.
-            playlist.slice(-1)[0]["autoBuffering"] = false;
+            playlist.slice(-1)[0].autoBuffering = false;
         }
         // Load the Flowplayer.
-        flowplayer(replacement, html5media.flowplayerSwf, {
+        flowplayer(replacement, fixPath(html5media.flowplayerSwf), {
             play: null,
             playlist: playlist,
             clip: {
