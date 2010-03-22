@@ -90,7 +90,7 @@
     var scriptRoot = "";
     each(document.getElementsByTagName("script"), function(script) {
         var src = script.src;
-        if (src.substr(src.length - 17) == "html5media.min.js") {
+        if (src.match(/html5media(\.min|)\.js\s*$/g)) {
             scriptRoot = src.split("/").slice(0, -1).join("/") + "/";
         }
     });
@@ -300,7 +300,7 @@
     if (window.jQuery) {
         // The jQuery build of html5media is smaller and uses the latest jQuery code.
         jQuery(html5media);
-    } else {
+    } else if (window.DomReady) {
         // The standalone build of html5media uses the bundled DomReady library.
         DomReady.ready(html5media);
     }
