@@ -96,6 +96,7 @@
         }
     });
     html5media.flowplayerSwf = scriptRoot + "flowplayer.swf";
+    html5media.flowplayerAudioSwf = scriptRoot + "flowplayer.audio.swf";
     html5media.flowplayerControlsSwf = scriptRoot + "flowplayer.controls.swf";
     
     /**
@@ -117,6 +118,11 @@
         VIDEO_TAG: html5media.H264_FORMAT,
         AUDIO_TAG: html5media.MP3_FORMAT
     }
+    
+    /**
+     * Formats that the fallback Flash player is able to understand.
+     */
+    html5media.fallbackFormats = ["video/mp4", "audio/x-m4a", "audio/mpeg3", "audio/wav"];
     
     /**
      * Known file extensions that can be used to guess media formats in the
@@ -196,6 +202,7 @@
      * theoretically be used to support all different types of flash player.
      */
     html5media.createFallback = function(tag, element) {
+        var hasControls = hasAttr(element, "controls");
         // Standardize the src and poster.
         var poster = addDomain(element.getAttribute("poster") || "");
         var src = element.getAttribute("src");
@@ -203,8 +210,12 @@
             // Find a h.264 file.
             each(element.getElementsByTagName("source"), function(source) {
                 var srcValue = source.getAttribute("src");
-                if (srcValue && guessFormat(tag, srcValue, source.getAttribute("type")).substr(0, 9) == "video/mp4") {
-                    src = srcValue;
+                if (srcValue) {
+                    each(html5media.fallbackFormats, function(format) {
+                        if (guessFormat(tag, srcValue, source.getAttribute("type")).substr(0, format.length) == format) {
+                            src = srcValue;
+                        }
+                    });
                 }
             });
         }
@@ -217,18 +228,14 @@
         replacement.style.display = "block";
         replacement.style.width = getDimension(element, "width", "300px");
         replacement.style.height = getDimension(element, "height", "24px");
+        if (tag == "audio" && !hasControls) {
+            replacement.style.display = "none";
+        }
         // Replace the element with the div.
         element.parentNode.replaceChild(replacement, element);
         var preload = (element.getAttribute("preload") || "").toLowerCase();
         // Activate flowplayer.
         var flowplayerControls = null;
-        if (hasAttr(element, "controls")) {
-            flowplayerControls = {
-                url: html5media.flowplayerControlsSwf,
-                fullscreen: false,
-                autoHide: "always"
-            }
-        }
         var playlist = [];
         if (poster) {
             playlist.push({url: poster});
@@ -237,7 +244,7 @@
             playlist.push({
                 url: src,
                 autoPlay: hasAttr(element, "autoplay"),
-                autoBuffering: hasAttr(element, "autobuffer") || (hasAttr(element, "preload") && (preload == "" || preload == "auto")),
+                autoBuffering: tag == "video" && (hasAttr(element, "autobuffer") || (hasAttr(element, "preload") && (preload == "" || preload == "auto"))),
                 onBeforeFinish: function() {
                     return !hasAttr(element, "loop");
                 }
@@ -252,7 +259,12 @@
                 fadeOutSpeed: 0
             },
             plugins: {
-                controls: flowplayerControls,
+                controls: {
+                    url: html5media.flowplayerControlsSwf,
+                    fullscreen: false,
+                    autoHide: tag == "video" && "always" || "never",
+                    display: hasControls && "block" || "none"
+                },
                 audio: {
                     url: html5media.flowplayerAudioSwf
                 }
