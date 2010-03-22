@@ -45,6 +45,10 @@
         });
     }
     
+    // Tagnames for the different types of media tag.
+    var VIDEO_TAG = "video";
+    var AUDIO_TAG = "audio";
+    
     /**
      * Replaces all video tags with flowplayer video player if the browser does
      * not support either the video tag the h.264 codex.
@@ -53,7 +57,7 @@
      * again after dynamically creating HTML5 video tags.
      */
     function html5media() {
-        each(["video"], function(tag) {
+        each([VIDEO_TAG, AUDIO_TAG], function(tag) {
             each(document.getElementsByTagName(tag), function(media) {
                 var requiresFallback = true;
                 // Test if the media tag is supported.
@@ -110,8 +114,8 @@
      * file is.
      */
     html5media.assumedFormats = {
-        "video": html5media.H264_FORMAT,
-        "audio": html5media.MP3_FORMAT
+        VIDEO_TAG: html5media.H264_FORMAT,
+        AUDIO_TAG: html5media.MP3_FORMAT
     }
     
     /**
@@ -119,7 +123,7 @@
      * absence of other information.
      */
     html5media.fileExtensions = {
-        "video": {
+        VIDEO_TAG: {
             "ogg": html5media.THEORA_FORMAT,
             "ogv": html5media.THEORA_FORMAT,
             "avi": html5media.H264_FORMAT,
@@ -133,7 +137,7 @@
             "3gpp": html5media.H264_FORMAT,
             "3g2": html5media.H264_FORMAT
         },
-        "audio": {
+        AUDIO_TAG: {
             "ogg": html5media.VORBIS_FORMAT,
             "oga": html5media.VORBIS_FORMAT,
             "aac": html5media.M4A_FORMAT,
@@ -154,46 +158,49 @@
         return val == true || typeof val == "string";
     }
     
+    // Adds the domain name to the given URL. If this is not done, then
+    // Flowplayer gets very confused.
+    var baseUrl = window.location.protocol + "//" + window.location.host;
+    function addDomain(url) {
+        if (url.substr(0, 1) == "/") {
+            return baseUrl + url;
+        }
+        return url;
+    }
+    
     /**
-     * Default callback for creating a fallback for html5 video tags.
+     * Default callback for creating a fallback for html5 media tags.
      * 
      * This implementation creates flowplayer instances, but this can
      * theoretically be used to support all different types of flash player.
      */
-    html5media.createFallback = function(tag, video) {
+    html5media.createFallback = function(tag, media) {
         // Standardize the src and poster.
-        var baseUrl = window.location.protocol + "//" + window.location.host;
-        function addDomain(url) {
-            if (url.substr(0, 1) == "/") {
-                return baseUrl + url;
-            }
-            return url;
-        }
-        var poster = addDomain(video.getAttribute("poster") || "");
-        var src = video.getAttribute("src");
+        var poster = addDomain(media.getAttribute("poster") || "");
+        var src = media.getAttribute("src");
         if (!src) {
             // Find a h.264 file.
-            each(video.getElementsByTagName("source"), function(source) {
-                if (guessFormat(tag, source.getAttribute("src"), source.getAttribute("type")).substr(0, 9) == "video/mp4") {
+            each(media.getElementsByTagName("source"), function(source) {
+                if (guessFormat(tag, source.getAttribute("src"), source.getAttribute("type")).substr(0, 9) == "media/mp4") {
                     src = source.getAttribute("src");
                 }
             });
         }
         src = addDomain(src || "");
-        // Create the replacement video div.
+        // Create the replacement media div.
         var replacement = document.createElement("span");
-        replacement.id = video.id;
-        replacement.className = video.className;
-        replacement.title = video.title;
+        replacement.id = media.id;
+        replacement.className = media.className;
+        replacement.title = media.title;
         replacement.style.display = "block";
-        replacement.style.width = video.getAttribute("width") + 'px';
-        replacement.style.height = video.getAttribute("height") + 'px';
-        // Replace the video with the div.
-        video.parentNode.replaceChild(replacement, video);
-        var preload = (video.getAttribute("preload") || "").toLowerCase();
+        replacement.style.width = (media.getAttribute("width") || media.offsetWidth || 300) + "px";
+        replacement.style.height = (media.getAttribute("height") || Math.max(media.offsetHeight, 24)) + "px";
+        // Replace the media with the div.
+        media.parentNode.replaceChild(replacement, media);
+        var preload = (media.getAttribute("preload") || "").toLowerCase();
         // Activate flowplayer.
         var flowplayerControls = null;
-        if (hasAttr(video, "controls")) {
+        if (hasAttr(media, "controls")) {
             flowplayerControls = {
                 url: html5media.flowplayerControlsSwf,
                 fullscreen: false,
@@ -207,10 +214,10 @@
         if (src) {
             playlist.push({
                 url: src,
-                autoPlay: hasAttr(video, "autoplay"),
-                autoBuffering: hasAttr(video, "autobuffer") || (hasAttr(video, "preload") && (preload == "" || preload == "auto")),
+                autoPlay: hasAttr(media, "autoplay"),
+                autoBuffering: hasAttr(media, "autobuffer") || (hasAttr(media, "preload") && (preload == "" || preload == "auto")),
                 onBeforeFinish: function() {
-                    return !hasAttr(video, "loop");
+                    return !hasAttr(media, "loop");
                 }
             });
         }
