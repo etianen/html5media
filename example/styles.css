@@ -71,7 +71,8 @@ section h1 {
     line-height: 48px;
 }
 
-.video {
+.video,
+.audio {
     margin-bottom: 24px;
     border: 1px #b0b0b0 solid;
     display: block;

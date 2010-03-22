@@ -168,39 +168,61 @@
         return url;
     }
     
+    // Calculates the given dimension of the given element.
+    function getDimension(element, dimension, fallback) {
+        // Attempt to use it's attribute value.
+        var result = element.getAttribute(dimension);
+        if (result) {
+            return result + "px";
+        }
+        // Attempt to use it's computed style.
+        if (element.currentStyle) {
+            var style = element.currentStyle[dimension];
+        } else if (window.getComputedStyle) {
+            var style = document.defaultView.getComputedStyle(element, null).getPropertyValue(dimension);
+        } else {
+            return fallback;
+        }
+        if (style == "auto") {
+            return fallback; 
+        }
+        return style;
+    }
+    
     /**
      * Default callback for creating a fallback for html5 media tags.
      * 
      * This implementation creates flowplayer instances, but this can
      * theoretically be used to support all different types of flash player.
      */
-    html5media.createFallback = function(tag, media) {
+    html5media.createFallback = function(tag, element) {
         // Standardize the src and poster.
-        var poster = addDomain(media.getAttribute("poster") || "");
-        var src = media.getAttribute("src");
+        var poster = addDomain(element.getAttribute("poster") || "");
+        var src = element.getAttribute("src");
         if (!src) {
             // Find a h.264 file.
-            each(media.getElementsByTagName("source"), function(source) {
-                if (guessFormat(tag, source.getAttribute("src"), source.getAttribute("type")).substr(0, 9) == "media/mp4") {
-                    src = source.getAttribute("src");
+            each(element.getElementsByTagName("source"), function(source) {
+                var srcValue = source.getAttribute("src");
+                if (srcValue && guessFormat(tag, srcValue, source.getAttribute("type")).substr(0, 9) == "video/mp4") {
+                    src = srcValue;
                 }
             });
         }
         src = addDomain(src || "");
-        // Create the replacement media div.
+        // Create the replacement element div.
         var replacement = document.createElement("span");
-        replacement.id = media.id;
-        replacement.className = media.className;
-        replacement.title = media.title;
+        replacement.id = element.id;
+        replacement.className = element.className;
+        replacement.title = element.title;
         replacement.style.display = "block";
-        replacement.style.width = (media.getAttribute("width") || media.offsetWidth || 300) + "px";
-        replacement.style.height = (media.getAttribute("height") || Math.max(media.offsetHeight, 24)) + "px";
-        // Replace the media with the div.
-        media.parentNode.replaceChild(replacement, media);
-        var preload = (media.getAttribute("preload") || "").toLowerCase();
+        replacement.style.width = getDimension(element, "width", "300px");
+        replacement.style.height = getDimension(element, "height", "24px");
+        // Replace the element with the div.
+        element.parentNode.replaceChild(replacement, element);
+        var preload = (element.getAttribute("preload") || "").toLowerCase();
         // Activate flowplayer.
         var flowplayerControls = null;
-        if (hasAttr(media, "controls")) {
+        if (hasAttr(element, "controls")) {
             flowplayerControls = {
                 url: html5media.flowplayerControlsSwf,
                 fullscreen: false,
@@ -214,10 +236,10 @@
         if (src) {
             playlist.push({
                 url: src,
-                autoPlay: hasAttr(media, "autoplay"),
-                autoBuffering: hasAttr(media, "autobuffer") || (hasAttr(media, "preload") && (preload == "" || preload == "auto")),
+                autoPlay: hasAttr(element, "autoplay"),
+                autoBuffering: hasAttr(element, "autobuffer") || (hasAttr(element, "preload") && (preload == "" || preload == "auto")),
                 onBeforeFinish: function() {
-                    return !hasAttr(media, "loop");
+                    return !hasAttr(element, "loop");
                 }
             });
         }
@@ -230,7 +252,10 @@
                 fadeOutSpeed: 0
             },
             plugins: {
-                controls: flowplayerControls
+                controls: flowplayerControls,
+                audio: {
+                    url: html5media.flowplayerAudioSwf
+                }
             }
         });
     }
