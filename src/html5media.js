@@ -41,7 +41,7 @@
     // If no video tag is supported, go ahead and enable all HTML5 elements.
     if (!document.createElement("video").canPlayType) {
         each(["abbr", "article", "aside", "audio", "canvas", "details", "figcaption", "figure", "footer", "header", "hgroup", "mark", "menu", "meter", "nav", "output", "progress", "section", "summary", "time", "video", "source"], function(name){
-                document.createElement(name);
+            document.createElement(name);
         });
     }
     
@@ -96,8 +96,12 @@
      * Known video formats. Used to change the assumed format to a different
      * format, such as Theora, if desired.
      */
-    html5media.H264_FORMAT = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
     html5media.THEORA_FORMAT = 'video/ogg; codecs="theora, vorbis"';
+    html5media.H264_FORMAT = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
+    html5media.VORBIS_FORMAT = 'audio/ogg; codecs="vorbis"';
+    html5media.M4A_FORMAT = 'audio/x-m4a;';
+    html5media.MP3_FORMAT = 'audio/mpeg3;';
+    html5media.WAV_FORMAT = 'audio/wav; codecs="1"';
     
     /**
      * The video format to assume if it cannot be determined what format a video
