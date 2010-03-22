@@ -107,7 +107,10 @@
      * The video format to assume if it cannot be determined what format a video
      * file is.
      */
-    html5media.assumedFormat = html5media.H264_FORMAT;
+    html5media.assumedFormats = {
+        "video": html5media.H264_FORMAT,
+        "audio": html5media.MP3_FORMAT
+    }
     
     // Trys to determine the format of a given video file.
     function guessFormat(src, type) {
@@ -129,7 +132,7 @@
             "3g2": html5media.H264_FORMAT,
             "ogg": html5media.THEORA_FORMAT,
             "ogv": html5media.THEORA_FORMAT
-        }[src.split(".").slice(-1)[0]] || html5media.assumedFormat;
+        }[src.split(".").slice(-1)[0]] || html5media.assumedFormats["video"];
     }
     
     // Detects presence of HTML5 attributes.
