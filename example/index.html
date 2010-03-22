@@ -2,9 +2,9 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="keywords" content="html5, html 5, video, html5video, html 5 video, flash, h.264, h264, mp4, web, internet"/>
-        <meta name="description" content="The html5media project enables HTML5 video tags in all major browsers. All you need to do is include a single javascript file in your document."/>
-        <title>HTML5 video tags in all major browsers</title>
+        <meta name="keywords" content="html5, html 5, video, audio, html5video, html 5 video, html 5 audio, flash, h.264, h264, mp4, mp3, wav, aac, web, internet"/>
+        <meta name="description" content="The html5media project enables HTML5 video and audio tags in all major browsers. All you need to do is include a single javascript file in your document."/>
+        <title>HTML5 video and audio tags in all major browsers</title>
         
         <!-- This line is all you need to enable HTML5 video tags in all major browsers! -->
         <script src="http://html5media.googlecode.com/svn/trunk/src/html5media.min.js"></script>
@@ -15,22 +15,28 @@
         <header>
             <hgroup>
                 <h1>HTML5 video for everyone!</h1>
-                <h2>Enables &lt;video&gt; tags in all major browsers.</h2>
+                <h2>Enables &lt;video&gt; and &lt;audio&gt; tags in all major browsers.</h2>
             </hgroup>
         </header>
         <section>
             <header>
-                <h1>Video tag demo</h1>
+                <h1>Video &amp; Audio tag demo</h1>
             </header>
-            <p>Depending on your web browser, the below video will be shown using
-            either a HTML5 video player, or a <a href="http://www.flowplayer.org">Flowplayer</a> fallback.</p>
-            <p>At the time of writing, the HTML5 player will be used in the <em>Firefox</em>, <em>Safari</em>, <em>Chrome</em>, <em>Opera</em>, <em>Android</em> and <em>iPhone</em> browsers.</p>
+            <p>Depending on your web browser, the below video and audio will be shown using
+            either a HTML5 video/audio player, or a <a href="http://www.flowplayer.org">Flowplayer</a> fallback.</p>
+            <p>At the time of writing, the HTML5 player will be used in the <em>Firefox</em>, <em>Safari</em>,
+            <em>Chrome</em>, <em>Opera</em>, <em>Android</em> and <em>iPhone</em> browsers.</p>
             <video class="video" poster="cat.jpg" width="352" height="264" controls preload>
-                <source src="cat.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
-                <source src="cat.ogv" type='video/ogg; codecs="theora, vorbis"'></source>
+                <source src="http://static.etianen.com/html5media/cat.ogv" type='video/ogg; codecs="theora, vorbis"'></source>
+                <source src="http://static.etianen.com/html5media/cat.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
             </video>
             <p>The above video was embedded using a HTML5 &lt;video&gt; tag. This tag can be enabled in all major browsers by including a single javascript file in your document.</p>
-            <p>Find out how to use HTML5 video tags in all major browsers at the <a title="html5media at Google Code" href="http://code.google.com/p/html5media/">html5media project homepage</a>.</p>
+            <audio controls preload>
+                <source src="music.ogg" type='audio/ogg; codecs="vorbis"'></source>
+                <source src="music.mp3" type="audio/mpeg3;"></source>
+            </audio>
+            <p>The above audio file was embedded using a HTML5 &lt;audio&gt; tag. This tag can be enabled in all major browsers by including a single javascript file in your document.</p>
+            <p>Find out how to use HTML5 video and audio tags in all major browsers at the <a title="html5media at Google Code" href="http://code.google.com/p/html5media/">html5media project homepage</a>.</p>
         </section>
         <footer>
             <p>Developed by <a href="http://www.etianen.com/" title="Developed by Dave Hall">Dave Hall</a>.</p>
