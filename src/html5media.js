@@ -241,9 +241,6 @@
         replacement.style.display = "block";
         replacement.style.width = getDimension(element, "width", "300px");
         replacement.style.height = getDimension(element, "height", "24px");
-        if (tag == AUDIO_TAG && !hasControls) {
-            replacement.style.display = "none";
-        }
         // Replace the element with the div.
         element.parentNode.replaceChild(replacement, element);
         var preload = (element.getAttribute("preload") || "").toLowerCase();
@@ -264,29 +261,27 @@
             });
         }
         // Determine which plugins should be loaded.
+        var plugins = {
+            controls: hasControls && {
+                url: html5media.flowplayerControlsSwf,
+                fullscreen: false,
+                autoHide: tag == VIDEO_TAG && "always" || "never"
+            } || null
+        };
         if (formatMatches(format, html5media.MP3_FORMAT)) {
-            // HACK: The Flowplayer audio plugin requires that the controls plugin is present.
-            var plugins = {
-                controls: {
-                    url: html5media.flowplayerControlsSwf,
-                    fullscreen: false,
-                    autoHide: "never",
-                    display: hasControls && "block" || "none"
-                },
-                audio: {
+            // Load the audio plugin.
+            plugins["audio"] = {
                     url: html5media.flowplayerAudioSwf
+            }
+            // HACK: The Flowplayer audio plugin requires that the controls plugin is present.
+            if (!hasControls) {
+                plugins["controls"] = {
+                    url: html5media.flowplayerControlsSwf,
+                    display: "none"
                 }
             }
             // HACK: The Flowplayer audio plugin will autoplay clips and never stop if autobuffering is enabled.
             playlist.slice(-1)[0]["autoBuffering"] = false;
-        } else {
-            var plugins = {
-                controls: hasControls && {
-                    url: html5media.flowplayerControlsSwf,
-                    fullscreen: false,
-                    autoHide: tag == VIDEO_TAG && "always" || "never",
-                } || null
-            };
         }
         // Load the Flowplayer.
         flowplayer(replacement, html5media.flowplayerSwf, {
