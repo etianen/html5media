@@ -7,8 +7,12 @@
         <title>HTML5 video and audio tags in all major browsers</title>
         
         <!-- This line is all you need to enable HTML5 video tags in all major browsers! -->
-        <script src="http://html5media.googlecode.com/svn/trunk/src/html5media.min.js"></script>
-        
+        <script src="../src/html5media.min.js"></script>
+        <script>
+            html5media.flowplayerSwf = "../src/flowplayer.swf";
+            html5media.flowplayerAudioSwf = "../src/flowplayer.audio.swf";
+            html5media.flowplayerControlsSwf = "../src/flowplayer.controls.swf";
+        </script>
         <link rel="stylesheet" href="styles.css"/>
     </head>
     <body>
@@ -22,21 +26,21 @@
             <header>
                 <h1>Video &amp; Audio tag demo</h1>
             </header>
-            <p>Depending on your web browser, the below video and audio will be shown using
+            <p>Depending on your web browser, the below video and audio files will be shown using
             either a HTML5 video/audio player, or a <a href="http://www.flowplayer.org">Flowplayer</a> fallback.</p>
             <p>At the time of writing, the HTML5 player will be used in the <em>Firefox</em>, <em>Safari</em>,
             <em>Chrome</em>, <em>Opera</em>, <em>Android</em> and <em>iPhone</em> browsers.</p>
             <video class="video" poster="cat.jpg" width="352" height="264" controls preload>
-                <source src="http://static.etianen.com/html5media/cat.ogv" type='video/ogg; codecs="theora, vorbis"'></source>
-                <source src="http://static.etianen.com/html5media/cat.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
+                <source src="cat.ogv" type='video/ogg; codecs="theora, vorbis"'></source>
+                <source src="cat.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
             </video>
-            <p>The above video was embedded using a HTML5 &lt;video&gt; tag. This tag can be enabled in all major browsers by including a single javascript file in your document.</p>
-            <audio controls preload>
+            <p>The above video was embedded using a HTML5 &lt;video&gt; tag.</p>
+            <audio class="audio" controls preload>
                 <source src="music.ogg" type='audio/ogg; codecs="vorbis"'></source>
                 <source src="music.mp3" type="audio/mpeg3;"></source>
             </audio>
-            <p>The above audio file was embedded using a HTML5 &lt;audio&gt; tag. This tag can be enabled in all major browsers by including a single javascript file in your document.</p>
-            <p>Find out how to use HTML5 video and audio tags in all major browsers at the <a title="html5media at Google Code" href="http://code.google.com/p/html5media/">html5media project homepage</a>.</p>
+            <p>The above audio file was embedded using a HTML5 &lt;audio&gt; tag. Both these tags can be enabled in all major browsers by including a single javascript file in your document.</p>
+            <p>Find out how to enable HTML5 video and audio tags in all major browsers at the <a title="html5media at Google Code" href="http://code.google.com/p/html5media/">html5media project homepage</a>.</p>
         </section>
         <footer>
             <p>Developed by <a href="http://www.etianen.com/" title="Developed by Dave Hall">Dave Hall</a>.</p>
