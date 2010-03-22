@@ -5,7 +5,7 @@
  * Copyright 2010 Dave Hall <dave@etianen.com>.
  * 
  * This script is part of the html5media project. The html5media project enables
- * HTML5 video tags in all major browsers.
+ * HTML5 video and audio tags in all major browsers.
  * 
  * The html5media project is free software: you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as published by
