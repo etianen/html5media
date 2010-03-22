@@ -87,7 +87,6 @@
      * 
      * Override this if they are not located in the same folder as the 
      */
-    // HACK: This could be done much easier with a selector, but there is a bug in IE6 that doesn't allow dots in attribute selectors.
     var scriptRoot = "";
     each(document.getElementsByTagName("script"), function(script) {
         var src = script.src;
@@ -115,21 +114,21 @@
      * file is.
      */
     html5media.assumedFormats = {
-        VIDEO_TAG: html5media.H264_FORMAT,
-        AUDIO_TAG: html5media.MP3_FORMAT
+        video: html5media.H264_FORMAT,
+        audio: html5media.MP3_FORMAT
     }
     
     /**
      * Formats that the fallback Flash player is able to understand.
      */
-    html5media.fallbackFormats = ["video/mp4", "audio/x-m4a", "audio/mpeg3", "audio/wav"];
+    html5media.fallbackFormats = [html5media.H264_FORMAT, html5media.M4A_FORMAT, html5media.MP3_FORMAT];
     
     /**
      * Known file extensions that can be used to guess media formats in the
      * absence of other information.
      */
     html5media.fileExtensions = {
-        VIDEO_TAG: {
+        video: {
             "ogg": html5media.THEORA_FORMAT,
             "ogv": html5media.THEORA_FORMAT,
             "avi": html5media.H264_FORMAT,
@@ -143,7 +142,7 @@
             "3gpp": html5media.H264_FORMAT,
             "3g2": html5media.H264_FORMAT
         },
-        AUDIO_TAG: {
+        audio: {
             "ogg": html5media.VORBIS_FORMAT,
             "oga": html5media.VORBIS_FORMAT,
             "aac": html5media.M4A_FORMAT,
@@ -195,6 +194,16 @@
         return style;
     }
     
+    // Extracts the mimetype from a format string.
+    function getMimeType(format) {
+        return format.match(/\s*([\w-]+\/[\w-]+);|\s/)[1];
+    }
+    
+    // Checks whether the two formats are equivalent.
+    function formatMatches(format1, format2) {
+        return (getMimeType(format1) == getMimeType(format2));
+    }
+    
     /**
      * Default callback for creating a fallback for html5 media tags.
      * 
@@ -206,18 +215,22 @@
         // Standardize the src and poster.
         var poster = addDomain(element.getAttribute("poster") || "");
         var src = element.getAttribute("src");
+        var format;
         if (!src) {
-            // Find a h.264 file.
+            // Find a compatible fallback file.
             each(element.getElementsByTagName("source"), function(source) {
                 var srcValue = source.getAttribute("src");
-                if (srcValue) {
-                    each(html5media.fallbackFormats, function(format) {
-                        if (guessFormat(tag, srcValue, source.getAttribute("type")).substr(0, format.length) == format) {
+                if (srcValue && !src) {
+                    each(html5media.fallbackFormats, function(fallbackFormat) {
+                        format = guessFormat(tag, srcValue, source.getAttribute("type"));
+                        if (formatMatches(format, fallbackFormat)) {
                             src = srcValue;
                         }
                     });
                 }
             });
+        } else {
+            format = guessFormat(tag, src);
         }
         src = addDomain(src || "");
         // Create the replacement element div.
@@ -244,12 +257,38 @@
             playlist.push({
                 url: src,
                 autoPlay: hasAttr(element, "autoplay"),
-                autoBuffering: tag == VIDEO_TAG && (hasAttr(element, "autobuffer") || (hasAttr(element, "preload") && (preload == "" || preload == "auto"))),
+                autoBuffering: hasAttr(element, "autobuffer") || (hasAttr(element, "preload") && (preload == "" || preload == "auto")),
                 onBeforeFinish: function() {
                     return !hasAttr(element, "loop");
                 }
             });
         }
+        // Determine which plugins should be loaded.
+        if (formatMatches(format, html5media.MP3_FORMAT)) {
+            // HACK: The Flowplayer audio plugin requires that the controls plugin is present.
+            var plugins = {
+                controls: {
+                    url: html5media.flowplayerControlsSwf,
+                    fullscreen: false,
+                    autoHide: "never",
+                    display: hasControls && "block" || "none"
+                },
+                audio: {
+                    url: html5media.flowplayerAudioSwf
+                }
+            }
+            // HACK: The Flowplayer audio plugin will autoplay clips and never stop if autobuffering is enabled.
+            playlist.slice(-1)[0]["autoBuffering"] = false;
+        } else {
+            var plugins = {
+                controls: hasControls && {
+                    url: html5media.flowplayerControlsSwf,
+                    fullscreen: false,
+                    autoHide: tag == VIDEO_TAG && "always" || "never",
+                } || null
+            };
+        }
+        // Load the Flowplayer.
         flowplayer(replacement, html5media.flowplayerSwf, {
             play: null,
             playlist: playlist,
@@ -258,17 +297,7 @@
                 fadeInSpeed: 0,
                 fadeOutSpeed: 0
             },
-            plugins: {
-                controls: {
-                    url: html5media.flowplayerControlsSwf,
-                    fullscreen: false,
-                    autoHide: tag == VIDEO_TAG && "always" || "never",
-                    display: hasControls && "block" || "none"
-                },
-                audio: {
-                    url: html5media.flowplayerAudioSwf
-                }
-            }
+            plugins: plugins
         });
     }
 
