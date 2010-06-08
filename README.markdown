@@ -21,7 +21,7 @@ following easy syntax:
 
     <audio src="audio.mp3" controls preload></audio>
     
-You can see this code in action at <http://static.etianen.com/html5media/>.
+You can see this code in action on the [html5media demo page](http://etianen.github.com/html5media/).
 
 Please read our [Getting Started](http://wiki.github.com/etianen/html5media/getting-started)
 guide for more information.
