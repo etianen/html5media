@@ -43,14 +43,6 @@ Find out more about Flowplayer at their website:
 
 *   <http://flowplayer.org>
     
-If you keep all the html5media files in the same folder, and it should all work
-just fine. If you move the flowplayer.swf and flowplayer.controls.swf files to
-another location, then you'll need to tell html5media where they are using the
-following javascript commands:
-
-    $.html5media.flowplayerSwf = "/path/to/your/flowplayer.swf";
-    $.html5media.flowplayerControlsSwf = "/path/to/your/flowplayer.controls.swf";
-    
     
 ## More information
 
