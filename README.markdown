@@ -39,7 +39,7 @@ What's in the box?
 ------------------
 
 The html5media project consists of a single, minified Javascript file that is
-used to detect your browser's HTML5 video capabilities. Any video tags than
+used to detect your browser's HTML5 video capabilities. Any video tags that
 cannot be played are dynamically replaced with a Flash video player.
 
 The bundled Flash video player is provided by Flowplayer under the GPL3 licence.
