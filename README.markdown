@@ -1,4 +1,4 @@
-# HTML5 video and audio for everyone!
+# html5media
 
 HTML5 video and audio tags make embedding media into documents as easy as
 embedding an image. All it takes is a single `<video>` or `<audio>` tag.
