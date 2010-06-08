@@ -28,9 +28,8 @@ guide for more information:
 ## Help! My video won't play!
 
 It's probably encoded incorrectly. Videos should always be saved as h.264 (mp4),
-or Theora (ogv) files. Find out more on our [[Video Formats]] page:
-
-*   <http://code.google.com/p/html5media/wiki/VideoFormats>
+or Theora (ogv) files. Find out more on our [Video Formats](http://wiki.github.com/etianen/html5media(video-formats)
+page.
     
     
 ## What's in the box?
