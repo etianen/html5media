@@ -1,13 +1,9 @@
-HTML5 video for everyone!
-=========================
-
 HTML5 video tags make embedding videos into documents as easy as embedding an
 image. All it takes is a single <video> tag. Unfortunately, not all browsers
 natively support HTML5 video tags.
 
 
-Enabling video tags in all major browsers
------------------------------------------
+## Enabling video tags in all major browsers
 
 To enable HTML5 video tags in all major browsers, simply paste the following
 code into the <head> of your document:
@@ -21,24 +17,22 @@ This will allow you to embed videos into your document using the following easy 
     
 You can see this code in action at:
 
-    * http://static.etianen.com/html5media/
+*   http://static.etianen.com/html5media/
 
 Please read our Getting Started guide for more information:
 
-    * http://code.google.com/p/html5media/wiki/GettingStarted
+*   http://code.google.com/p/html5media/wiki/GettingStarted
     
     
-Help! My video won't play!
---------------------------
+## Help! My video won't play!
 
 It's probably encoded incorrectly. Videos should always be saved as h.264 (mp4),
 or Theora (ogv) files. Find out more on our Video Formats page:
 
-    * http://code.google.com/p/html5media/wiki/VideoFormats
+*   http://code.google.com/p/html5media/wiki/VideoFormats
     
     
-What's in the box?
-------------------
+## What's in the box?
 
 The html5media project consists of a single, minified Javascript file that is
 used to detect your browser's HTML5 video capabilities. Any video tags than
@@ -47,7 +41,7 @@ cannot be played are dynamically replaced with a Flash video player.
 The bundled Flash video player is provided by Flowplayer under the GPL3 licence.
 Find out more about Flowplayer at their website:
 
-    * http://flowplayer.org
+*   http://flowplayer.org
     
 If you keep all the html5media files in the same folder, and it should all work
 just fine. If you move the flowplayer.swf and flowplayer.controls.swf files to
@@ -58,19 +52,18 @@ following javascript commands:
     $.html5media.flowplayerControlsSwf = "/path/to/your/flowplayer.controls.swf";
     
     
-More information
-----------------
+## More information
 
 The html5media project was developed by Dave Hall, and is hosted on Google Code
 at the following URL:
 
-    * http://code.google.com/p/html5media/
+*   http://code.google.com/p/html5media/
     
 Dave Hall is a freelance web developer, based in Cambridge, UK. You can usually
 find him on the Internet in a number of different places:
 
-    * http://www.etianen.com/
-    * http://www.etianen.com/feeds/latest/
-    * http://twitter.com/etianen
-    * http://www.google.com/profiles/david.etianen
+*   http://www.etianen.com/
+*   http://www.etianen.com/feeds/latest/
+*   http://twitter.com/etianen
+*   http://www.google.com/profiles/david.etianen
 
