@@ -39,9 +39,7 @@ used to detect your browser's HTML5 video capabilities. Any video tags than
 cannot be played are dynamically replaced with a Flash video player.
 
 The bundled Flash video player is provided by Flowplayer under the GPL3 licence.
-Find out more about Flowplayer at their website:
-
-*   <http://flowplayer.org>
+Find out more about Flowplayer at their website: <http://flowplayer.org>
     
     
 ## More information
