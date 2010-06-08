@@ -1,35 +1,34 @@
 # HTML5 video and audio for everyone!
 
-HTML5 video tags make embedding videos into documents as easy as embedding an
-image. All it takes is a single <video> tag. Unfortunately, not all browsers
-natively support HTML5 video tags.
+HTML5 video and audio tags make embedding media into documents as easy as
+embedding an image. All it takes is a single `<video>` or `<audio>` tag.
+Unfortunately, not all browsers natively support these HTML5 tags.
 
 
-## Enabling video tags in all major browsers
+## Enabling video and tags in all major browsers
 
-To enable HTML5 video tags in all major browsers, simply paste the following
-code into the <head> of your document:
+To enable HTML5 video and audio tags in all major browsers, simply paste the following
+code into the `<head>` of your document:
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script src="/path/to/your/jquery.html5media.min.js"></script>
+    <script src="http://html5media.googlecode.com/svn/trunk/src/html5media.min.js"></script>
     
-This will allow you to embed videos into your document using the following easy syntax:
+This will allow you to embed video and audio into your document using the
+following easy syntax:
 
-    <video src="video.mp4" width="320" height="240" controls autobuffer></video>
+    <video src="video.mp4" width="320" height="240" controls preload></video>
+
+    <audio src="audio.mp3" controls preload></audio>
     
-You can see this code in action at:
+You can see this code in action at <http://static.etianen.com/html5media/>.
 
-*   <http://static.etianen.com/html5media/>
-
-Please read our Getting Started guide for more information:
-
-*   <http://code.google.com/p/html5media/wiki/GettingStarted>
+Please read our [Getting Started](http://wiki.github.com/etianen/html5media/getting-started)
+guide for more information:
     
     
 ## Help! My video won't play!
 
 It's probably encoded incorrectly. Videos should always be saved as h.264 (mp4),
-or Theora (ogv) files. Find out more on our Video Formats page:
+or Theora (ogv) files. Find out more on our [[Video Formats]] page:
 
 *   <http://code.google.com/p/html5media/wiki/VideoFormats>
     
@@ -56,10 +55,10 @@ following javascript commands:
     
 ## More information
 
-The html5media project was developed by Dave Hall, and is hosted on Google Code
-at the following URL:
+The html5media project was developed by Dave Hall, and is hosted on GitHub at
+the following URL:
 
-*   <http://code.google.com/p/html5media/>
+*   <http://github.com/etianen/html5media>
     
 Dave Hall is a freelance web developer, based in Cambridge, UK. You can usually
 find him on the Internet in a number of different places:
