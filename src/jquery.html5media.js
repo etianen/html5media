@@ -1,7 +1,7 @@
 /*
  * HTML 5 media compatibility layer.
- * This is the slightly smaller jQuery plugin build that does not include the
- * standalone DomReady library.
+ * This is for the slightly smaller jQuery plugin build that does not include
+ * the standalone DomReady library.
  * 
  * Copyright 2010 Dave Hall <dave@etianen.com>.
  * 
