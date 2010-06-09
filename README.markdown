@@ -12,12 +12,12 @@ Enabling video and tags in all major browsers
 All it takes is three simple steps to enable HTML5 video and audio tags in all
 major browsers!
 
-1.  Download the and unzip the [latest release].
+1.  Download the and unzip the [latest html5media release].
 
-[Latest release]: http://github.com/etianen/html5media/zipball/release-1.0
+[Latest html5media release]: http://github.com/etianen/html5media/zipball/release-1.0
 
 2.  Upload the contents of the included html5media folder to your webserver.
-    Be sure to keep all the bundled files in the same folder.
+    Be sure to keep all the bundled files together in the same folder.
 
 3.  Add the following snippet the to `<head>` of your document:
 
