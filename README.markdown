@@ -77,10 +77,10 @@ You can find out more about Flowplayer on the [Flowplayer website][].
 More information
 ----------------
 
-The html5media project was developed by Dave Hall, and you can get the code from
-the [GitHub project page][].
+The html5media project was developed by Dave Hall. You can get the code from the
+[html5media project site][].
 
-[GitHub project page]: http://github.com/etianen/html5media
+[html5media project site]: http://github.com/etianen/html5media
     "Dave Hall's html5media on GitHub"
     
 Dave Hall is a freelance web developer, based in Cambridge, UK. You can usually
