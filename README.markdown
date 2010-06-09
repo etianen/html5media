@@ -23,7 +23,7 @@ major browsers!
 
         <script src="/path/to/your/html5media.min.js"></script>
     
-You can see this code in action on the [html5media demo page][].
+You can see this code in action on the [html5media demo site][].
 
 [html5media demo page]: http://etianen.github.com/html5media/
     "html5media video and audio tag demonstration"
