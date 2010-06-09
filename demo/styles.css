@@ -1,0 +1,92 @@
+/*
+    Styles used for the video tag demo page.
+    
+    None of these styles are needed to make html5media work... they're just here
+    to make the demo page look nice!
+    
+    Developed by Dave Hall <dave@etianen.com>.
+    
+    <http://www.etianen.com/>
+*/
+
+* {
+    font-size: 100%;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+body {
+    font-family: sans-serif;
+    font-size: 13px;
+    line-height: 24px;
+    color: #333333;
+}
+
+header {
+    background: #eeeeee;
+    display: block;
+    border-bottom: 1px #b0b0b0 solid;
+}
+
+hgroup {
+    width: 940px;
+    margin: 0px auto 0px auto;
+    padding: 24px 10px 0px 10px;
+    display: block;
+    position: relative;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 48px;
+}
+
+h2 {
+    font-size: 16px;
+    font-weight: normal;
+    font-style: italic;
+    margin-bottom: 24px;
+}
+
+p {
+    margin-bottom: 12px;
+}
+
+section {
+    margin: 0px auto 0px auto;
+    display: block;
+    position: relative;
+    width: 940px;
+    padding: 24px 10px 0px 10px;
+}
+
+section header {
+    background: transparent;
+    border-bottom: none;
+}
+
+section h1 {
+    font-size: 20px;
+    line-height: 48px;
+}
+
+.video,
+.audio {
+    margin-bottom: 24px;
+    border: 1px #b0b0b0 solid;
+    display: block;
+}
+
+footer {
+    display: block;
+    border-top: 1px #b0b0b0 solid;
+}
+
+footer p {
+    width: 940px;
+    margin: 0px auto 0px auto;
+    padding: 12px 10px 0px 10px;
+    display: block;
+    position: relative;
+}
