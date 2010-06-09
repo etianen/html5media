@@ -111,7 +111,7 @@
     var H264_FORMAT = html5media.H264_FORMAT = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
     var VORBIS_FORMAT = html5media.VORBIS_FORMAT = 'audio/ogg; codecs="vorbis"';
     var M4A_FORMAT = html5media.M4A_FORMAT = 'audio/x-m4a;';
-    var MP3_FORMAT = html5media.MP3_FORMAT = 'audio/mpeg3;';
+    var MP3_FORMAT = html5media.MP3_FORMAT = 'audio/mpeg;';
     var WAV_FORMAT = html5media.WAV_FORMAT = 'audio/wav; codecs="1"';
     
     /**
