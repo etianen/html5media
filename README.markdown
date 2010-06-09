@@ -9,9 +9,8 @@ Unfortunately, not all browsers natively support these HTML5 tags.
 Enabling video and tags in all major browsers
 ---------------------------------------------
 
-To enable HTML5 video and audio tags in all major browsers, simply download and
-unzip an official release of html5media. Upload the contents of the included
-html5media folder to your webserver, and include the
+All it takes is three steps to enable HTML5 video and audio tags in all major
+browsers!
 
 1.  Download the and unzip the [latest release].
 
@@ -24,13 +23,6 @@ html5media folder to your webserver, and include the
 
         <script src="/path/to/your/html5media.min.js"></script>
     
-This will allow you to embed video and audio into your document using the
-following easy syntax:
-
-    <video src="video.mp4" width="320" height="240" controls preload></video>
-
-    <audio src="audio.mp3" controls preload></audio>
-    
 You can see this code in action on the [html5media demo page][].
 
 [html5media demo page]: http://etianen.github.com/html5media/
@@ -40,6 +32,21 @@ Please read our [Getting Started][] guide for more information.
 
 [Getting Started]: http://wiki.github.com/etianen/html5media/getting-started
     "Getting started with html5media"
+    
+    
+Using HTML5 video and audio
+---------------------------
+
+HTML5 allows you to embed video and audio into your document using the following
+easy syntax:
+
+    <video src="video.mp4" width="320" height="240" controls preload></video>
+
+    <audio src="audio.mp3" controls preload></audio>
+    
+Find out more about HTML5 on the [Dive Into HTML5 video page].
+
+[Dive Into HTML5 video page]: http://diveintohtml5.org/video.html
     
     
 Help! My video won't play!
