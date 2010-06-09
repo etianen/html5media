@@ -16,14 +16,14 @@ major browsers!
 
 [Latest html5media release]: http://github.com/etianen/html5media/zipball/release-1.0
 
-2.  Upload the contents of the included html5media folder to your webserver.
+2.  Upload the contents of the unpacked `html5media/`folder to your webserver.
     Be sure to keep all the bundled files together in the same folder.
 
 3.  Add the following snippet the to `<head>` of your document:
 
         <script src="/path/to/your/html5media.min.js"></script>
     
-You can see this code in action on the [html5media demo page][].
+You can see this code in action on the [html5media demo site][].
 
 [html5media demo page]: http://etianen.github.com/html5media/
     "html5media video and audio tag demonstration"
