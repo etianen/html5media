@@ -299,7 +299,10 @@
             playlist.slice(-1)[0].autoBuffering = false;
         }
         // Load the Flowplayer.
-        flowplayer(replacement, fixPath(html5media.flowplayerSwf), {
+        flowplayer(replacement, {
+            src: fixPath(html5media.flowplayerSwf),
+            wmode: "opaque"
+        }, {
             play: null,
             playlist: playlist,
             clip: {
