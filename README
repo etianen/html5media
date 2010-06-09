@@ -17,7 +17,7 @@ major browsers!
 
 [html5media download area]: http://github.com/etianen/html5media/downloads
 
-2.  Upload the contents of the unpacked `html5media/`folder to your webserver.
+2.  Upload the contents of the unpacked `html5media/` folder to your webserver.
     Be sure to keep all the bundled files together in the same folder.
 
 3.  Add the following snippet the to `<head>` of your document:
