@@ -18,7 +18,9 @@ SRC_ROOT = os.path.join(PROJECT_ROOT, "src")
 
 LIB_ROOT = os.path.join(PROJECT_ROOT, "lib")
 
-BUILD_ROOT = os.path.join(PROJECT_ROOT, "build", "html5media")
+BUILD_ROOT = os.path.join(PROJECT_ROOT, "build")
+
+HTML5MEDIA_BUILD_ROOT = os.path.join(BUILD_ROOT, "html5media")
 
 
 def compile(filenames, outfile):
@@ -35,26 +37,30 @@ def main():
         shutil.rmtree(BUILD_ROOT)
     # Create the build root.
     os.mkdir(BUILD_ROOT)
+    os.mkdir(HTML5MEDIA_BUILD_ROOT)
     # Create the compiled js files.
     compile((os.path.join(LIB_ROOT, "flowplayer", "flowplayer.js"),
              os.path.join(LIB_ROOT, "domready", "domready.js"),
              os.path.join(SRC_ROOT, "html5media.js"),),
-            os.path.join(BUILD_ROOT, "html5media.min.js"))
+            os.path.join(HTML5MEDIA_BUILD_ROOT, "html5media.min.js"))
     compile((os.path.join(LIB_ROOT, "flowplayer", "flowplayer.js"),
              os.path.join(SRC_ROOT, "html5media.js"),),
-            os.path.join(BUILD_ROOT, "jquery.html5media.min.js"))
+            os.path.join(HTML5MEDIA_BUILD_ROOT, "jquery.html5media.min.js"))
     # Copy over the Flowplayer resources.
     shutil.copy(os.path.join(LIB_ROOT, "flowplayer", "flowplayer.swf"),
-                os.path.join(BUILD_ROOT, "flowplayer.swf"))
+                os.path.join(HTML5MEDIA_BUILD_ROOT, "flowplayer.swf"))
     shutil.copy(os.path.join(LIB_ROOT, "flowplayer", "flowplayer.controls.swf"),
-                os.path.join(BUILD_ROOT, "flowplayer.controls.swf"))
+                os.path.join(HTML5MEDIA_BUILD_ROOT, "flowplayer.controls.swf"))
     shutil.copy(os.path.join(LIB_ROOT, "flowplayer.audio", "flowplayer.audio.swf"),
-                os.path.join(BUILD_ROOT, "flowplayer.audio.swf"))
+                os.path.join(HTML5MEDIA_BUILD_ROOT, "flowplayer.audio.swf"))
     # Copy over the license and readme files.
     shutil.copy(os.path.join(PROJECT_ROOT, "LICENSE"),
-                os.path.join(BUILD_ROOT, "LICENSE"))
+                os.path.join(HTML5MEDIA_BUILD_ROOT, "LICENSE"))
     shutil.copy(os.path.join(PROJECT_ROOT, "README.markdown"),
                 os.path.join(BUILD_ROOT, "README"))
+    # Copy over the example page.
+    shutil.copytree(os.path.join(PROJECT_ROOT, "example"),
+                    os.path.join(BUILD_ROOT, "example"))
 
 
 if __name__ == "__main__":

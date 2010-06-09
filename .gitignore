@@ -5,4 +5,4 @@
 *.pyc
 *.pyo
 Thumbs.db
-build/html5media
+build
