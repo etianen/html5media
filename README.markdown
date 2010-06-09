@@ -16,7 +16,7 @@ major browsers!
 
 [Latest html5media release]: http://github.com/etianen/html5media/zipball/release-1.0
 
-2.  Upload the contents of the included html5media folder to your webserver.
+2.  Upload the contents of the unpacked `html5media/`folder to your webserver.
     Be sure to keep all the bundled files together in the same folder.
 
 3.  Add the following snippet the to `<head>` of your document:
