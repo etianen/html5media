@@ -6,9 +6,10 @@ repository or have downloaded one of the source tarballs. This is perfect if you
 want to help develop html5media.
 
 If you simply want to use html5media in your site, it's recommended that you
-simply download one of the pre-built releases from the [project download page][].
+simply download one of the pre-built releases from the
+[html5media download page][].
 
-[Project download page]: http://github.com/etianen/html5media/downloads
+[html5media download page]: http://github.com/etianen/html5media/downloads
     "html5media project download page"
     
 
@@ -21,7 +22,7 @@ a terminal and running the build script like so:
 
     $ bin/build.py
     
-The built html5media code will all be placed in a brand-new build directory in
-the project root.
+The built html5media code will all be placed in a brand-new `build/` directory
+in the root of the project.
 
 **Happy coding!**
