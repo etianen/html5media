@@ -48,6 +48,11 @@ easy syntax:
 Find out more about HTML5 on the [Dive Into HTML5 video page].
 
 [Dive Into HTML5 video page]: http://diveintohtml5.org/video.html
+
+You can ask for help and discuss all aspects of HTML5 media and audio on the
+[html5media discussion group][].
+
+[html5media discussion group]: http://groups.google.com/group/html5media
     
     
 Help! My file won't play!
