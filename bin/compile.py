@@ -41,10 +41,10 @@ def main():
     # Create the compiled js files.
     compile((os.path.join(LIB_ROOT, "flowplayer", "flowplayer.js"),
              os.path.join(LIB_ROOT, "domready", "domready.js"),
-             os.path.join(SRC_ROOT, "html5media.js"),),
+             os.path.join(SRC_ROOT, "html5media", "html5media.js"),),
             os.path.join(HTML5MEDIA_BUILD_ROOT, "html5media.min.js"))
     compile((os.path.join(LIB_ROOT, "flowplayer", "flowplayer.js"),
-             os.path.join(SRC_ROOT, "html5media.js"),),
+             os.path.join(SRC_ROOT, "html5media", "html5media.js"),),
             os.path.join(HTML5MEDIA_BUILD_ROOT, "jquery.html5media.min.js"))
     # Copy over the Flowplayer resources.
     shutil.copy(os.path.join(LIB_ROOT, "flowplayer", "flowplayer.swf"),
@@ -58,9 +58,11 @@ def main():
                 os.path.join(HTML5MEDIA_BUILD_ROOT, "LICENSE"))
     shutil.copy(os.path.join(PROJECT_ROOT, "README.markdown"),
                 os.path.join(BUILD_ROOT, "README"))
-    # Copy over the example page.
-    shutil.copytree(os.path.join(PROJECT_ROOT, "example"),
-                    os.path.join(BUILD_ROOT, "example"))
+    # Copy over the demo page.
+    shutil.copytree(os.path.join(SRC_ROOT, "demo"),
+                    os.path.join(BUILD_ROOT, "demo"))
+    shutil.copy(os.path.join(SRC_ROOT, "index.html"),
+                os.path.join(BUILD_ROOT, "index.html"))
 
 
 if __name__ == "__main__":
