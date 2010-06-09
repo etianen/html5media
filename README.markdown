@@ -9,17 +9,17 @@ Unfortunately, not all browsers natively support these HTML5 tags.
 Enabling video and tags in all major browsers
 ---------------------------------------------
 
-All it takes is three steps to enable HTML5 video and audio tags in all major
-browsers!
+All it takes is three simple steps to enable HTML5 video and audio tags in all
+major browsers!
 
 1.  Download the and unzip the [latest release].
 
 [Latest release]: http://github.com/etianen/html5media/zipball/release-1.0
 
 2.  Upload the contents of the included html5media folder to your webserver.
-    Make sure that you keep all the bundled files in the same folder.
+    Be sure to keep all the bundled files in the same folder.
 
-3.  Add the following snippet the to `head` of your document:
+3.  Add the following snippet the to `<head>` of your document:
 
         <script src="/path/to/your/html5media.min.js"></script>
     
