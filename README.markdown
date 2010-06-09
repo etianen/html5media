@@ -17,7 +17,7 @@ major browsers!
 
 [html5media download area]: http://github.com/etianen/html5media/downloads
 
-2.  Upload the contents of the unpacked `html5media/`folder to your webserver.
+2.  Upload the contents of the unpacked `html5media/` folder to your webserver.
     Be sure to keep all the bundled files together in the same folder.
 
 3.  Add the following snippet the to `<head>` of your document:
@@ -50,7 +50,7 @@ Find out more about HTML5 on the [Dive Into HTML5 video page].
 [Dive Into HTML5 video page]: http://diveintohtml5.org/video.html
     
     
-Help! My video won't play!
+Help! My file won't play!
 --------------------------
 
 It's probably encoded incorrectly. Videos should always be saved as h.264 (mp4),
@@ -58,6 +58,8 @@ or Theora (ogv) files. Find out more on our [Video Formats][] page.
 
 [Video Formats]: http://wiki.github.com/etianen/html5media/video-formats
     "Video formats supported by html5media"
+
+Audio files should be saved as mp3, AAC (m4a) or Vorbis (ogg).
     
     
 What's in the box?
