@@ -26,7 +26,7 @@ major browsers!
     
 You can see this code in action on the [html5media demo site][].
 
-[html5media demo page]: http://etianen.github.com/html5media/
+[html5media demo site]: http://etianen.github.com/html5media/
     "html5media video and audio tag demonstration"
 
 Please read our [Getting Started][] guide for more information.
