@@ -24,7 +24,7 @@ following easy syntax:
 You can see this code in action on the [html5media demo page][].
 
 [html5media demo page]: http://etianen.github.com/html5media/
-    "html5media video an audio tag demonstration"
+    "html5media video and audio tag demonstration"
 
 Please read our [Getting Started][] guide for more information.
 
