@@ -5,6 +5,7 @@ html5media changelog
 HEAD
 ----
 
+*   Added convenient callback for customizing Flowplayer.
 *   Added ability to append cache-busting parameters to script tag.
 
 
