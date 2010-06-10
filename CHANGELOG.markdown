@@ -1,6 +1,13 @@
 html5media changelog
 ====================
 
+
+HEAD
+----
+
+*   Added ability to append cache-busting parameters to script tag.
+
+
 1.1
 ---
 

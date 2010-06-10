@@ -95,7 +95,7 @@
     var scriptRoot = "";
     each(document.getElementsByTagName("script"), function(script) {
         var src = script.src;
-        if (src.match(/html5media(\.min|)\.js\s*$/)) {
+        if (src.match(/html5media(\.min|)\.js/)) {
             scriptRoot = dirname(src);
         }
     });
