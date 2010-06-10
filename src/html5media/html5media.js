@@ -221,6 +221,19 @@
     }
 
     /**
+     * Callback for adding custom configuration options to Flowplayer before it
+     * launches. This callback is supplied with the tagname of the element being
+     * replaced ("video" or "audio"), the element being replaced, and the
+     * generated Flowplayer configuration.
+     * 
+     * This callback should return the updated Flowplayer configuration. By
+     * The default implementation leaves the generated configuration intact.
+     */
+    html5media.configureFlowplayer = function(tag, element, config) {
+        return config;
+    }
+    
+    /**
      * Default callback for creating a fallback for html5 media tags.
      * 
      * This implementation creates flowplayer instances, but this can
@@ -299,10 +312,7 @@
             playlist.slice(-1)[0].autoBuffering = false;
         }
         // Load the Flowplayer.
-        flowplayer(replacement, {
-            src: fixPath(html5media.flowplayerSwf),
-            wmode: "opaque"
-        }, {
+        var config = {
             play: null,
             playlist: playlist,
             clip: {
@@ -311,7 +321,12 @@
                 fadeOutSpeed: 0
             },
             plugins: plugins
-        });
+        }
+        html5media.configureFlowplayer(tag, element, config);
+        flowplayer(replacement, {
+            src: fixPath(html5media.flowplayerSwf),
+            wmode: "opaque"
+        }, config);
     }
 
     // Automatically execute the html5media function on page load.
