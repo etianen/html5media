@@ -48,9 +48,14 @@ easy syntax:
 Find out more about HTML5 on the [Dive Into HTML5 video page].
 
 [Dive Into HTML5 video page]: http://diveintohtml5.org/video.html
+
+You can ask for help and discuss all aspects of HTML5 media and audio on the
+[html5media discussion group][].
+
+[html5media discussion group]: http://groups.google.com/group/html5media
     
     
-Help! My video won't play!
+Help! My file won't play!
 --------------------------
 
 It's probably encoded incorrectly. Videos should always be saved as h.264 (mp4),
@@ -58,6 +63,8 @@ or Theora (ogv) files. Find out more on our [Video Formats][] page.
 
 [Video Formats]: http://wiki.github.com/etianen/html5media/video-formats
     "Video formats supported by html5media"
+
+Audio files should be saved as mp3, AAC (m4a) or Vorbis (ogg).
     
     
 What's in the box?
