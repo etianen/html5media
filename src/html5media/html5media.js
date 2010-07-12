@@ -212,7 +212,7 @@
     
     // Extracts the mimetype from a format string.
     function getMimeType(format) {
-        return format.match(/\s*([\w-]+\/[\w-]+);|\s/)[1];
+        return format.match(/\s*([\w-]+\/[\w-]+)(;|\s|$)/)[1];
     }
     
     // Checks whether the two formats are equivalent.
