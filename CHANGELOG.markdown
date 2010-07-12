@@ -2,6 +2,12 @@ html5media changelog
 ====================
 
 
+1.1.2
+-----
+
+*   Allowed <source> type attributes to omit the semicolon. 
+
+
 1.1.1
 -----
 
