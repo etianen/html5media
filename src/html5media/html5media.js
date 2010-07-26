@@ -145,7 +145,9 @@
             "m4v": H264_FORMAT,
             "3gp": H264_FORMAT,
             "3gpp": H264_FORMAT,
-            "3g2": H264_FORMAT
+            "3g2": H264_FORMAT,
+            "mpg": H264_FORMAT,
+            "mpeg": H264_FORMAT
         },
         audio: {
             "ogg": VORBIS_FORMAT,
