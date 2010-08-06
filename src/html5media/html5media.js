@@ -77,6 +77,13 @@
                 // If cannot play media, create the fallback.
                 if (requiresFallback) {
                     html5media.createFallback(tag, media);
+                } else {
+                    // HACK: Enables playback in android phones.
+                    if (navigator.userAgent.search("android") > -1) {
+                        media.addEventListener("click", function() {
+                            media.play();
+                        }, false);
+                    }
                 }
             });
         });
