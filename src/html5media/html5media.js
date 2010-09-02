@@ -24,7 +24,6 @@
  * <http://www.etianen.com/>
  */
 
-
 (function(window, document, undefined) {
     
     // Executes the given callback in the context of each array item.
@@ -60,15 +59,20 @@
         each([VIDEO_TAG, AUDIO_TAG], function(tag) {
             each(document.getElementsByTagName(tag), function(media) {
                 var requiresFallback = true;
+                var isAndroid = navigator.userAgent.toLowerCase().search('android') > -1;
                 // Test if the media tag is supported.
                 if (media.canPlayType) {
                     // If the media has a src attribute, and can play it, then all is good.
-                    if (media.src && media.canPlayType(guessFormat(tag, media.src))) {
-                        requiresFallback = false;
+                    if (media.src) {
+                        var fmt = guessFormat(tag, media.src);
+                        if (media.canPlayType(fmt) || (isAndroid && fmt.search('mp4') > -1)) {
+                            requiresFallback = false;
+                        }
                     } else {
                         // Check for source child attributes.
                         each(media.getElementsByTagName("source"), function(source) {
-                            if (media.canPlayType(guessFormat(tag, source.src, source.type))) {
+                            var fmt = guessFormat(tag, source.src, source.type);
+                            if (media.canPlayType(fmt)  || (isAndroid && fmt.search('mp4') > -1)) {
                                 requiresFallback = false;
                             }
                         });
@@ -79,7 +83,7 @@
                     html5media.createFallback(tag, media);
                 } else {
                     // HACK: Enables playback in android phones.
-                    if (navigator.userAgent.search("android") > -1) {
+                    if (isAndroid) {
                         media.addEventListener("click", function() {
                             media.play();
                         }, false);
