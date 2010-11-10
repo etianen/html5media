@@ -7,6 +7,8 @@ html5media changelog
 
 *   Added support for Google Android OS.
 *   Added in some additional recognised file extensions.
+*   Upgraded to Flowplayer 3.2.5.
+*   Upgraded to Flowplayer.audio 3.2.1.
 
 
 1.1.2
