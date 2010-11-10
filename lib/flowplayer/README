@@ -1,5 +1,29 @@
 Version history:
 
+3.2.5
+-----
+- added new scaling option 'crop' that resizes to fill all available space, cropping on top/bottom or left/right
+- improvements to RSS file parsing
+- Now displays a hand cursor when a linkUrl is used in clips
+
+3.2.4
+-----
+- new flowplayer.js version, with Apple iDevice fixes
+
+3.2.3
+-----
+- a new 'type' clip property exposed to JS
+- changed the clip type property to better work as a read-write property. Now accepts 'video', 'audio',
+  'image' and 'api' as configuration values.
+- moved parallel rtmp connection mechanism from the RTMP plugin to Core so other plugins can use it (ie: securestreaming)
+Fixes:
+- fixed #112, wrong URL computation when using clip with relative URL on a page with a / after a # in its url
+- fixed #111, wrong behavior of pre/post roll images with duration 0
+- fixed multiple license keys logic
+Fixes:
+- correct verification of license keys in *.ca domains
+- fix to make playback to always reach end of video
+
 3.2.2
 -----
 Fixes:
