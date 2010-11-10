@@ -2,8 +2,8 @@ html5media changelog
 ====================
 
 
-HEAD
-----
+1.1.3
+-----
 
 *   Added support for Google Android OS.
 *   Added in some additional recognised file extensions.
