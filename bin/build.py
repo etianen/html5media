@@ -9,6 +9,7 @@ html file and the minified html5media builds.
 
 import os, shutil, subprocess
 
+API_VERSION = "1.1.4"
 
 BIN_ROOT = os.path.dirname(__file__)
 
@@ -20,7 +21,7 @@ LIB_ROOT = os.path.join(PROJECT_ROOT, "lib")
 
 BUILD_ROOT = os.path.join(PROJECT_ROOT, "build")
 
-HTML5MEDIA_BUILD_ROOT = os.path.join(BUILD_ROOT, "html5media")
+HTML5MEDIA_BUILD_ROOT = os.path.join(BUILD_ROOT, API_VERSION)
 
 
 def compile(filenames, outfile):
@@ -29,6 +30,14 @@ def compile(filenames, outfile):
     compiler_path = os.path.join(BIN_ROOT, "compiler.jar")
     command = 'java -jar {} {} --js_output_file "{}"'.format(compiler_path, file_list, outfile)
     subprocess.call(command, shell=True)
+
+
+def copy_html(filename, outfile):
+    """Copies the given HTML file, substituting in the current API build version."""
+    with open(filename, "r", encoding="utf-8") as handle:
+        html = handle.read().replace("{{API_VERSION}}", API_VERSION)
+    with open(outfile, "w", encoding="utf-8") as handle:
+        handle.write(html)
 
 
 def main():
@@ -41,11 +50,8 @@ def main():
     # Create the compiled js files.
     compile((os.path.join(LIB_ROOT, "flowplayer", "flowplayer.js"),
              os.path.join(LIB_ROOT, "domready", "domready.js"),
-             os.path.join(SRC_ROOT, "html5media", "html5media.js"),),
+             os.path.join(SRC_ROOT, "api", "html5media.js"),),
             os.path.join(HTML5MEDIA_BUILD_ROOT, "html5media.min.js"))
-    compile((os.path.join(LIB_ROOT, "flowplayer", "flowplayer.js"),
-             os.path.join(SRC_ROOT, "html5media", "html5media.js"),),
-            os.path.join(HTML5MEDIA_BUILD_ROOT, "jquery.html5media.min.js"))
     # Copy over the Flowplayer resources.
     shutil.copy(os.path.join(LIB_ROOT, "flowplayer", "flowplayer.swf"),
                 os.path.join(HTML5MEDIA_BUILD_ROOT, "flowplayer.swf"))
@@ -61,10 +67,10 @@ def main():
     # Copy over the demo page.
     shutil.copytree(os.path.join(SRC_ROOT, "demo"),
                     os.path.join(BUILD_ROOT, "demo"))
-    shutil.copy(os.path.join(SRC_ROOT, "index.html"),
-                os.path.join(BUILD_ROOT, "index.html"))
-    shutil.copy(os.path.join(SRC_ROOT, "test.html"),
-                os.path.join(BUILD_ROOT, "test.html"))
+    copy_html(os.path.join(SRC_ROOT, "index.html"),
+              os.path.join(BUILD_ROOT, "index.html"))
+    copy_html(os.path.join(SRC_ROOT, "test.html"),
+              os.path.join(BUILD_ROOT, "test.html"))
 
 
 if __name__ == "__main__":
