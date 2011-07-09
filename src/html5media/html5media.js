@@ -44,7 +44,7 @@
     
     // If no video tag is supported, go ahead and enable all HTML5 elements.
     if (!document.createElement(VIDEO_TAG).canPlayType) {
-        each(["abbr", "article", "aside", "audio", "canvas", "details", "figcaption", "figure", "footer", "header", "hgroup", "mark", "menu", "meter", "nav", "output", "progress", "section", "summary", "time", "video", "source"], function(name){
+        each(["video", "audio", "source"], function(name){
             document.createElement(name);
         });
     }
