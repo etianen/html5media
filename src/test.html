@@ -28,13 +28,19 @@
             
             <h2>MP4 with OGG fallback</h2>
             <video class="video" poster="demo/poster.jpg" width="854" height="480" controls preload>
-                <source src="demo/video.mp4">
-                <source src="demo/video.ogv">
+                <source src="demo/video.mp4"></source>
+                <source src="demo/video.ogv"></source>
             </video>
             <audio class="audio" controls preload>
-                <source src="demo/audio.mp3">
-                <source src="demo/audio.ogg">
+                <source src="demo/audio.mp3"></source>
+                <source src="demo/audio.ogg"></source>
             </audio>
+            
+            <h2>MP4 with WEBM fallback</h2>
+            <video class="video" poster="demo/poster.jpg" width="854" height="480" controls preload>
+                <source src="demo/video.mp4"></source>
+                <source src="demo/video.webm"></source>
+            </video>
             
             <h2>MP4 with no fallback</h2>
             <video class="video" src="demo/video.mp4" poster="demo/poster.jpg" width="854" height="480" controls preload></video>
