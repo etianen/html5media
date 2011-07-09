@@ -326,9 +326,8 @@
                     url: fixPath(html5media.flowplayerControlsSwf),
                     display: "none"
                 }
+                replacement.style.height = 0;
             }
-            // HACK: The Flowplayer audio plugin will autoplay clips and never stop if autobuffering is enabled.
-            playlist.slice(-1)[0].autoBuffering = false;
         }
         // Load the Flowplayer.
         var config = {
