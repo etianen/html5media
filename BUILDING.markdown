@@ -16,7 +16,7 @@ simply download one of the pre-built releases from the
 Running the build script
 ------------------------
 
-To run the build script you'll need a copy of python 3000 installed on your
+To run the build script you'll need a copy of python 3 installed on your
 system. Assuming you have this, building html5media is simply a case of opening
 a terminal and running the build script like so:
 
