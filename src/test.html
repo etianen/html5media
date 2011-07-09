@@ -28,7 +28,8 @@
             
             <h2>MP4 with OGG fallback</h2>
             <video class="video" poster="demo/poster.jpg" width="854" height="480" controls preload>
-                <source src="demo/video.mp4"></source>
+                <source src="demo/video.mp4" media="only screen and (min-device-width: 480)"></source>
+                <source src="demo/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
                 <source src="demo/video.ogv"></source>
             </video>
             <audio class="audio" controls preload>
@@ -38,7 +39,8 @@
             
             <h2>MP4 with WEBM fallback</h2>
             <video class="video" poster="demo/poster.jpg" width="854" height="480" controls preload>
-                <source src="demo/video.mp4"></source>
+                <source src="demo/video.mp4" media="only screen and (min-device-width: 480)"></source>
+                <source src="demo/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
                 <source src="demo/video.webm"></source>
             </video>
             

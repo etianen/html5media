@@ -30,7 +30,8 @@
             <p>At the time of writing, the HTML5 player will be used in the <em>Firefox</em>, <em>Safari</em>,
             <em>Chrome</em>, <em>Opera</em>, <em>Android</em> and <em>iPhone</em> browsers.</p>
             <video class="video" poster="demo/poster.jpg" width="854" height="480" controls preload>
-                <source src="demo/video.mp4"></source>
+                <source src="demo/video.mp4" media="only screen and (min-device-width: 480)"></source>
+                <source src="demo/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
                 <source src="demo/video.ogv"></source>
             </video>
             <p>The above video was embedded using a HTML5 &lt;video&gt; tag.</p>
