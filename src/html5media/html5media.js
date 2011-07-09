@@ -283,7 +283,11 @@
         replacement.title = element.title;
         replacement.style.display = "block";
         replacement.style.width = getDimension(element, "width", "300px");
-        replacement.style.height = getDimension(element, "height", "24px");
+        if (tag == "audio") {
+            replacement.style.height = "26px";
+        } else {
+            replacement.style.height = getDimension(element, "height", "200px");
+        }
         // Replace the element with the div.
         element.parentNode.replaceChild(replacement, element);
         var preload = (element.getAttribute("preload") || "").toLowerCase();

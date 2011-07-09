@@ -63,6 +63,8 @@ def main():
                     os.path.join(BUILD_ROOT, "demo"))
     shutil.copy(os.path.join(SRC_ROOT, "index.html"),
                 os.path.join(BUILD_ROOT, "index.html"))
+    shutil.copy(os.path.join(SRC_ROOT, "test.html"),
+                os.path.join(BUILD_ROOT, "test.html"))
 
 
 if __name__ == "__main__":
