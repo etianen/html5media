@@ -1,5 +1,10 @@
 Version history:
 
+3.2.2
+-----
+Fixes:
+- Now can download cover images from different domains without cross-domain security errors
+
 3.2.1
 -----
 Changes:
