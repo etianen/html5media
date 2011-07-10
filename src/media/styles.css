@@ -106,6 +106,13 @@ p {
     margin-bottom: 18px;
 }
 
+code {
+    margin-bottom: 18px;
+    padding: 9px;
+    background: #eee;
+    display: block;
+}
+
 #content {
     background: white;
     padding-bottom: 18px;
@@ -124,10 +131,21 @@ article header {
     border-bottom: none;
 }
 
-article h1 {
+article h1,
+article h2 {
     font-size: 20px;
     line-height: 48px;
-    font-weight: normal;
+    font-weight: bold;
+    margin: 0 0 9px 0;
+}
+
+article a {
+    color: #BF3604;
+    text-decoration: none;
+}
+
+article a:hover {
+    text-decoration: underline;
 }
 
 .video,

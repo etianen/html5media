@@ -46,17 +46,37 @@
         <div id="content">
             <article>
                 <header>
-                    <h1>Video &amp; Audio tag demo</h1>
+                    <h1>How to enable &lt;video&gt; and &lt;audio&gt; tags in all major browsers</h1>
                 </header>
-                <p>Depending on your web browser, the following video and audio files will be shown using
-                either a HTML5 player, or a <a href="http://www.flowplayer.org">Flowplayer</a> Flash fallback.</p>
-                <p>At the time of writing, the HTML5 player will be used in the <em>Firefox</em>, <em>Safari</em>,
-                <em>Chrome</em>, <em>Opera</em>, <em>Android</em> and <em>iPhone</em> browsers.</p>
                 
-                <p>The above video was embedded using a HTML5 &lt;video&gt; tag.</p>
+                <p>To make HTML5 video and audio tags work in all major browsers, simply add the following line of code
+                somewhere in the &lt;head&gt; of your document.</p>
+                <code>&lt;script src="api/html5media.min.js"&gt;&lt;/script&gt;</code>
+                <p>That's it! There is no second step!</p>
                 
-                <p>The above audio file was embedded using a HTML5 &lt;audio&gt; tag. Both tags can be enabled in all major browsers by including a single javascript file in your document.</p>
-                <p>Find out how to enable HTML5 video and audio tags in all major browsers at the <a title="html5media at GitHub" href="http://github.com/etianen/html5media/">html5media project site</a>.</p>
+                <h2>How to embed video</h2>
+                <p>You can embed video into your page using the following code.</p>
+                <code>&lt;video src="video.mp4" width="320" height="200" controls preload&gt;&lt;/video&gt;</code>
+                <p>For more information and troubleshooting, please visit the <a href="https://github.com/etianen/html5media/wiki/video">video wiki page</a>.
+                
+                <h2>How to embed audio</h2>
+                <p>You can embed audio into your page using the following code.</p>
+                <code>&lt;audio src="audio.mp3" width="320" height="200" controls preload&gt;&lt;/audio&gt;</code>
+                <p>For more information and troubleshooting, please visit the <a href="https://github.com/etianen/html5media/wiki/audio">audio wiki page</a>.
+                
+                <h2>Why use html5media</h2>
+                <p>HTML5 video and audio tags were designed to make embedding a video as easy as embedding an image. They were
+                also designed to give users a faster experience by doing away with browser plugins such as Adobe Flash.</p>
+                <p>Unfortunately, older browsers don't support HTML5 video and audio tags, and even modern browsers don't support a consistent
+                set of video codecs, making embedding a video rather difficult.</p>
+                <p>The html5media project makes embedding video or audio as easy as it was meant to be. It's a fire-and-forget solution,
+                and doesn't require installing any files on your server. Unlike many other HTML5 video players, it allows people to use the
+                video controls supplied by their own web browser. It's one of the smallest, fastest solutions available, and as browser
+                technology improves it will become even faster.</p>
+                
+                <h2>More information</h2>
+                <p>The html5media project is open source and can be found on GitHub. You can find out more information on the
+                <a href="https://github.com/etianen/html5media/wiki">html5media wiki</a>, or the main <a href="https://github.com/etianen/html5media/wiki">html5media project page</a>.</p>
             </article>
         </div>
         <footer>
