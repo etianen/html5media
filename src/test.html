@@ -15,54 +15,90 @@
         
     </head>
     <body>
-        <header>
+        <header id="header">
             <hgroup>
-                <h1>HTML5 video for everyone!</h1>
-                <h2>Enables &lt;video&gt; and &lt;audio&gt; tags in all major browsers.</h2>
+                <h1>HTML5 video was meant to be this easy</h1>
+                <h2>html5media enables &lt;video&gt; and &lt;audio&gt; tags in all major browsers</h2>
             </hgroup>
         </header>
-        <section>
-            <header>
-                <h1>Video &amp; Audio tag tests</h1>
-            </header>
+        <div id="content">
+            <article>
+                <header>
+                    <h1>Video &amp; Audio tag tests</h1>
+                </header>
+                
+                <p>This page contains a series of tests to determine html5media's performance in a variety of
+                common deployment scenarios.</p>
             
-            <h2>MP4 with OGG fallback</h2>
-            <video class="video" poster="media/poster.jpg" width="854" height="480" controls preload>
-                <source src="media/video.mp4" media="only screen and (min-device-width: 480)"></source>
-                <source src="media/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
-                <source src="media/video.ogv"></source>
-            </video>
-            <audio class="audio" controls preload>
-                <source src="media/audio.mp3"></source>
-                <source src="media/audio.ogg"></source>
-            </audio>
+                <h2>MP4 with OGG fallback</h2>
+                <div class="grid_8 alpha">
+                    <video class="video" poster="media/poster.jpg" width="618" height="347" controls preload>
+                        <source src="media/video.mp4" media="only screen and (min-device-width: 480)"></source>
+                        <source src="media/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
+                        <source src="media/video.ogv"></source>
+                    </video>
+                </div>
+                <div class="grid_4 omega">
+                    <audio class="audio" controls preload>
+                        <source src="media/audio.mp3"></source>
+                        <source src="media/audio.ogg"></source>
+                    </audio>
+                </div>
+                <div class="clear"></div>
             
-            <h2>MP4 with WEBM fallback</h2>
-            <video class="video" poster="media/poster.jpg" width="854" height="480" controls preload>
-                <source src="media/video.mp4" media="only screen and (min-device-width: 480)"></source>
-                <source src="media/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
-                <source src="media/video.webm"></source>
-            </video>
+                <h2>MP4 with WEBM fallback</h2>
+                <div class="grid_8 alpha">
+                    <video class="video" poster="media/poster.jpg" width="618" height="347" controls preload>
+                        <source src="media/video.mp4" media="only screen and (min-device-width: 480)"></source>
+                        <source src="media/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
+                        <source src="media/video.webm"></source>
+                    </video>
+                </div>
+                <div class="clear"></div>
             
-            <h2>MP4 with no fallback</h2>
-            <video class="video" src="media/video.mp4" poster="media/poster.jpg" width="854" height="480" controls preload></video>
-            <audio class="audio" src="media/audio.mp3" controls preload></audio>
+                <h2>MP4 with no fallback</h2>
+                <div class="grid_8 alpha">
+                    <video class="video" src="media/video.mp4" poster="media/poster.jpg" width="618" height="347" controls preload></video>
+                </div>
+                <div class="grid_4 omega">
+                    <audio class="audio" src="media/audio.mp3" controls preload></audio>
+                </div>
+                <div class="clear"></div>
             
-            <h2>No preloading</h2>
-            <video class="video" src="media/video.mp4" poster="media/poster.jpg" width="854" height="480" controls></video>
-            <audio class="audio" src="media/audio.mp3" controls></audio>
+                <h2>No preloading</h2>
+                <div class="grid_8 alpha">
+                    <video class="video" src="media/video.mp4" poster="media/poster.jpg" width="618" height="347" controls></video>
+                </div>
+                <div class="grid_4 omega">
+                    <audio class="audio" src="media/audio.mp3" controls></audio>
+                </div>
+                <div class="clear"></div>
             
-            <h2>No controls</h2>
-            <video class="video" src="media/video.mp4" poster="media/poster.jpg" width="854" height="480" preload></video>
-            <audio class="audio" src="media/audio.mp3" preload autoplay></audio>
+                <h2>No controls</h2>
+                <div class="grid_8 alpha">
+                    <video class="video" src="media/video.mp4" poster="media/poster.jpg" width="618" height="347" preload></video>
+                </div>
+                <div class="grid_4 omega">
+                    <audio class="audio" src="media/audio.mp3" preload></audio>
+                </div>
+                <div class="clear"></div>
             
-            <h2>Looping</h2>
-            <video class="video" src="media/video.mp4" poster="media/poster.jpg" width="854" height="480" controls preload loop></video>
-            <audio class="audio" src="media/audio.mp3" controls preload loop></audio>
-            
-        </section>
+                <h2>Looping</h2>
+                <div class="grid_8 alpha">
+                    <video class="video" src="media/video.mp4" poster="media/poster.jpg" width="618" height="347" controls preload loop></video>
+                </div>
+                <div class="grid_4 omega">
+                    <audio class="audio" src="media/audio.mp3" controls preload loop></audio>
+                </div>
+                <div class="clear"></div>
+            </article>
+        </div>
         <footer>
             <p>Developed by <a href="http://www.etianen.com/" title="Developed by Dave Hall">Dave Hall</a>.</p>
+            <p>Video content © Blender Foundation | <a title="Video content by the Blender Foundation" href="http://www.sintel.org/">www.sintel.org</a> |
+            and licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> license.</p>
+            <p>Audio content © Jan Morgenstern
+            and licensed under the <a title="Audio content by Jan Morgenstern" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">CC-BY-NC-ND 3.0</a> license.</p>
         </footer>
     </body>
 </html>

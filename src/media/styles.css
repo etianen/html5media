@@ -37,6 +37,14 @@ body {
     width: 300px;
 }
 
+.alpha {
+    margin-left: 0;
+}
+
+.omega {
+    margin-right: 0;
+}
+
 .clear {
     clear: both;
     display: block;
