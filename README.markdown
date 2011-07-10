@@ -80,3 +80,13 @@ find him on the Internet in a number of different places:
 *   [Twitter](http://twitter.com/etianen "Dave Hall on Twitter")
 *   [Google Profile](http://www.google.com/profiles/david.etianen "Dave Hall's Google profile")
 
+
+Extra credits
+-------------
+
+The html5media project bundles together a number of excellent open-source and
+creative-commons projects. They are listed below.
+
+*   [Flowplayer - Flash Video Player for the Web](http://flowplayer.org/ "Flowplayer - Flash Video Player for the Web")
+*   [Domready - The smallest subset possible from jQuery to support DOME ready event](http://code.google.com/p/domready/, "Domready - The smallest subset possible from jQuery to support DOME ready event")
+*   [Sintel - the Durian Open Movie Project](http://www.sintel.org/, "Sintel - the Durian Open Movie Project")
