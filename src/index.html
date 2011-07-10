@@ -5,10 +5,10 @@
         <meta name="keywords" content="html5, html 5, video, audio, html5video, html 5 video, html 5 audio, flash, h.264, h264, mp4, mp3, wav, aac, web, internet"/>
         <meta name="description" content="The html5media project enables HTML5 video and audio tags in all major browsers. All you need to do is include a single javascript file in your document."/>
         <title>HTML5 video and audio tags in all major browsers</title>
-        <link rel="stylesheet" href="demo/styles.css"/>
+        <link rel="stylesheet" href="media/styles.css"/>
         
         <!-- This line is all you need to enable HTML5 video and audio tags in all major browsers! -->
-        <script src="{{API_VERSION}}/html5media.min.js"></script>
+        <script src="api/html5media.min.js"></script>
         
         <!-- This line enables all the other HTML5 elements in IE. It's not necessary if you just want to play video. -->
         <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -29,15 +29,15 @@
             either a HTML5 player, or a <a href="http://www.flowplayer.org">Flowplayer</a> Flash fallback.</p>
             <p>At the time of writing, the HTML5 player will be used in the <em>Firefox</em>, <em>Safari</em>,
             <em>Chrome</em>, <em>Opera</em>, <em>Android</em> and <em>iPhone</em> browsers.</p>
-            <video class="video" poster="demo/poster.jpg" width="854" height="480" controls preload>
-                <source src="demo/video.mp4" media="only screen and (min-device-width: 480)"></source>
-                <source src="demo/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
-                <source src="demo/video.ogv"></source>
+            <video class="video" poster="media/poster.jpg" width="854" height="480" controls preload>
+                <source src="media/video.mp4" media="only screen and (min-device-width: 480)"></source>
+                <source src="media/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
+                <source src="media/video.ogv"></source>
             </video>
             <p>The above video was embedded using a HTML5 &lt;video&gt; tag.</p>
             <audio class="audio" controls preload>
-                <source src="demo/audio.mp3"></source>
-                <source src="demo/audio.ogg"></source>
+                <source src="media/audio.mp3"></source>
+                <source src="media/audio.ogg"></source>
             </audio>
             <p>The above audio file was embedded using a HTML5 &lt;audio&gt; tag. Both tags can be enabled in all major browsers by including a single javascript file in your document.</p>
             <p>Find out how to enable HTML5 video and audio tags in all major browsers at the <a title="html5media at GitHub" href="http://github.com/etianen/html5media/">html5media project site</a>.</p>

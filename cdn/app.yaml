@@ -1,0 +1,14 @@
+application: html5media
+version: 1-1-4
+runtime: python
+api_version: 1
+
+default_expiration: "365d"
+
+handlers:
+- url: /(.+?)\.js
+  static_files: www/\1.js
+  upload: www/(.+?)\.js
+- url: /(.+?)\.swf
+  static_files: www/\1.swf
+  upload: www/(.+?)\.swf

@@ -5,10 +5,10 @@
         <meta name="keywords" content="html5, html 5, video, audio, html5video, html 5 video, html 5 audio, flash, h.264, h264, mp4, mp3, wav, aac, web, internet"/>
         <meta name="description" content="The html5media project enables HTML5 video and audio tags in all major browsers. All you need to do is include a single javascript file in your document."/>
         <title>HTML5 video and audio tags in all major browsers</title>
-        <link rel="stylesheet" href="demo/styles.css"/>
+        <link rel="stylesheet" href="media/styles.css"/>
         
         <!-- This line is all you need to enable HTML5 video and audio tags in all major browsers! -->
-        <script src="{{API_VERSION}}/html5media.min.js"></script>
+        <script src="api/html5media.min.js"></script>
         
         <!-- This line enables all the other HTML5 elements in IE. It's not necessary if you just want to play video. -->
         <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -27,38 +27,38 @@
             </header>
             
             <h2>MP4 with OGG fallback</h2>
-            <video class="video" poster="demo/poster.jpg" width="854" height="480" controls preload>
-                <source src="demo/video.mp4" media="only screen and (min-device-width: 480)"></source>
-                <source src="demo/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
-                <source src="demo/video.ogv"></source>
+            <video class="video" poster="media/poster.jpg" width="854" height="480" controls preload>
+                <source src="media/video.mp4" media="only screen and (min-device-width: 480)"></source>
+                <source src="media/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
+                <source src="media/video.ogv"></source>
             </video>
             <audio class="audio" controls preload>
-                <source src="demo/audio.mp3"></source>
-                <source src="demo/audio.ogg"></source>
+                <source src="media/audio.mp3"></source>
+                <source src="media/audio.ogg"></source>
             </audio>
             
             <h2>MP4 with WEBM fallback</h2>
-            <video class="video" poster="demo/poster.jpg" width="854" height="480" controls preload>
-                <source src="demo/video.mp4" media="only screen and (min-device-width: 480)"></source>
-                <source src="demo/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
-                <source src="demo/video.webm"></source>
+            <video class="video" poster="media/poster.jpg" width="854" height="480" controls preload>
+                <source src="media/video.mp4" media="only screen and (min-device-width: 480)"></source>
+                <source src="media/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
+                <source src="media/video.webm"></source>
             </video>
             
             <h2>MP4 with no fallback</h2>
-            <video class="video" src="demo/video.mp4" poster="demo/poster.jpg" width="854" height="480" controls preload></video>
-            <audio class="audio" src="demo/audio.mp3" controls preload></audio>
+            <video class="video" src="media/video.mp4" poster="media/poster.jpg" width="854" height="480" controls preload></video>
+            <audio class="audio" src="media/audio.mp3" controls preload></audio>
             
             <h2>No preloading</h2>
-            <video class="video" src="demo/video.mp4" poster="demo/poster.jpg" width="854" height="480" controls></video>
-            <audio class="audio" src="demo/audio.mp3" controls></audio>
+            <video class="video" src="media/video.mp4" poster="media/poster.jpg" width="854" height="480" controls></video>
+            <audio class="audio" src="media/audio.mp3" controls></audio>
             
             <h2>No controls</h2>
-            <video class="video" src="demo/video.mp4" poster="demo/poster.jpg" width="854" height="480" preload></video>
-            <audio class="audio" src="demo/audio.mp3" preload autoplay></audio>
+            <video class="video" src="media/video.mp4" poster="media/poster.jpg" width="854" height="480" preload></video>
+            <audio class="audio" src="media/audio.mp3" preload autoplay></audio>
             
             <h2>Looping</h2>
-            <video class="video" src="demo/video.mp4" poster="demo/poster.jpg" width="854" height="480" controls preload loop></video>
-            <audio class="audio" src="demo/audio.mp3" controls preload loop></audio>
+            <video class="video" src="media/video.mp4" poster="media/poster.jpg" width="854" height="480" controls preload loop></video>
+            <audio class="audio" src="media/audio.mp3" controls preload loop></audio>
             
         </section>
         <footer>
