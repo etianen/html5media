@@ -15,35 +15,56 @@
         
     </head>
     <body>
-        <header>
+        <header id="header">
             <hgroup>
-                <h1>HTML5 video for everyone!</h1>
-                <h2>Enables &lt;video&gt; and &lt;audio&gt; tags in all major browsers.</h2>
+                <h1>HTML5 video was meant to be this easy</h1>
+                <h2>html5media enables &lt;video&gt; and &lt;audio&gt; tags in all major browsers</h2>
             </hgroup>
+            <div class="videos">
+                <div class="grid_8">
+                    <video class="video" poster="media/poster.jpg" width="618" height="347" controls>
+                        <source src="media/video.mp4" media="only screen and (min-device-width: 480)"></source>
+                        <source src="media/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
+                        <source src="media/video.ogv"></source>
+                    </video>
+                </div>
+                <div class="grid_4">
+                    <p>All it takes is a single line of code to make HTML5 video and audio tags work in all major browsers.</p>
+                    <ul>
+                        <li>Nothing to install.</li>
+                        <li>Works in all browsers and phones.</li>
+                        <li>One of the fastest solutions available.</li>
+                    </ul>
+                    <audio class="audio" controls>
+                        <source src="media/audio.mp3"></source>
+                        <source src="media/audio.ogg"></source>
+                    </audio>
+                </div>
+                <div class="clear"></div>
+            </div>
         </header>
-        <section>
-            <header>
-                <h1>Video &amp; Audio tag demo</h1>
-            </header>
-            <p>Depending on your web browser, the following video and audio files will be shown using
-            either a HTML5 player, or a <a href="http://www.flowplayer.org">Flowplayer</a> Flash fallback.</p>
-            <p>At the time of writing, the HTML5 player will be used in the <em>Firefox</em>, <em>Safari</em>,
-            <em>Chrome</em>, <em>Opera</em>, <em>Android</em> and <em>iPhone</em> browsers.</p>
-            <video class="video" poster="media/poster.jpg" width="854" height="480" controls preload>
-                <source src="media/video.mp4" media="only screen and (min-device-width: 480)"></source>
-                <source src="media/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
-                <source src="media/video.ogv"></source>
-            </video>
-            <p>The above video was embedded using a HTML5 &lt;video&gt; tag.</p>
-            <audio class="audio" controls preload>
-                <source src="media/audio.mp3"></source>
-                <source src="media/audio.ogg"></source>
-            </audio>
-            <p>The above audio file was embedded using a HTML5 &lt;audio&gt; tag. Both tags can be enabled in all major browsers by including a single javascript file in your document.</p>
-            <p>Find out how to enable HTML5 video and audio tags in all major browsers at the <a title="html5media at GitHub" href="http://github.com/etianen/html5media/">html5media project site</a>.</p>
-        </section>
+        <div id="content">
+            <article>
+                <header>
+                    <h1>Video &amp; Audio tag demo</h1>
+                </header>
+                <p>Depending on your web browser, the following video and audio files will be shown using
+                either a HTML5 player, or a <a href="http://www.flowplayer.org">Flowplayer</a> Flash fallback.</p>
+                <p>At the time of writing, the HTML5 player will be used in the <em>Firefox</em>, <em>Safari</em>,
+                <em>Chrome</em>, <em>Opera</em>, <em>Android</em> and <em>iPhone</em> browsers.</p>
+                
+                <p>The above video was embedded using a HTML5 &lt;video&gt; tag.</p>
+                
+                <p>The above audio file was embedded using a HTML5 &lt;audio&gt; tag. Both tags can be enabled in all major browsers by including a single javascript file in your document.</p>
+                <p>Find out how to enable HTML5 video and audio tags in all major browsers at the <a title="html5media at GitHub" href="http://github.com/etianen/html5media/">html5media project site</a>.</p>
+            </article>
+        </div>
         <footer>
             <p>Developed by <a href="http://www.etianen.com/" title="Developed by Dave Hall">Dave Hall</a>.</p>
+            <p>Video content © Blender Foundation | <a title="Video content by the Blender Foundation" href="http://www.sintel.org/">www.sintel.org</a> |
+            and licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> license.</p>
+            <p>Audio content © Jan Morgenstern
+            and licensed under the <a title="Audio content by Jan Morgenstern" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">CC-BY-NC-ND 3.0</a> license.</p>
         </footer>
     </body>
 </html>
