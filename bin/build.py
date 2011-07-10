@@ -29,7 +29,7 @@ API_BUILD_ROOT = os.path.join(BUILD_ROOT, "api")
 
 CDN_ROOT = os.path.join(PROJECT_ROOT, "cdn")
 
-CDN_BUILD_ROOT = os.path.join(CDN_ROOT, API_VERSION)
+CDN_BUILD_ROOT = os.path.join(CDN_ROOT, "www", API_VERSION)
 
 CDN_APP_YAML = os.path.join(CDN_ROOT, "app.yaml")
 
@@ -93,7 +93,7 @@ def main():
     if os.path.exists(CDN_BUILD_ROOT):
         shutil.rmtree(CDN_BUILD_ROOT)
     shutil.copytree(API_BUILD_ROOT,
-                    os.path.join(CDN_BUILD_ROOT, API_VERSION))
+                    os.path.join(CDN_BUILD_ROOT))
     # Update the CDN version number.
     with open(CDN_APP_YAML, "r", encoding="utf-8") as handle:
         app_yaml = handle.read()
