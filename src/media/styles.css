@@ -71,7 +71,7 @@ body {
     font-size: 30px;
     font-weight: normal;
     color: #FF782F;
-    margin: 0 0 0px 0;
+    margin: 0 0 0 0;
 }
 
 #header h2 {
@@ -131,7 +131,7 @@ article {
     display: block;
     position: relative;
     width: 940px;
-    padding: 24px 10px 0px 10px;
+    padding: 24px 10px 0 10px;
 }
 
 article header {
@@ -167,7 +167,7 @@ article a:hover {
 }
 
 footer {
-    padding: 27px 0 0 0;
+    padding: 27px 0 36px 0;
     display: block;
     color: #ddd;
 }
@@ -183,8 +183,8 @@ footer a:hover {
 
 footer p {
     width: 940px;
-    margin: 0px auto 0px auto;
-    padding: 12px 10px 0px 10px;
+    margin: 0 auto 0 auto;
+    padding: 12px 10px 0 10px;
     display: block;
     position: relative;
 }
