@@ -25,7 +25,7 @@ You can embed video into your page using the following code.
 
 For more information and troubleshooting, please visit the [video wiki page].
 
-[video wiki page]: https://github.com/etianen/html5media/wiki/video
+[video wiki page]: https://github.com/etianen/html5media/wiki/embedding-video
     
     
 How to embed audio
@@ -37,7 +37,7 @@ You can embed audio into your page using the following code.
 
 For more information and troubleshooting, please visit the [audio wiki page].
 
-[audio wiki page]: https://github.com/etianen/html5media/wiki/audio
+[audio wiki page]: https://github.com/etianen/html5media/wiki/embedding-audio
     
     
 Why use html5media?
