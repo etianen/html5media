@@ -1,5 +1,5 @@
-HTML5 video was meant to be this easy
-=====================================
+HTML5 video made easy
+=====================
 
 All it takes is a single line of code to make HTML5 video and audio tags work
 in all major browsers.
