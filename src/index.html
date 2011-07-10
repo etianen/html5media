@@ -36,8 +36,8 @@
             </hgroup>
             <div class="videos">
                 <div class="grid_8">
-                    <video class="video" poster="media/poster.jpg" width="618" height="347" controls>
-                        <source src="media/video.mp4" media="only screen and (min-device-width: 480)"></source>
+                    <video class="video" poster="media/poster.jpg" width="618" height="347" controls preload>
+                        <source src="media/video.mp4" media="only screen and (min-device-width: 480px)"></source>
                         <source src="media/video.iphone.mp4" media="only screen and (max-device-width: 480px)"></source>
                         <source src="media/video.ogv"></source>
                     </video>
@@ -49,7 +49,7 @@
                         <li>Works in all browsers and phones.</li>
                         <li>One of the fastest solutions available.</li>
                     </ul>
-                    <audio class="audio" controls>
+                    <audio class="audio" controls preload>
                         <source src="media/audio.mp3"></source>
                         <source src="media/audio.ogg"></source>
                     </audio>
@@ -75,10 +75,10 @@
                 
                 <h2>How to embed audio</h2>
                 <p>You can embed audio into your page using the following code.</p>
-                <code>&lt;audio src="audio.mp3" width="320" height="200" controls preload&gt;&lt;/audio&gt;</code>
+                <code>&lt;audio src="audio.mp3" controls preload&gt;&lt;/audio&gt;</code>
                 <p>For more information and troubleshooting, please visit the <a href="https://github.com/etianen/html5media/wiki/audio">audio wiki page</a>.
                 
-                <h2>Why use html5media</h2>
+                <h2>Why use html5media?</h2>
                 <p>HTML5 video and audio tags were designed to make embedding a video as easy as embedding an image. They were
                 also designed to give users a faster experience by doing away with browser plugins such as Adobe Flash.</p>
                 <p>Unfortunately, older browsers don't support HTML5 video and audio tags, and even modern browsers don't support a consistent
@@ -90,7 +90,7 @@
                 
                 <h2>More information</h2>
                 <p>The html5media project is open source and can be found on GitHub. You can find out more information on the
-                <a href="https://github.com/etianen/html5media/wiki">html5media wiki</a>, or the main <a href="https://github.com/etianen/html5media/wiki">html5media project page</a>.</p>
+                <a href="https://github.com/etianen/html5media/wiki">html5media wiki</a>, or the main <a href="https://github.com/etianen/html5media">html5media project page</a>.</p>
             </article>
         </div>
         <footer>

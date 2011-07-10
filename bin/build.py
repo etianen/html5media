@@ -48,7 +48,7 @@ def copy_html(filename, outfile):
     """Copies the given html file, substituting in the production deploy roots."""
     with open(filename, "r", encoding="utf-8") as handle:
         html = handle.read()
-    html = html.replace("media/", "http://media.html5media.info/").replace("api/", "http://api.html5media.info/{}/".format(API_VERSION))
+    html = html.replace("\"media/", "\"http://media.html5media.info/").replace("\"api/", "\"http://api.html5media.info/{}/".format(API_VERSION))
     with open(outfile, "w", encoding="utf-8") as handle:
         handle.write(html)
 

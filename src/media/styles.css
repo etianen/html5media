@@ -20,6 +20,15 @@ body {
     background: black;
 }
 
+header,
+hgroup,
+article,
+footer,
+video,
+audio {
+    display: block;
+}
+
 .grid_8,
 .grid_4 {
     float: left;
@@ -107,6 +116,7 @@ body {
     padding: 0;
     margin: 0 auto 36px auto;
     position: relative;
+    height: 349px;
 }
 
 p {

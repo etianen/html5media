@@ -5,6 +5,7 @@ html5media changelog
 1.1.4
 -----
 
+*   Created a html5media CDN for easy deployment.
 *   Upgraded to Flowplayer 3.2.7.
 *   Upgraded to Flowplayer.audio 3.2.2.
 

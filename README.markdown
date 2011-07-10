@@ -1,95 +1,77 @@
-html5media
-==========
+HTML5 video was meant to be this easy
+=====================================
 
-HTML5 video and audio tags make embedding media into documents as easy as
-embedding an image. All it takes is a single `<video>` or `<audio>` tag.
-Unfortunately, not all browsers natively support these HTML5 tags.
+All it takes is a single line of code to make HTML5 video and audio tags work
+in all major browsers.
 
 
-Enabling video and tags in all major browsers
----------------------------------------------
+How to enable video and audio tags in all major browsers
+--------------------------------------------------------
 
-All it takes is three simple steps to enable HTML5 video and audio tags in all
-major browsers!
+To make HTML5 video and audio tags work in all major browsers, simply add the
+following line of code somewhere in the `<head>` of your document.
 
-1.  Download the and unzip the latest html5media build from the
-    [html5media download area].
-
-[html5media download area]: http://github.com/etianen/html5media/downloads
-
-2.  Upload the contents of the unpacked `html5media/` folder to your webserver.
-    Be sure to keep all the bundled files together in the same folder.
-
-3.  Add the following snippet the to `<head>` of your document:
-
-        <script src="/path/to/your/html5media.min.js"></script>
+    <script src="http://api.html5media.info/1.1.4/html5media.min.js"></script>
     
-You can see this code in action on the [html5media demo site][].
+That's it! There is no second step!
 
-[html5media demo site]: http://etianen.github.com/html5media/
-    "html5media video and audio tag demonstration"
-
-Please read our [Getting Started][] guide for more information.
-
-[Getting Started]: http://wiki.github.com/etianen/html5media/getting-started
-    "Getting started with html5media"
     
-    
-Using HTML5 video and audio
----------------------------
-
-HTML5 allows you to embed video and audio into your document using the following
-easy syntax:
-
-    <video src="video.mp4" width="320" height="240" controls preload></video>
-
-    <audio src="audio.mp3" controls preload></audio>
-    
-Find out more about HTML5 on the [Dive Into HTML5 video page].
-
-[Dive Into HTML5 video page]: http://diveintohtml5.org/video.html
-
-You can ask for help and discuss all aspects of HTML5 media and audio on the
-[html5media discussion group][].
-
-[html5media discussion group]: http://groups.google.com/group/html5media
-    
-    
-Help! My file won't play!
---------------------------
-
-It's probably encoded incorrectly. Videos should always be saved as h.264 (mp4),
-or Theora (ogv) files. Find out more on our [Video Formats][] page.
-
-[Video Formats]: http://wiki.github.com/etianen/html5media/video-formats
-    "Video formats supported by html5media"
-
-Audio files should be saved as mp3, AAC (m4a) or Vorbis (ogg).
-    
-    
-What's in the box?
+How to embed video
 ------------------
 
-The html5media project consists of a single, minified Javascript file that is
-used to detect your browser's HTML5 video capabilities. Any video tags that
-cannot be played are dynamically replaced with a Flash video player.
+You can embed video into your page using the following code.
 
-The bundled Flash video player is provided by Flowplayer under the GPL3 licence.
-You can find out more about Flowplayer on the [Flowplayer website][].
+    <video src="video.mp4" width="320" height="200" controls preload></video>
 
-[Flowplayer website]: http://flowplayer.org
-    "Flowplayer - Flash Video Player for the Web"
+For more information and troubleshooting, please visit the [video wiki page].
+
+[video wiki page]: https://github.com/etianen/html5media/wiki/video
+    
+    
+How to embed audio
+------------------
+
+You can embed audio into your page using the following code.
+
+    <audio src="audio.mp3" controls preload></audio>
+
+For more information and troubleshooting, please visit the [audio wiki page].
+
+[audio wiki page]: https://github.com/etianen/html5media/wiki/audio
+    
+    
+Why use html5media?
+-------------------
+
+HTML5 video and audio tags were designed to make embedding a video as easy as
+embedding an image. They were also designed to give users a faster experience
+by doing away with browser plugins such as Adobe Flash.
+
+Unfortunately, older browsers don't support HTML5 video and audio tags, and
+even modern browsers don't support a consistent set of video codecs, making
+embedding a video rather difficult.
+
+The html5media project makes embedding video or audio as easy as it was meant
+to be. It's a fire-and-forget solution, and doesn't require installing any
+files on your server. Unlike many other HTML5 video players, it allows people
+to use the video controls supplied by their own web browser. It's one of the
+smallest, fastest solutions available, and as browser technology improves it
+will become even faster.
     
     
 More information
 ----------------
 
-The html5media project was developed by Dave Hall. You can get the code from the
-[html5media project site][].
+The html5media project is open source and can be found on GitHub. You can find
+out more information on the [html5media wiki], or the main [html5media project page].
 
-[html5media project site]: http://github.com/etianen/html5media
-    "Dave Hall's html5media on GitHub"
-    
+[html5media wiki]: https://github.com/etianen/html5media/wiki
+[html5media project page]: https://github.com/etianen/html5media
+
+
+About the author
+----------------
+
 Dave Hall is a freelance web developer, based in Cambridge, UK. You can usually
 find him on the Internet in a number of different places:
 
