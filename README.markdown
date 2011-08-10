@@ -11,7 +11,9 @@ How to enable video and audio tags in all major browsers
 To make HTML5 video and audio tags work in all major browsers, simply add the
 following line of code somewhere in the `<head>` of your document.
 
-    <script src="http://api.html5media.info/1.1.4/html5media.min.js"></script>
+```html
+<script src="http://api.html5media.info/1.1.4/html5media.min.js"></script>
+```
     
 That's it! There is no second step!
 
@@ -21,7 +23,9 @@ How to embed video
 
 You can embed video into your page using the following code.
 
-    <video src="video.mp4" width="320" height="200" controls preload></video>
+```html
+<video src="video.mp4" width="320" height="200" controls preload></video>
+```
 
 For more information and troubleshooting, please visit the [video wiki page].
 
@@ -33,7 +37,9 @@ How to embed audio
 
 You can embed audio into your page using the following code.
 
-    <audio src="audio.mp3" controls preload></audio>
+```html
+<audio src="audio.mp3" controls preload></audio>
+```
 
 For more information and troubleshooting, please visit the [audio wiki page].
 
