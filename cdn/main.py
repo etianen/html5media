@@ -17,7 +17,7 @@ re_redirects = [
 class RedirectToDemoHandler(webapp.RequestHandler):
 
     def get(self):
-        self.redirect("http://html5media.info/", permanent=True)
+        self.redirect("http://html5media.info/")
         
         
 class RedirectToApiHandler(webapp.RequestHandler):
