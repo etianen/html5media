@@ -18,6 +18,12 @@ class RedirectToDemoHandler(webapp.RequestHandler):
 
     def get(self):
         self.redirect("http://html5media.info/")
+
+
+class GoneHandler(webapp.RequestHandler):
+
+    def get(self):
+        self.response.set_status(410)
         
         
 class RedirectToApiHandler(webapp.RequestHandler):
@@ -29,6 +35,7 @@ class RedirectToApiHandler(webapp.RequestHandler):
 application = webapp.WSGIApplication(
     (
         ("/", RedirectToDemoHandler),
+        ("/favicon.ico", GoneHandler),
         ("/([^/]+)/html5media.min.js.+", RedirectToApiHandler),
     ),
     debug = False,
