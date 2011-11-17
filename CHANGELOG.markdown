@@ -2,6 +2,13 @@ html5media changelog
 ====================
 
 
+1.1.5
+-----
+
+*   Tweaked fallback player styling to better match native players.
+*   Added in html5media.forceFallback callback.
+
+
 1.1.4
 -----
 
