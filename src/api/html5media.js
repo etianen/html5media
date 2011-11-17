@@ -323,7 +323,7 @@
                 }
             } || null
         }
-        if (formatMatches(format, MP3_FORMAT)) {
+        if (tag == "audio") {
             // Load the audio plugin.
             plugins["audio"] = {
                 url: fixPath(html5media.flowplayerAudioSwf)
@@ -336,6 +336,8 @@
                 }
                 replacement.style.height = 0;
             }
+            // HACK: Disable autoBuffering, since a flowplayer audio bug can cause uncontrollable autoplaying.
+            playlist[playlist.length - 1].autoBuffering = false;
         }
         // Load the Flowplayer.
         var config = {
