@@ -286,6 +286,10 @@
         } else {
             format = guessFormat(tag, src);
         }
+        // If there is no src, then fail silently for now.
+        if (!src) {
+            return;
+        }
         // Create the replacement element div.
         var replacement = document.createElement("span");
         replacement.id = element.id;
