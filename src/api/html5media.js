@@ -82,7 +82,7 @@
                 }
                 // If cannot play media, create the fallback.
                 if (requiresFallback) {
-                    html5media.createFallback(tag, media);
+                    createFallback(tag, media);
                 } else {
                     // HACK: Enables playback in android phones.
                     if (isAndroid) {
@@ -116,23 +116,20 @@
     html5media.flowplayerAudioSwf = scriptRoot + "flowplayer.audio.swf";
     html5media.flowplayerControlsSwf = scriptRoot + "flowplayer.controls.swf";
     
-    /**
-     * Known media formats. Used to change the assumed format to a different
-     * format, such as Theora, if desired.
-     */
-    var THEORA_FORMAT = html5media.THEORA_FORMAT = 'video/ogg; codecs="theora, vorbis"';
-    var H264_FORMAT = html5media.H264_FORMAT = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
-    var VORBIS_FORMAT = html5media.VORBIS_FORMAT = 'audio/ogg; codecs="vorbis"';
-    var WEBM_FORMAT = html5media.WEBM_FORMAT = 'video/webm;';
-    var M4A_FORMAT = html5media.M4A_FORMAT = 'audio/x-m4a;';
-    var MP3_FORMAT = html5media.MP3_FORMAT = 'audio/mpeg;';
-    var WAV_FORMAT = html5media.WAV_FORMAT = 'audio/wav; codecs="1"';
+    // Known media formats.
+    var THEORA_FORMAT = 'video/ogg; codecs="theora, vorbis"';
+    var H264_FORMAT = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
+    var VORBIS_FORMAT = 'audio/ogg; codecs="vorbis"';
+    var WEBM_FORMAT  = 'video/webm;';
+    var M4A_FORMAT = 'audio/x-m4a;';
+    var MP3_FORMAT = 'audio/mpeg;';
+    var WAV_FORMAT = 'audio/wav; codecs="1"';
     
     /**
      * The video format to assume if it cannot be determined what format a media
      * file is.
      */
-    var assumedFormats = html5media.assumedFormats = {
+    var assumedFormats = {
         video: H264_FORMAT,
         audio: MP3_FORMAT
     }
@@ -140,13 +137,13 @@
     /**
      * Formats that the fallback Flash player is able to understand.
      */
-    var fallbackFormats = html5media.fallbackFormats = [html5media.H264_FORMAT, html5media.M4A_FORMAT, html5media.MP3_FORMAT];
+    var fallbackFormats = [H264_FORMAT, M4A_FORMAT, MP3_FORMAT];
     
     /**
      * Known file extensions that can be used to guess media formats in the
      * absence of other information.
      */
-    var fileExtensions = html5media.fileExtensions = {
+    var fileExtensions = {
         video: {
             "ogg": THEORA_FORMAT,
             "ogv": THEORA_FORMAT,
@@ -256,7 +253,7 @@
      * This implementation creates flowplayer instances, but this can
      * theoretically be used to support all different types of flash player.
      */
-    html5media.createFallback = function(tag, element) {
+    function createFallback(tag, element) {
         var hasControls = hasAttr(element, "controls");
         // Standardize the src and poster.
         var poster = element.getAttribute("poster") || "";
@@ -313,8 +310,17 @@
         var plugins = {
             controls: hasControls && {
                 url: fixPath(html5media.flowplayerControlsSwf),
-                fullscreen: false,
-                autoHide: tag == VIDEO_TAG && "always" || "never"
+                opacity: 0.8,
+                backgroundGradient: "none",
+                fullscreen: tag == VIDEO_TAG,
+                autoHide: tag == VIDEO_TAG && {
+                    fullscreenOnly: false,
+                    enabled: true,
+                    hideStyle: "fade",
+                    mouseOutDelay: 0
+                } || {
+                    enabled: false
+                }
             } || null
         }
         if (formatMatches(format, MP3_FORMAT)) {
@@ -340,6 +346,10 @@
                 fadeInSpeed: 0,
                 fadeOutSpeed: 0
             },
+            canvas: {
+                backgroundGradient: "none",
+                backgroundColor: "#000000"
+            },
             plugins: plugins
         }
         html5media.configureFlowplayer(tag, element, config);
@@ -350,13 +360,7 @@
     }
 
     // Automatically execute the html5media function on page load.
-    if (window.jQuery) {
-        // The jQuery build of html5media is smaller and uses the latest jQuery code.
-        jQuery(html5media);
-    } else if (window.DomReady) {
-        // The standalone build of html5media uses the bundled DomReady library.
-        DomReady.ready(html5media);
-    }
+    DomReady.ready(html5media);
     
     // Expose html5media to the global object.
     window.html5media = html5media;
