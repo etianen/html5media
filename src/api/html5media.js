@@ -25,18 +25,7 @@
  */
 
 
-(function(window, document, undefined) {
-    
-    // Executes the given callback in the context of each array item.
-    function each(items, callback) {
-        var itemsArray = [];
-        for (var n = 0; n < items.length; n++) {
-            itemsArray.push(items[n]);
-        }
-        for (var n = 0; n < itemsArray.length; n++) {
-            callback(itemsArray[n]);
-        }
-    }
+(function(window, document, undefined) {    
     
     // Tagnames for the different types of media tag.
     var VIDEO_TAG = "video";
@@ -44,13 +33,15 @@
     
     // If no video tag is supported, go ahead and enable all HTML5 elements.
     if (!document.createElement(VIDEO_TAG).canPlayType) {
-        each([AUDIO_TAG, "source"], function(name){
-            document.createElement(name);
-        });
+        document.createElement(AUDIO_TAG);
+        document.createElement("source");
     }
     
     // Checks whether this is a broken Android implementation.
     var isBrokenAndroid = window.navigator.userAgent.toLowerCase().match(/android 2\.[12]/) !== null;
+    
+    // Checks if this is opera.
+    var isOpera = window.navigator.userAgent.toLowerCase().match(/opera/) !== null;
     
     // Checks whether the given element can play the fiven format.
     function canPlayFormat(element, format) {
@@ -132,13 +123,16 @@
      * 
      * Override this if they are not located in the same folder as the 
      */
-    var scriptRoot = "";
-    each(document.getElementsByTagName("script"), function(script) {
-        var src = script.src;
-        if (src.match(/html5media(\.min|)\.js/)) {
-            scriptRoot = dirname(src);
+    var scriptRoot = (function() {
+        var scripts = document.getElementsByTagName("script");
+        for (var n = 0; n < scripts.length; n++) {
+            var script = scripts[n];
+            if (script.src.match(/html5media(\.min|)\.js/)) {
+                return dirname(script.src);
+            }
         }
-    });
+        return "";
+    }());
     html5media.flowplayerSwf = scriptRoot + "flowplayer.swf";
     html5media.flowplayerAudioSwf = scriptRoot + "flowplayer.audio.swf";
     html5media.flowplayerControlsSwf = scriptRoot + "flowplayer.controls.swf";
@@ -212,12 +206,16 @@
     // Standardizes URLs to avoid confusing Flowplayer.
     var hostUrl = window.location.protocol + "//" + window.location.host;
     var baseUrl = String(window.location);
-    each(document.getElementsByTagName("base"), function(element) {
-        if (element.href) {
-            baseUrl = element.href;
+    var baseUrl = dirname(function() {
+        var elements = document.getElementsByTagName("base");
+        for (var n = 0; n < elements.length; n++) {
+            var element = elements[0];
+            if (element.href) {
+                return element.href;
+            }
         }
-    });
-    baseUrl = dirname(baseUrl);
+        return String(window.location);
+    }());
     function fixPath(url) {
         // Add the host to URLs that start with a forward slash.
         if (url.substr(0, 1) == "/") {
@@ -285,22 +283,25 @@
         // Standardize the src and poster.
         var poster = element.getAttribute("poster") || "";
         var src = element.getAttribute("src") || "";
-        var format;
         if (!src) {
             // Find a compatible fallback file.
-            each(element.getElementsByTagName("source"), function(source) {
+            var sources = element.getElementsByTagName("source");
+            for (var sn = 0; sn < sources.length; sn++) {
+                var source = sources[sn];
                 var srcValue = source.getAttribute("src");
-                if (srcValue && !src) {
-                    each(fallbackFormats, function(fallbackFormat) {
-                        format = guessFormat(tagName, srcValue, source.getAttribute("type"));
-                        if (formatMatches(format, fallbackFormat)) {
+                if (srcValue) {
+                    for (var fn = 0; fn < fallbackFormats.length; fn++) {
+                        var fallbackFormat = fallbackFormats[fn];
+                        if (formatMatches(fallbackFormat, guessFormat(tagName, srcValue, source.getAttribute("type")))) {
                             src = srcValue;
+                            break;
                         }
-                    });
+                    }
                 }
-            });
-        } else {
-            format = guessFormat(tagName, src);
+                if (src) {
+                    break;
+                }
+            }
         }
         // If there is no src, then fail silently for now.
         if (!src) {
@@ -354,6 +355,11 @@
                 }
             } || null
         }
+        // HACK: Opera cannot autohide controls, for some reason.
+        if (isOpera && plugins.controls) {
+            plugins.controls.autoHide.enabled = false;
+        }
+        // Audio-specific config.
         if (tagName == "audio") {
             // Load the audio plugin.
             plugins["audio"] = {
@@ -385,7 +391,7 @@
             },
             plugins: plugins
         }
-        html5media.configureFlowplayer(element, config);
+        config = html5media.configureFlowplayer(element, config);
         flowplayer(replacement, {
             src: fixPath(html5media.flowplayerSwf),
             wmode: "opaque"
