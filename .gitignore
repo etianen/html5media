@@ -6,4 +6,4 @@
 *.pyo
 Thumbs.db
 build
-www
+/www
