@@ -322,6 +322,7 @@
             controls: hasControls && {
                 url: fixPath(html5media.flowplayerControlsSwf),
                 opacity: 0.8,
+                backgroundColor: "#181818",
                 backgroundGradient: "none",
                 fullscreen: tag == VIDEO_TAG,
                 autoHide: tag == VIDEO_TAG && {
