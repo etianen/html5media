@@ -59,9 +59,13 @@
     
     // Scans over elements with the given tag name, creating fallbacks if required.
     function scanElementsByTagName(tagName) {
-        var elements = Array.prototype.slice.call(document.getElementsByTagName(tagName));
+        var elements = document.getElementsByTagName(tagName);
+        var elementsList = [];
         for (var n = 0; n < elements.length; n++) {
-            var element = elements[n];
+            elementsList.push(elements[n]);
+        }
+        for (n = 0; n < elementsList.length; n++) {
+            var element = elementsList[n];
             var requiresFallback = true;
             // Test if the media tag is supported.
             if (element.canPlayType) {
@@ -83,8 +87,8 @@
                 }
             }
             // If cannot play media, create the fallback.
-            if (requiresFallback || html5media.forceFallback(element)) {
-                html5media.createFallback(element);
+            if (requiresFallback || html5media.forceFallback(tagName, element)) {
+                html5media.createFallback(tagName, element);
             } else {
                 // HACK: Enables playback in android phones.
                 if (isBrokenAndroid) {
@@ -114,7 +118,7 @@
      * Return true to force the flash fallback. The default implementation never
      * forces the flash fallback.
      */
-    html5media.forceFallback = function(element) {
+    html5media.forceFallback = function(tagName, element) {
         return false;
     }
     
@@ -276,8 +280,7 @@
      * This implementation creates flowplayer instances, but this can
      * theoretically be used to support all different types of flash player.
      */
-    html5media.createFallback = function(element) {
-        var tag = element.tagName.toLowerCase();
+    html5media.createFallback = function(tagName, element) {
         var hasControls = hasAttr(element, "controls");
         // Standardize the src and poster.
         var poster = element.getAttribute("poster") || "";
@@ -289,7 +292,7 @@
                 var srcValue = source.getAttribute("src");
                 if (srcValue && !src) {
                     each(fallbackFormats, function(fallbackFormat) {
-                        format = guessFormat(tag, srcValue, source.getAttribute("type"));
+                        format = guessFormat(tagName, srcValue, source.getAttribute("type"));
                         if (formatMatches(format, fallbackFormat)) {
                             src = srcValue;
                         }
@@ -297,7 +300,7 @@
                 }
             });
         } else {
-            format = guessFormat(tag, src);
+            format = guessFormat(tagName, src);
         }
         // If there is no src, then fail silently for now.
         if (!src) {
@@ -310,7 +313,7 @@
         replacement.title = element.title;
         replacement.style.display = "block";
         replacement.style.width = getDimension(element, "width", "300px");
-        if (tag == "audio") {
+        if (tagName == "audio") {
             replacement.style.height = "26px";
         } else {
             replacement.style.height = getDimension(element, "height", "200px");
@@ -319,7 +322,6 @@
         element.parentNode.replaceChild(replacement, element);
         var preload = (element.getAttribute("preload") || "").toLowerCase();
         // Activate flowplayer.
-        var flowplayerControls = null;
         var playlist = [];
         if (poster) {
             playlist.push({url: fixPath(poster)});
@@ -341,8 +343,8 @@
                 opacity: 0.8,
                 backgroundColor: "#181818",
                 backgroundGradient: "none",
-                fullscreen: tag == VIDEO_TAG,
-                autoHide: tag == VIDEO_TAG && {
+                fullscreen: tagName == VIDEO_TAG,
+                autoHide: tagName == VIDEO_TAG && {
                     fullscreenOnly: false,
                     enabled: true,
                     hideStyle: "fade",
@@ -352,7 +354,7 @@
                 }
             } || null
         }
-        if (tag == "audio") {
+        if (tagName == "audio") {
             // Load the audio plugin.
             plugins["audio"] = {
                 url: fixPath(html5media.flowplayerAudioSwf)
