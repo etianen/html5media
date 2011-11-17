@@ -44,11 +44,58 @@
     
     // If no video tag is supported, go ahead and enable all HTML5 elements.
     if (!document.createElement(VIDEO_TAG).canPlayType) {
-        each(["video", "audio", "source"], function(name){
+        each([AUDIO_TAG, "source"], function(name){
             document.createElement(name);
         });
     }
-        
+    
+    // Checks whether this is a broken Android implementation.
+    var isBrokenAndroid = window.navigator.userAgent.toLowerCase().match(/android 2\.[12]/) !== null;
+    
+    // Checks whether the given element can play the fiven format.
+    function canPlayFormat(element, format) {
+        return element.canPlayType(format) || (isBrokenAndroid && format.search("mp4") > -1);
+    }
+    
+    // Scans over elements with the given tag name, creating fallbacks if required.
+    function scanElementsByTagName(tagName) {
+        var elements = Array.prototype.slice.call(document.getElementsByTagName(tagName));
+        for (var n = 0; n < elements.length; n++) {
+            var element = elements[n];
+            var requiresFallback = true;
+            // Test if the media tag is supported.
+            if (element.canPlayType) {
+                // If the media has a src attribute, and can play it, then all is good.
+                if (element.src) {
+                    if (canPlayFormat(element, guessFormat(tagName, element.src))) {
+                        requiresFallback = false;
+                    }
+                } else {
+                    // Check for source child attributes.
+                    var sources = element.getElementsByTagName("source"); 
+                    for (var m = 0; m < sources.length; m++) {
+                        var source = sources[m];
+                        if (canPlayFormat(element, guessFormat(tagName, source.src, source.type))) {
+                            requiresFallback = false;
+                            break;
+                        }
+                    }
+                }
+            }
+            // If cannot play media, create the fallback.
+            if (requiresFallback || html5media.forceFallback(element)) {
+                html5media.createFallback(element);
+            } else {
+                // HACK: Enables playback in android phones.
+                if (isBrokenAndroid) {
+                    element.addEventListener("click", function() {
+                        this.play();
+                    }, false);
+                }
+            }
+        }
+    }
+    
     /**
      * Replaces all video tags with flowplayer video player if the browser does
      * not support either the video tag the h.264 codex.
@@ -57,42 +104,8 @@
      * again after dynamically creating HTML5 video tags.
      */
     function html5media() {
-        each([VIDEO_TAG, AUDIO_TAG], function(tag) {
-            each(document.getElementsByTagName(tag), function(media) {
-                var requiresFallback = true;
-                var isAndroid = navigator.userAgent.toLowerCase().search("android") > -1;
-                function canPlayFormat(format) {
-                    return media.canPlayType(format) || (isAndroid && format.search("mp4") > -1);
-                }
-                // Test if the media tag is supported.
-                if (media.canPlayType) {
-                    // If the media has a src attribute, and can play it, then all is good.
-                    if (media.src) {
-                        if (canPlayFormat(guessFormat(tag, media.src))) {
-                            requiresFallback = false;
-                        }
-                    } else {
-                        // Check for source child attributes.
-                        each(media.getElementsByTagName("source"), function(source) {
-                            if (canPlayFormat(guessFormat(tag, source.src, source.type))) {
-                                requiresFallback = false;
-                            }
-                        });
-                    }
-                }
-                // If cannot play media, create the fallback.
-                if (requiresFallback || html5media.forceFallback(media)) {
-                    html5media.createFallback(media);
-                } else {
-                    // HACK: Enables playback in android phones.
-                    if (isAndroid) {
-                        media.addEventListener("click", function() {
-                            media.play();
-                        }, false);
-                    }
-                }
-            });
-        });
+        scanElementsByTagName("video");
+        scanElementsByTagName("audio");
     }
     
     /**
