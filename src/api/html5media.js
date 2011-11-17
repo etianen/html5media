@@ -48,7 +48,7 @@
             document.createElement(name);
         });
     }
-    
+        
     /**
      * Replaces all video tags with flowplayer video player if the browser does
      * not support either the video tag the h.264 codex.
@@ -81,8 +81,8 @@
                     }
                 }
                 // If cannot play media, create the fallback.
-                if (requiresFallback) {
-                    createFallback(tag, media);
+                if (requiresFallback || html5media.forceFallback(media)) {
+                    html5media.createFallback(media);
                 } else {
                     // HACK: Enables playback in android phones.
                     if (isAndroid) {
@@ -93,6 +93,16 @@
                 }
             });
         });
+    }
+    
+    /**
+     * Callback to allow conditional forcing of the fallback player.
+     * 
+     * Return true to force the flash fallback. The default implementation never
+     * forces the flash fallback.
+     */
+    html5media.forceFallback = function(element) {
+        return false;
     }
     
     // Removes the final filename from the given path.
@@ -243,7 +253,7 @@
      * This callback should return the updated Flowplayer configuration. By
      * The default implementation leaves the generated configuration intact.
      */
-    html5media.configureFlowplayer = function(tag, element, config) {
+    html5media.configureFlowplayer = function(element, config) {
         return config;
     }
     
@@ -253,7 +263,8 @@
      * This implementation creates flowplayer instances, but this can
      * theoretically be used to support all different types of flash player.
      */
-    function createFallback(tag, element) {
+    html5media.createFallback = function(element) {
+        var tag = element.tagName.toLowerCase();
         var hasControls = hasAttr(element, "controls");
         // Standardize the src and poster.
         var poster = element.getAttribute("poster") || "";
@@ -354,7 +365,7 @@
             },
             plugins: plugins
         }
-        html5media.configureFlowplayer(tag, element, config);
+        html5media.configureFlowplayer(element, config);
         flowplayer(replacement, {
             src: fixPath(html5media.flowplayerSwf),
             wmode: "opaque"
