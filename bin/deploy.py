@@ -10,9 +10,13 @@ import subprocess, os
 from build import MEDIA_BUILD_ROOT, API_BUILD_ROOT, HTML_ROOT, CDN_ROOT
 
 
+CDN_ASSETS_ROOT = os.path.join(CDN_ROOT, "www")
+
 MEDIA_DEPLOY_ROOT = os.environ["HTML5MEDIA_MEDIA_DEPLOY_ROOT"]
 
 HTML_DEPLOY_ROOT = os.environ["HTML5MEDIA_HTML_DEPLOY_ROOT"]
+
+CDN_DEPLOY_ROOT = os.environ["HTML5MEDIA_CDN_DEPLOY_ROOT"]
 
 CDN_EMAIL = os.environ["HTML5MEDIA_CDN_EMAIL"]
 
@@ -26,9 +30,12 @@ def main():
     # Uploading the HTML files.
     print("Uploading html files...")
     subprocess.call("rsync -r {}/*.html {}".format(HTML_ROOT, HTML_DEPLOY_ROOT), shell=True)
-    # Deploy the CDN.
-    print("Deploying CDN...")
+    # Deploy the SSL CDN.
+    print("Deploying SSL CDN...")
     subprocess.call("echo {} | appcfg.py update {} --email={} --passin".format(CDN_PASSWORD, CDN_ROOT, CDN_EMAIL), shell=True)
+    # Deploy the non-ssl CDN.
+    print("Deploying standard CDN...")
+    subprocess.call("rsync -r --exclude=.DS_Store {}/ {}".format(CDN_ASSETS_ROOT, CDN_DEPLOY_ROOT), shell=True)
     
     
 if __name__ == "__main__":
