@@ -310,6 +310,7 @@
         // Create the replacement element div.
         var replacement = document.createElement("span");
         replacement.id = element.id;
+        replacement.style.cssText = element.style.cssText;
         replacement.className = element.className;
         replacement.title = element.title;
         replacement.style.display = "block";
