@@ -136,6 +136,7 @@
     html5media.flowplayerSwf = scriptRoot + "flowplayer.swf";
     html5media.flowplayerAudioSwf = scriptRoot + "flowplayer.audio.swf";
     html5media.flowplayerControlsSwf = scriptRoot + "flowplayer.controls.swf";
+    html5media.expressInstall = scriptRoot + "expressInstall.swf";
     
     // Known media formats.
     var THEORA_FORMAT = 'video/ogg; codecs="theora, vorbis"';
@@ -395,6 +396,7 @@
         config = html5media.configureFlowplayer(element, config);
         flowplayer(replacement, {
             src: fixPath(html5media.flowplayerSwf),
+            expressInstall: fixPath(html5media.expressInstall),
             wmode: "opaque"
         }, config);
     }
