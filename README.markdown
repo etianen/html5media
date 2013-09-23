@@ -12,7 +12,7 @@ To make HTML5 video and audio tags work in all major browsers, simply add the
 following line of code somewhere in the `<head>` of your document.
 
 ```html
-<script src="http://api.html5media.info/1.1.5/html5media.min.js"></script>
+<script src="http://api.html5media.info/1.1.6/html5media.min.js"></script>
 ```
     
 That's it! There is no second step!
