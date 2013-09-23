@@ -9,7 +9,7 @@ html file and the minified html5media builds.
 import os, shutil, subprocess, re
 
 
-API_VERSION = "1.1.5"
+API_VERSION = "1.1.6"
 
 BIN_ROOT = os.path.dirname(__file__)
 
@@ -74,6 +74,8 @@ def main():
                 os.path.join(API_BUILD_ROOT, "flowplayer.controls.swf"))
     shutil.copy(os.path.join(LIB_ROOT, "flowplayer.audio", "flowplayer.audio.swf"),
                 os.path.join(API_BUILD_ROOT, "flowplayer.audio.swf"))
+    shutil.copy(os.path.join(LIB_ROOT, "swfobject", "expressInstall.swf"),
+                os.path.join(API_BUILD_ROOT, "expressInstall.swf"))
     # Copy over the license and readme files.
     print("Copying readme files...")
     shutil.copy(os.path.join(PROJECT_ROOT, "LICENSE"),

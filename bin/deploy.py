@@ -32,6 +32,7 @@ def main():
     subprocess.call("rsync -r {}/*.html {}".format(HTML_ROOT, HTML_DEPLOY_ROOT), shell=True)
     # Deploy the SSL CDN.
     print("Deploying SSL CDN...")
+    print("echo {} | appcfg.py update {} --email={} --passin".format(CDN_PASSWORD, CDN_ROOT, CDN_EMAIL))
     subprocess.call("echo {} | appcfg.py update {} --email={} --passin".format(CDN_PASSWORD, CDN_ROOT, CDN_EMAIL), shell=True)
     # Deploy the non-ssl CDN.
     print("Deploying standard CDN...")
