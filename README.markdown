@@ -96,5 +96,3 @@ creative-commons projects. They are listed below.
 *   [Flowplayer - Flash Video Player for the Web](http://flowplayer.org/ "Flowplayer - Flash Video Player for the Web")
 *   [Domready - The smallest subset possible from jQuery to support DOM ready event](http://code.google.com/p/domready/ "Domready - The smallest subset possible from jQuery to support DOM ready event")
 *   [Sintel - the Durian Open Movie Project](http://www.sintel.org/ "Sintel - the Durian Open Movie Project")
-
-The hosting for the html5media CDN is kindly sponsored by [Muirhoward](http://www.muirhoward.com/).
