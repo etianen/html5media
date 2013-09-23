@@ -2,6 +2,13 @@ html5media changelog
 ====================
 
 
+1.1.6
+-----
+
+*   Fixing path for expressInstall.swf for older Flash players.
+*   Copying over CSS styles to replacement element.
+
+
 1.1.5
 -----
 
