@@ -9,7 +9,7 @@ html file and the minified html5media builds.
 import os, shutil, subprocess, re
 
 
-API_VERSION = "1.1.6"
+API_VERSION = "1.1.7"
 
 BIN_ROOT = os.path.dirname(__file__)
 

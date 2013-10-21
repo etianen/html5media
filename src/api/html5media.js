@@ -195,7 +195,19 @@
     
     // Trys to determine the format of a given video file.
     function guessFormat(tag, src, type) {
-        return type || fileExtensions[tag][src.split(".").slice(-1)[0]] || assumedFormats[tag];
+        // An explicit type is always best.
+        if (type) {
+            return type;
+        }
+        // Try to match based on file extension.
+        var extensionMatch = (/\.([a-z1-9]+)(\?|#|$)/i).exec(src);
+        if (extensionMatch) {
+            var format = fileExtensions[tag][extensionMatch[1]];
+            if (format) {
+                return format;
+            }
+        }
+        return assumedFormats[tag];
     }
     
     // Detects presence of HTML5 attributes.

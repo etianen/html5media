@@ -2,6 +2,12 @@ html5media changelog
 ====================
 
 
+1.1.7
+-----
+
+*   Fixing autodetection of URLs with query strings.
+
+
 1.1.6
 -----
 
