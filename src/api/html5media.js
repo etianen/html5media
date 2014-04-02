@@ -200,7 +200,7 @@
             return type;
         }
         // Try to match based on file extension.
-        var extensionMatch = (/\.([a-z1-9]+)(\?|#|$)/i).exec(src);
+        var extensionMatch = (/\.([a-z1-9]+)(\?|#|\s|$)/i).exec(src);
         if (extensionMatch) {
             var format = fileExtensions[tag][extensionMatch[1]];
             if (format) {
