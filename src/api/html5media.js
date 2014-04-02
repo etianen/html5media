@@ -27,6 +27,8 @@
 
 (function(window, document, undefined) {    
     
+    "use strict";
+
     // Tagnames for the different types of media tag.
     var VIDEO_TAG = "video";
     var AUDIO_TAG = "audio";
@@ -111,7 +113,7 @@
      */
     html5media.forceFallback = function(tagName, element) {
         return false;
-    }
+    };
     
     // Removes the final filename from the given path.
     function dirname(path) {
@@ -154,7 +156,7 @@
     var assumedFormats = {
         video: H264_FORMAT,
         audio: MP3_FORMAT
-    }
+    };
     
     /**
      * Formats that the fallback Flash player is able to understand.
@@ -191,7 +193,7 @@
             "mp3": MP3_FORMAT,
             "wav": WAV_FORMAT
         }
-    }
+    };
     
     // Trys to determine the format of a given video file.
     function guessFormat(tag, src, type) {
@@ -213,12 +215,11 @@
     // Detects presence of HTML5 attributes.
     function hasAttr(element, attr) {
         var val = element.getAttribute(attr);
-        return val == true || typeof val == "string";
+        return !!val || typeof val == "string";
     }
     
     // Standardizes URLs to avoid confusing Flowplayer.
     var hostUrl = window.location.protocol + "//" + window.location.host;
-    var baseUrl = String(window.location);
     var baseUrl = dirname(function() {
         var elements = document.getElementsByTagName("base");
         for (var n = 0; n < elements.length; n++) {
@@ -249,10 +250,11 @@
             return result + "px";
         }
         // Attempt to use it's computed style.
+        var style;
         if (element.currentStyle) {
-            var style = element.currentStyle[dimension];
+            style = element.currentStyle[dimension];
         } else if (window.getComputedStyle) {
-            var style = document.defaultView.getComputedStyle(element, null).getPropertyValue(dimension);
+            style = document.defaultView.getComputedStyle(element, null).getPropertyValue(dimension);
         } else {
             return fallback;
         }
@@ -283,7 +285,7 @@
      */
     html5media.configureFlowplayer = function(element, config) {
         return config;
-    }
+    };
     
     /**
      * Default callback for creating a fallback for html5 media tags.
@@ -345,7 +347,7 @@
             playlist.push({
                 url: fixPath(src),
                 autoPlay: hasAttr(element, "autoplay"),
-                autoBuffering: hasAttr(element, "autobuffer") || (hasAttr(element, "preload") && (preload == "" || preload == "auto")),
+                autoBuffering: hasAttr(element, "autobuffer") || (hasAttr(element, "preload") && (preload === "" || preload == "auto")),
                 onBeforeFinish: function() {
                     return !hasAttr(element, "loop");
                 }
@@ -368,7 +370,7 @@
                     enabled: false
                 }
             } || null
-        }
+        };
         // HACK: Opera cannot autohide controls, for some reason.
         if (isOpera && plugins.controls) {
             plugins.controls.autoHide.enabled = false;
@@ -376,15 +378,15 @@
         // Audio-specific config.
         if (tagName == "audio") {
             // Load the audio plugin.
-            plugins["audio"] = {
+            plugins.audio = {
                 url: fixPath(html5media.flowplayerAudioSwf)
-            }
+            };
             // HACK: The Flowplayer audio plugin requires that the controls plugin is present.
             if (!hasControls) {
-                plugins["controls"] = {
+                plugins.controls = {
                     url: fixPath(html5media.flowplayerControlsSwf),
                     display: "none"
-                }
+                };
                 replacement.style.height = 0;
             }
             // HACK: Disable autoBuffering, since a flowplayer audio bug can cause uncontrollable autoplaying.
@@ -404,14 +406,14 @@
                 backgroundColor: "#000000"
             },
             plugins: plugins
-        }
+        };
         config = html5media.configureFlowplayer(element, config);
         flowplayer(replacement, {
             src: fixPath(html5media.flowplayerSwf),
             expressInstall: fixPath(html5media.expressInstallSwf),
             wmode: "opaque"
         }, config);
-    }
+    };
 
     // Automatically execute the html5media function on page load.
     DomReady.ready(html5media);
