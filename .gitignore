@@ -7,3 +7,5 @@
 Thumbs.db
 build
 /www
+/node_modules
+npm-debug.log

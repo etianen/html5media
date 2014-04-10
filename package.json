@@ -1,0 +1,27 @@
+{
+  "name": "html5media",
+  "version": "1.1.7",
+  "description": "html5media enables <video> and <audio> tags in all major browsers",
+  "devDependencies": {
+    "gulp": "~3.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/etianen/html5media.git"
+  },
+  "keywords": [
+    "video",
+    "audio",
+    "html5"
+  ],
+  "author": {
+    "name": "Dave Hall",
+    "email": "dave@etianen.com",
+    "url": "http://etianen.com/"
+  },
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/etianen/html5media/issues"
+  },
+  "homepage": "http://html5media.info/"
+}
