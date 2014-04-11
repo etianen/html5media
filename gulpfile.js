@@ -125,6 +125,7 @@ function publishToBucket(stream, bucketName) {
     .pipe(publisher.publish({
         "Cache-Control": "public, max-age=315360000"
     }))
+    .pipe(publisher.sync())
     .pipe(publisher.cache())
     .pipe(awspublish.reporter());
 }
