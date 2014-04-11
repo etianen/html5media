@@ -96,3 +96,11 @@ gulp.task("www", ["api"], function() {
 
 
 gulp.task("build", ["api", "media", "www"]);
+
+
+gulp.task("dist", ["build"], function() {
+    return gulp.src([
+        "build/**",
+    ])
+    .pipe(gulp.dest("dist/"));
+});
