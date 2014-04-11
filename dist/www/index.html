@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="keywords" content="html5, html 5, video, audio, html5video, html 5 video, html 5 audio, flash, h.264, h264, mp4, mp3, wav, aac, web, internet"/>
+        <meta name="description" content="The html5media project enables HTML5 video and audio tags in all major browsers. All it takes is a single line of code."/>
+        <title>HTML5 video and audio tags in all major browsers</title>
+
+        <!-- inject:css -->
+            <link rel="stylesheet" href="../media/styles.min.css">
+            <!-- endinject -->
+        
+        <!-- This script is all you need to enable HTML5 video and audio tags in all major browsers! -->
+        <!-- inject:js -->
+            <script src="../api/1.1.7/html5media.min.js"></script>
+            <!-- endinject -->
+        
+        <!-- This line enables all the other HTML5 elements in IE. It's not necessary if you just want to play video. -->
+        <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+        
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-24462944-1']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+        </script>
+        
+    </head>
+    <body>
+        <header id="header">
+            <hgroup>
+                <h1>HTML5 video was meant to be this easy</h1>
+                <h2>html5media enables &lt;video&gt; and &lt;audio&gt; tags in all major browsers</h2>
+            </hgroup>
+            <div class="videos">
+                <div class="grid_8">
+                    <video class="video" poster="../media/poster.jpg" width="618" height="347" controls preload>
+                        <source src="../media/video.mp4" media="only screen and (min-device-width: 568px)"></source>
+                        <source src="../media/video.iphone.mp4" media="only screen and (max-device-width: 568px)"></source>
+                        <source src="../media/video.ogv"></source>
+                    </video>
+                </div>
+                <div class="grid_4">
+                    <p>All it takes is a single line of code to make HTML5 video and audio tags work in all major browsers.</p>
+                    <ul>
+                        <li>Nothing to install.</li>
+                        <li>Works in all browsers and phones.</li>
+                        <li>One of the fastest solutions available.</li>
+                    </ul>
+                    <audio class="audio" controls preload>
+                        <source src="../media/audio.mp3"></source>
+                        <source src="../media/audio.ogg"></source>
+                    </audio>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </header>
+        <div id="content">
+            <article>
+                <header>
+                    <h1>How to enable &lt;video&gt; and &lt;audio&gt; tags in all major browsers</h1>
+                </header>
+                
+                <p>To make HTML5 video and audio tags work in all major browsers, simply add the following line of code
+                somewhere in the &lt;head&gt; of your document.</p>
+                <code>&lt;script src="api/html5media.min.js"&gt;&lt;/script&gt;</code>
+                <p>That's it! There is no second step!</p>
+                
+                <h2>How to embed video</h2>
+                <p>You can embed video into your page using the following code.</p>
+                <code>&lt;video src="video.mp4" width="320" height="200" controls preload&gt;&lt;/video&gt;</code>
+                <p>For more information and troubleshooting, please visit the <a href="https://github.com/etianen/html5media/wiki/embedding-video">video wiki page</a>.
+                
+                <h2>How to embed audio</h2>
+                <p>You can embed audio into your page using the following code.</p>
+                <code>&lt;audio src="audio.mp3" controls preload&gt;&lt;/audio&gt;</code>
+                <p>For more information and troubleshooting, please visit the <a href="https://github.com/etianen/html5media/wiki/embedding-audio">audio wiki page</a>.
+                
+                <h2>Why use html5media?</h2>
+                <p>HTML5 video and audio tags were designed to make embedding a video as easy as embedding an image. They were
+                also designed to give users a faster experience by doing away with browser plugins such as Adobe Flash.</p>
+                <p>Unfortunately, older browsers don't support HTML5 video and audio tags, and even modern browsers don't support a consistent
+                set of video codecs, making embedding a video rather difficult.</p>
+                <p>The html5media project makes embedding video or audio as easy as it was meant to be. It's a fire-and-forget solution,
+                and doesn't require installing any files on your server. Unlike many other HTML5 video players, it allows people to use the
+                video controls supplied by their own web browser. It's one of the smallest, fastest solutions available, and as browser
+                technology improves it will become even faster.</p>
+                
+                <h2>More information</h2>
+                <p>The html5media project is open source and can be found on GitHub. You can find out more information on the
+                <a href="https://github.com/etianen/html5media/wiki">html5media wiki</a>, or the main <a href="https://github.com/etianen/html5media">html5media project page</a>.</p>
+            </article>
+        </div>
+        <footer>
+            <div id="footer-content">
+                <p>Developed by <a href="http://www.etianen.com/" title="Developed by Dave Hall">Dave Hall</a>.</p>
+                <p id="sponsored-by">Project hosting sponsored by <a href="http://www.muirhoward.com/" title="Sponsored by Muirhoward"><img src="../media/muirhoward.png" width=39 height=54 alt="Muirhoward"></a>
+                <p>Video content © Blender Foundation <a title="Video content by the Blender Foundation" href="http://www.sintel.org/">www.sintel.org</a><br>
+                and licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0</a> license.</p>
+                <p>Audio content © Jan Morgenstern<br>
+                and licensed under the <a title="Audio content by Jan Morgenstern" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">CC-BY-NC-ND 3.0</a> license.</p>
+            </div>
+        </footer>
+    </body>
+</html>

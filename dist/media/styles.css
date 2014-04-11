@@ -1,0 +1,215 @@
+/*
+    Styles used for the video tag demo page.
+    
+    None of these styles are needed to make html5media work... they're just here
+    to make the demo page look nice!
+    
+    Developed by Dave Hall <dave@etianen.com>.
+    
+    <http://www.etianen.com/>
+*/
+
+* {
+    font-size: 100%;
+    margin: 0;
+}
+
+body {
+    font: 14px/1.5 "Helvetica Neue", Arial, "Liberation Sans", FreeSans, sans-serif;
+    color: #333;
+    background: black;
+}
+
+header,
+hgroup,
+article,
+footer,
+video,
+audio {
+    display: block;
+}
+
+.grid_8,
+.grid_4 {
+    float: left;
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.grid_8 {
+    width: 620px;
+}
+
+.grid_4 {
+    width: 300px;
+}
+
+.alpha {
+    margin-left: 0;
+}
+
+.omega {
+    margin-right: 0;
+}
+
+.clear {
+    clear: both;
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+#header {
+    display: block;
+    color: #ddd;
+}
+
+#header hgroup {
+    width: 940px;
+    margin: 0 auto;
+    padding: 27px 10px 0 10px;
+    display: block;
+    position: relative;
+}
+
+#header h1 {
+    font-size: 30px;
+    font-weight: normal;
+    color: #FF782F;
+    margin: 0 0 0 0;
+}
+
+#header h2 {
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 0 27px 0;
+}
+
+#header p {
+    line-height: 2;
+    font-size: 16px;
+}
+
+#header ul {
+    margin: 0 0 18px 0;
+    padding: 0;
+}
+
+#header li {
+    margin: 0 0 18px 0;
+    padding: 0 0 0 25px;
+    list-style: none;
+    background: url(tick.png) 0 4px no-repeat;
+}
+
+#header .audio {
+    position: absolute;
+    bottom: 0;
+    left: 650px;
+}
+
+.videos {
+    width: 960px;
+    padding: 0;
+    margin: 0 auto 36px auto;
+    position: relative;
+    height: 349px;
+}
+
+p {
+    margin-bottom: 18px;
+}
+
+code {
+    margin-bottom: 18px;
+    padding: 9px;
+    background: #eee;
+    display: block;
+}
+
+#content {
+    background: white;
+    padding-bottom: 18px;
+}
+
+article {
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    width: 940px;
+    padding: 24px 10px 0 10px;
+}
+
+article header {
+    background: transparent;
+    border-bottom: none;
+}
+
+article h1,
+article h2 {
+    font-size: 20px;
+    line-height: 48px;
+    font-weight: bold;
+    margin: 0 0 9px 0;
+}
+
+article a {
+    color: #BF3604;
+    text-decoration: none;
+}
+
+article a:hover {
+    text-decoration: underline;
+}
+
+.video,
+.audio {
+    display: block;
+    background: black;
+}
+
+.video {
+    border: 1px #333 solid;
+}
+
+.audio {
+    width: 300px;
+}
+
+footer {
+    padding: 27px 0 36px 0;
+    display: block;
+    color: #ddd;
+    position: relative;
+}
+
+#footer-content {
+    width: 940px;
+    margin: 0 auto 0 auto;
+    padding: 12px 10px 0 10px;
+    position: relative;
+}
+
+footer a {
+    color: #7ABED0;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+#sponsored-by {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+}
+
+#sponsored-by img {
+    vertical-align: -17px;
+    margin-left: 3px;
+    border: none;
+}

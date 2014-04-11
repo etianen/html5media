@@ -9,3 +9,4 @@ build
 /www
 /node_modules
 npm-debug.log
+.awspublish*

@@ -9,10 +9,13 @@ var concat = require("gulp-concat");
 var clean = require("gulp-clean");
 var inject = require("gulp-inject");
 var minifyCSS = require("gulp-minify-css");
+var awspublish = require("gulp-awspublish");
 
 
 var API_JS_BUILD_ROOT = path.join("build", "api", meta.version);
 
+
+// Cleaning.
 
 gulp.task("clean", function() {
     return gulp.src([
@@ -23,6 +26,8 @@ gulp.task("clean", function() {
     .pipe(clean());
 });
 
+
+// Building.
 
 gulp.task("api-js", function() {
     return gulp.src([
@@ -98,9 +103,52 @@ gulp.task("www", ["api"], function() {
 gulp.task("build", ["api", "media", "www"]);
 
 
+// Distributing.
+
 gulp.task("dist", ["build"], function() {
     return gulp.src([
         "build/**",
     ])
     .pipe(gulp.dest("dist/"));
 });
+
+
+// Publishing.
+
+function publishToBucket(stream, bucketName) {
+    var publisher = awspublish.create({
+        key: process.env.HTML5MEDIA_AWS_ACCESS_KEY_ID,
+        secret: process.env.HTML5MEDIA_AWS_SECRET_ACCESS_KEY,
+        bucket: bucketName
+    });
+    return stream
+    .pipe(publisher.publish({
+        "Cache-Control": "public, max-age=315360000"
+    }))
+    .pipe(publisher.cache())
+    .pipe(awspublish.reporter());
+}
+
+
+gulp.task("publish-www", ["dist"], function() {
+    return publishToBucket(gulp.src([
+        "dist/www/**"
+    ]), "html5media.info");
+});
+
+
+gulp.task("publish-media", ["dist"], function() {
+    return publishToBucket(gulp.src([
+        "dist/media/**"
+    ]), "media.html5media.info");
+});
+
+
+gulp.task("publish-api", ["dist"], function() {
+    return publishToBucket(gulp.src([
+        "dist/api/**"
+    ]), "api.html5media.info");
+});
+
+
+gulp.task("publish", ["publish-www", "publish-media", "publish-api"]);
