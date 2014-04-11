@@ -6,13 +6,20 @@
         <meta name="keywords" content="html5, html 5, video, audio, html5video, html 5 video, html 5 audio, flash, h.264, h264, mp4, mp3, wav, aac, web, internet"/>
         <meta name="description" content="The html5media project enables HTML5 video and audio tags in all major browsers. All it takes is a single line of code."/>
         <title>HTML5 video and audio tags in all major browsers</title>
-        <link rel="stylesheet" href="media/styles.css"/>
         
-        <!-- This line is all you need to enable HTML5 video and audio tags in all major browsers! -->
-        <script src="api/html5media.min.js"></script>
+        <!-- inject:css -->
+            <link rel="stylesheet" href="../media/styles.css"/>
+        <!-- endinject -->
+        
+        <!-- This script is all you need to enable HTML5 video and audio tags in all major browsers! -->
+        <!-- inject:js -->
+            <script src="../lib/flowplayer/flowplayer.js"></script>
+            <script src="../lib/domready/domready.js"></script>
+            <script src="../api/html5media.js"></script>
+        <!-- endinject -->
         
         <!-- This line enables all the other HTML5 elements in IE. It's not necessary if you just want to play video. -->
-        <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
         
         <script type="text/javascript">
 
