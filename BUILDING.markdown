@@ -6,11 +6,10 @@ repository or have downloaded one of the source tarballs. This is perfect if you
 want to help develop html5media.
 
 If you simply want to use html5media in your site, it's recommended that you
-simply download one of the pre-built releases from the
-[html5media download page][].
+simply link to the html5media CDN script, as explained on the [html5media project site]().
 
-[html5media download page]: http://github.com/etianen/html5media/downloads
-    "html5media project download page"
+[html5media project site]: http://html5media.info/
+    "html5media project site"
     
 
 Running the build script
