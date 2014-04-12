@@ -15,13 +15,16 @@ simply link to the html5media CDN script, as explained on the [html5media projec
 Running the build script
 ------------------------
 
-To run the build script you'll need a copy of python 3 installed on your
+To run the build script you'll need a copy of [nodejs]() and [gulp]() installed on your
 system. Assuming you have this, building html5media is simply a case of opening
-a terminal and running the build script like so:
+a terminal and running the build script in the root of the project directory like so:
 
-    $ bin/build.py
+    $ gulp build
     
 The built html5media code will all be placed in a brand-new `build/` directory
 in the root of the project.
 
 **Happy coding!**
+
+[nodejs]: http://nodejs.org/
+[gulp]: http://gulpjs.com/
