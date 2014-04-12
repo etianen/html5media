@@ -7,7 +7,6 @@ var uglify = require("gulp-uglify");
 var rename = require("gulp-rename");
 var concat = require("gulp-concat");
 var clean = require("gulp-clean");
-var inject = require("gulp-inject");
 var minifyCSS = require("gulp-minify-css");
 var awspublish = require("gulp-awspublish");
 var replace = require("gulp-replace");
@@ -93,25 +92,14 @@ gulp.task("media", ["media-static", "media-css"]);
 
 function injectHtml(stream)  {
     return stream
-    .pipe(inject(gulp.src([
-        path.join(API_JS_BUILD_ROOT, "html5media.min.js")
-    ], {
-        read: false
-    }), {
-        ignorePath: "/build/api",
-        addRootSlash: false,
-        addPrefix: "http://api.html5media.info"
-    }))
-    .pipe(inject(gulp.src([
-        "build/media/styles.min.css"
-    ], {
-        read: false
-    }), {
-        ignorePath: "/build/media",
-        addRootSlash: false,
-        addPrefix: "http://media.html5media.info"
-    }))
-    .pipe(replace(/\.\.\/media\//g, "http://media.html5media.info/"));
+    // Fix api paths.
+    .pipe(replace(/\.\.\/api\//g, "http://api.html5media.info/" + meta.version + "/"))
+    // Fix media paths.
+    .pipe(replace(/\.\.\/media\//g, "http://media.html5media.info/"))
+    // Use minified js.
+    .pipe(replace(/html5media\.js/g, "html5media.min.js"))
+    // Use minified css.
+    .pipe(replace(/styles\.css/g, "styles.min.css"));
 }
 
 
