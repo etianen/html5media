@@ -93,7 +93,7 @@ gulp.task("media", ["media-static", "media-css"]);
 function injectHtml(stream)  {
     return stream
     // Fix api paths.
-    .pipe(replace(/\.\.\/api\//g, "http://api.html5media.info/" + meta.version + "/"))
+    .pipe(replace(/\.\.\/api\//g, "https://api.html5media.info/" + meta.version + "/"))
     // Fix media paths.
     .pipe(replace(/\.\.\/media\//g, "http://media.html5media.info/"))
     // Use minified js.
