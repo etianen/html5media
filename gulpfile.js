@@ -10,6 +10,7 @@ var clean = require("gulp-clean");
 var inject = require("gulp-inject");
 var minifyCSS = require("gulp-minify-css");
 var awspublish = require("gulp-awspublish");
+var replace = require("gulp-replace");
 
 
 var API_JS_BUILD_ROOT = path.join("build", "api", meta.version);
@@ -109,7 +110,8 @@ function injectHtml(stream)  {
         ignorePath: "/build/media",
         addRootSlash: false,
         addPrefix: "http://media.html5media.info"
-    }));
+    }))
+    .pipe(replace(/\.\.\/media\//g, "http://media.html5media.info/"));
 }
 
 
