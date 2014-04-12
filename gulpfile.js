@@ -82,25 +82,64 @@ gulp.task("media-static", function() {
 gulp.task("media", ["media-static", "media-css"]);
 
 
-gulp.task("www", ["api"], function() {
-    return gulp.src([
-        "./src/www/*.html"
-    ])
+function injectHtml(stream)  {
+    return stream
     .pipe(inject(gulp.src([
-        path.join(API_JS_BUILD_ROOT, "html5media.min.js"),
+        path.join(API_JS_BUILD_ROOT, "html5media.min.js")
+    ], {
+        read: false
+    }), {
+        ignorePath: "/build/api",
+        addRootSlash: false,
+        addPrefix: "http://api.html5media.info"
+    }))
+    .pipe(inject(gulp.src([
         "build/media/styles.min.css"
     ], {
         read: false
     }), {
-        ignorePath: "/build",
+        ignorePath: "/build/media",
         addRootSlash: false,
-        addPrefix: ".."
-    }))
+        addPrefix: "http://media.html5media.info"
+    }));
+}
+
+
+gulp.task("www-html", ["api"], function() {
+    return injectHtml(gulp.src([
+        "src/www/*.html"
+    ]))
     .pipe(gulp.dest("build/www"));
 });
 
 
-gulp.task("build", ["api", "media", "www"]);
+gulp.task("www", ["www-html"]);
+
+
+gulp.task("common-robots", function() {
+    return gulp.src([
+        "src/common/robots.txt"
+    ])
+    .pipe(gulp.dest("build/api"))
+    .pipe(gulp.dest("build/media"))
+    .pipe(gulp.dest("build/www"));
+});
+
+
+gulp.task("common-html", ["api"], function() {
+    return injectHtml(gulp.src([
+        "src/common/*.html"
+    ]))
+    .pipe(gulp.dest("build/api"))
+    .pipe(gulp.dest("build/media"))
+    .pipe(gulp.dest("build/www"));
+});
+
+
+gulp.task("common", ["common-robots", "common-html"]);
+
+
+gulp.task("build", ["api", "media", "www", "common"]);
 
 
 // Distributing.
