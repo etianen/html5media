@@ -45,16 +45,24 @@ gulp.task("api-js", function() {
 
 gulp.task("api-swf", function() {
     return gulp.src([
-        "lib/flowplayer/flowplayer.swf",
-        "lib/flowplayer/flowplayer.controls.swf",
-        "lib/flowplayer.audio/flowplayer.audio.swf",
-        "lib/swfobject/expressInstall.swf"
+        "src/lib/flowplayer/flowplayer.swf",
+        "src/lib/flowplayer/flowplayer.controls.swf",
+        "src/lib/flowplayer.audio/flowplayer.audio.swf",
+        "src/lib/swfobject/expressInstall.swf"
     ])
     .pipe(gulp.dest(API_JS_BUILD_ROOT));
 });
 
 
-gulp.task("api", ["api-js", "api-swf"]);
+gulp.task("api-license", function() {
+    return gulp.src([
+        "LICENSE",
+    ])
+    .pipe(gulp.dest(API_JS_BUILD_ROOT));
+});
+
+
+gulp.task("api", ["api-js", "api-swf", "api-license"]);
 
 
 gulp.task("media-css", function() {
