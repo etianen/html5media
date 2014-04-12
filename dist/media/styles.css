@@ -78,8 +78,12 @@ audio {
 #header h1 {
     font-size: 30px;
     font-weight: normal;
-    color: #FF782F;
     margin: 0 0 0 0;
+}
+
+#header h1 a {
+    color: #FF782F;
+    text-decoration: none;
 }
 
 #header h2 {
