@@ -116,9 +116,10 @@ gulp.task("www-html", ["api"], function() {
 gulp.task("www", ["www-html"]);
 
 
-gulp.task("common-robots", function() {
+gulp.task("common-misc", function() {
     return gulp.src([
-        "src/common/robots.txt"
+        "src/common/*.txt",
+        "src/common/*.xml"
     ])
     .pipe(gulp.dest("build/api"))
     .pipe(gulp.dest("build/media"))
@@ -136,7 +137,7 @@ gulp.task("common-html", ["api"], function() {
 });
 
 
-gulp.task("common", ["common-robots", "common-html"]);
+gulp.task("common", ["common-misc", "common-html"]);
 
 
 gulp.task("build", ["api", "media", "www", "common"]);
