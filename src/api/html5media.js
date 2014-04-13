@@ -222,7 +222,7 @@
     function fixPath(url) {
         var link = document.createElement("a");
         link.href = url;
-        return link.protocol + "//" + link.host + link.pathname + link.search + link.hash;
+        return link.href;
     }
     
     // Calculates the given dimension of the given element.
