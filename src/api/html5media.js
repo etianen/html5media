@@ -219,27 +219,10 @@
     }
     
     // Standardizes URLs to avoid confusing Flowplayer.
-    var hostUrl = window.location.protocol + "//" + window.location.host;
-    var baseUrl = dirname(function() {
-        var elements = document.getElementsByTagName("base");
-        for (var n = 0; n < elements.length; n++) {
-            var element = elements[0];
-            if (element.href) {
-                return element.href;
-            }
-        }
-        return String(window.location);
-    }());
     function fixPath(url) {
-        // Add the host to URLs that start with a forward slash.
-        if (url.substr(0, 1) == "/") {
-            return hostUrl + url;
-        }
-        // Add the baseUrl to relative URLs.
-        if (url.substr(0, 1) == "." || !url.match(/^\s*\w+:\/\//)) {
-            return baseUrl + url;
-        }
-        return url;
+        var link = document.createElement("a");
+        link.href = url;
+        return link.protocol + "//" + link.host + link.pathname + link.search + link.hash;
     }
     
     // Calculates the given dimension of the given element.
