@@ -2,6 +2,12 @@ html5media changelog
 ====================
 
 
+1.1.8
+-----
+
+*   Absolute URL resolution now supports protocol-relative URLs.
+
+
 1.1.7
 -----
 
