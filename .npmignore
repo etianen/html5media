@@ -1,0 +1,15 @@
+.git*
+/build
+/src/media
+/src/www
+/dist/media
+/dist/www
+.DS_Store
+.project
+.pydevproject
+.settings
+*.pyc
+*.pyo
+.bzr
+.bzrignore
+Thumbs.db
