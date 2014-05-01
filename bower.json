@@ -24,6 +24,11 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "build",
+    "src/media",
+    "src/www",
+    "dist/media",
+    "dist/www"
   ]
 }
