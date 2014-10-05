@@ -8,8 +8,8 @@ var rename = require("gulp-rename");
 var concat = require("gulp-concat");
 var clean = require("gulp-clean");
 var minifyCSS = require("gulp-minify-css");
-var awspublish = require("gulp-awspublish");
 var replace = require("gulp-replace");
+var shell = require("gulp-shell");
 
 
 var API_JS_BUILD_ROOT = path.join("build", "api", meta.version);
@@ -153,41 +153,24 @@ gulp.task("dist", ["build"], function() {
 
 // Publishing.
 
-function publishToBucket(stream, bucketName) {
-    var publisher = awspublish.create({
-        key: process.env.HTML5MEDIA_AWS_ACCESS_KEY_ID,
-        secret: process.env.HTML5MEDIA_AWS_SECRET_ACCESS_KEY,
-        bucket: bucketName
-    });
-    return stream
-    .pipe(publisher.publish({
-        "Cache-Control": "public, max-age=315360000"
-    }))
-    .pipe(publisher.sync())
-    .pipe(publisher.cache())
-    .pipe(awspublish.reporter());
-}
+var publishViaRsync = function(src, dest) {
+    return "rsync -rh --progress --delete " + src + " " + process.env.HTML5MEDIA_HOST + ":" + dest;
+};
 
 
-gulp.task("publish-www", ["dist"], function() {
-    return publishToBucket(gulp.src([
-        "dist/www/**"
-    ]), "html5media.info");
-});
+gulp.task("publish-www", ["dist"], shell.task([
+    publishViaRsync("dist/www/*", process.env.HTML5MEDIA_PATH_WWW),
+]));
 
 
-gulp.task("publish-media", ["dist"], function() {
-    return publishToBucket(gulp.src([
-        "dist/media/**"
-    ]), "media.html5media.info");
-});
+gulp.task("publish-media", ["dist"], shell.task([
+    publishViaRsync("dist/media/*", process.env.HTML5MEDIA_PATH_MEDIA),
+]));
 
 
-gulp.task("publish-api", ["dist"], function() {
-    return publishToBucket(gulp.src([
-        "dist/api/**"
-    ]), "api.html5media.info");
-});
+gulp.task("publish-api", ["dist"], shell.task([
+    publishViaRsync("dist/api/*", process.env.HTML5MEDIA_PATH_API),
+]));
 
 
 gulp.task("publish", ["publish-www", "publish-media", "publish-api"]);
