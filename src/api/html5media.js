@@ -139,6 +139,8 @@
     html5media.flowplayerAudioSwf = scriptRoot + "flowplayer.audio.swf";
     html5media.flowplayerControlsSwf = scriptRoot + "flowplayer.controls.swf";
     html5media.expressInstallSwf = scriptRoot + "expressInstall.swf";
+    html5media.videoFallbackClass = "html5videoFallback";
+    html5media.audioFallbackClass = "html5audioFallback";
     
     // Known media formats.
     var THEORA_FORMAT = 'video/ogg; codecs="theora, vorbis"';
@@ -315,8 +317,10 @@
         replacement.style.width = getDimension(element, "width", "300px");
         if (tagName == "audio") {
             replacement.style.height = "26px";
+            replacement.className = (replacement.className ? replacement.className+" " : "")+html5media.videoFallbackClass;
         } else {
             replacement.style.height = getDimension(element, "height", "200px");
+            replacement.className = (replacement.className ? replacement.className+" " : "")+html5media.audioFallbackClass;
         }
         // Replace the element with the div.
         element.parentNode.replaceChild(replacement, element);
