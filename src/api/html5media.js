@@ -317,10 +317,10 @@
         replacement.style.width = getDimension(element, "width", "300px");
         if (tagName == "audio") {
             replacement.style.height = "26px";
-            replacement.className = (replacement.className ? replacement.className+" " : "")+html5media.videoFallbackClass;
+            replacement.className = (replacement.className ? replacement.className+" " : "")+html5media.audioFallbackClass;
         } else {
             replacement.style.height = getDimension(element, "height", "200px");
-            replacement.className = (replacement.className ? replacement.className+" " : "")+html5media.audioFallbackClass;
+            replacement.className = (replacement.className ? replacement.className+" " : "")+html5media.videoFallbackClass;
         }
         // Replace the element with the div.
         element.parentNode.replaceChild(replacement, element);
