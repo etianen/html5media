@@ -1,6 +1,11 @@
 html5media changelog
 ====================
 
+1.2.0
+-----
+
+*   Added `videoFallbackClass` and `audioFallbackClass` settings.
+
 
 1.1.8
 -----
@@ -48,7 +53,7 @@ html5media changelog
 1.1.2
 -----
 
-*   Allowed source type attributes to omit the semicolon. 
+*   Allowed source type attributes to omit the semicolon.
 
 
 1.1.1
