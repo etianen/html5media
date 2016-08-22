@@ -1,6 +1,12 @@
 html5media changelog
 ====================
 
+1.2.1
+-----
+
+*   Fixing NPM release.
+
+
 1.2.0
 -----
 
