@@ -139,8 +139,8 @@
     html5media.flowplayerAudioSwf = scriptRoot + "flowplayer.audio.swf";
     html5media.flowplayerControlsSwf = scriptRoot + "flowplayer.controls.swf";
     html5media.expressInstallSwf = scriptRoot + "expressInstall.swf";
-    html5media.videoFallbackClass = "html5videoFallback";
-    html5media.audioFallbackClass = "html5audioFallback";
+    html5media.videoFallbackClass = "html5media-video-fallback";
+    html5media.audioFallbackClass = "html5media-audio-fallback";
     
     // Known media formats.
     var THEORA_FORMAT = 'video/ogg; codecs="theora, vorbis"';
