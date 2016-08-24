@@ -313,10 +313,12 @@
         replacement.style.cssText = element.style.cssText;
         replacement.className = element.className;
         replacement.title = element.title;
-        replacement.style.display = "block";
+        if (!element.style.display) {
+            replacement.style.display = "block";
+        }
         replacement.style.width = getDimension(element, "width", "300px");
         if (tagName == "audio") {
-            replacement.style.height = "26px";
+            replacement.style.height = getDimension(element, "height", "26px");
             replacement.className = (replacement.className ? replacement.className+" " : "")+html5media.audioFallbackClass;
         } else {
             replacement.style.height = getDimension(element, "height", "200px");
