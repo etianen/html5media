@@ -32,6 +32,7 @@
     // Tagnames for the different types of media tag.
     var VIDEO_TAG = "video";
     var AUDIO_TAG = "audio";
+    var userAgent = window.navigator.userAgent.toLowerCase();
     
     // If no video tag is supported, go ahead and enable all HTML5 elements.
     if (!document.createElement(VIDEO_TAG).canPlayType) {
@@ -40,10 +41,10 @@
     }
     
     // Checks whether this is a broken Android implementation.
-    var isBrokenAndroid = window.navigator.userAgent.toLowerCase().match(/android 2\.[12]/) !== null;
+    var isBrokenAndroid = userAgent.match(/android 2\.[12]/) !== null || userAgent.match(/android 6/) !== null;
     
     // Checks if this is opera.
-    var isOpera = window.navigator.userAgent.toLowerCase().match(/opera/) !== null;
+    var isOpera = userAgent.match(/opera/) !== null;
     
     // Checks whether the given element can play the fiven format.
     function canPlayFormat(element, format) {
