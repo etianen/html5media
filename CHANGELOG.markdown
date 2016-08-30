@@ -1,6 +1,13 @@
 html5media changelog
 ====================
 
+1.2.2
+-----
+
+*   Video fallbacks can now be `display: inline` if the style is already assigned them.
+*   Audio fallbacks can now have a custom `height` assigned via CSS.
+
+
 1.2.1
 -----
 
