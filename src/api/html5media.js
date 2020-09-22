@@ -46,7 +46,7 @@
     // Checks if this is opera.
     var isOpera = userAgent.match(/opera/) !== null;
     
-    // Checks whether the given element can play the fiven format.
+    // Checks whether the given element can play the given format.
     function canPlayFormat(element, format) {
         return element.canPlayType(format) || (isBrokenAndroid && format.search("mp4") > -1);
     }
