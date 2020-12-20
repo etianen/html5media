@@ -233,7 +233,8 @@
         // Attempt to use it's attribute value.
         var result = element.getAttribute(dimension);
         if (result) {
-            return result + "px";
+            if(result.endsWith("%")) return result;
+            else return result + "px";
         }
         // Attempt to use it's computed style.
         var style;
